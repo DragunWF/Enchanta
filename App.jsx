@@ -1,5 +1,6 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Toast from "react-native-toast-message";
 
 import { StatusBar } from "expo-status-bar";
 import { Ionicons } from "@expo/vector-icons";
@@ -9,7 +10,6 @@ import AppLoading from "expo-app-loading";
 import ChatScreen from "./screens/ChatScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import MemoryJournalScreen from "./screens/MemoryJournalScreen";
-import Toast from "react-native-toast-message";
 import ChatContextProvider from "./store/chatContext";
 
 const BottomTabs = createBottomTabNavigator();
