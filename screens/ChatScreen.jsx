@@ -3,7 +3,6 @@ import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
 
 import { ChatContext } from "../store/chatContext";
 import Conversation from "../components/Conversation";
-import { messageData } from "../helpers/dummyData";
 import Toast from "react-native-toast-message";
 import BotImage from "../components/BotImage";
 import MessageInput from "../components/MessageInput";
@@ -25,7 +24,8 @@ function ChatScreen() {
       });
     }
 
-    // Implement adding of chat
+    chatContext.addMessage(playerMessage, true);
+    setPlayerMessage("");
   }
 
   function isValidMessage() {
@@ -42,7 +42,7 @@ function ChatScreen() {
         <BotImage />
       </View>
       <View style={styles.chatContainer}>
-        <Conversation messageData={messageData} />
+        <Conversation messageData={chatContext.messageHistory} />
       </View>
       <MessageInput
         message={playerMessage}

@@ -6,9 +6,13 @@ function Conversation({ messageData }) {
   function renderChatBubble(itemData) {
     const message = itemData.item;
     if (message.isPlayer()) {
-      return <PlayerChatBubble>{message.getContent()}</PlayerChatBubble>;
+      return (
+        <PlayerChatBubble key={message.id}>
+          {message.getContent()}
+        </PlayerChatBubble>
+      );
     }
-    return <AIChatBubble>{message.getContent()}</AIChatBubble>;
+    return <AIChatBubble key={message.id}>{message.getContent()}</AIChatBubble>;
   }
 
   return (

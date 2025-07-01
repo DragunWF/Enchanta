@@ -7,7 +7,7 @@ function MessageInput({ message, onChange, onSendMessage }) {
         placeholder="Enter your message..."
         style={styles.textInput}
         value={message}
-        onChange={onChange}
+        onChangeText={onChange}
       />
       <Button title="Send" onPress={onSendMessage} />
     </View>

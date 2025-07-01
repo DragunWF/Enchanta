@@ -1,27 +1,47 @@
-import { createContext, useState, useReducer } from "react";
+import { createContext, useReducer } from "react";
+import { messageData } from "../helpers/dummyData";
+import Message from "../models/message";
 
 export const ChatContext = createContext({
-  chatHistory: [],
-  addChat: (message, isPlayer) => {},
+  messageHistory: [],
+  addMessage: (message, isPlayer) => {},
   clearChatHistory: () => {},
 });
 
 function ChatContextProvider({ children }) {
-  const [chatState, dispatch] = useReducer(chatReducer, []);
+  const [messageHistoryState, dispatch] = useReducer(chatReducer, [
+    ...messageData,
+  ]);
 
-  function addChat(message, isPlayer) {}
+  function addMessage(message, isPlayer) {
+    dispatch({
+      type: "ADD",
+      payload: new Message(Math.random(), message, isPlayer),
+    });
+  }
 
-  function clearChatHistory() {}
+  function clearMessageHistory() {
+    dispatch({ type: "CLEAR" });
+  }
 
   const value = {
-    chatHistory: chatHistory,
-    addChat: addChat,
-    clearChatHistory: clearChatHistory,
+    messageHistory: messageHistoryState,
+    addMessage: addMessage,
+    clearChatHistory: clearMessageHistory,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
 }
 
-function chatReducer() {}
+function chatReducer(state, action) {
+  switch (action.type) {
+    case "ADD":
+      return [...state, action.payload];
+    case "CLEAR":
+      return [];
+    default:
+      return state;
+  }
+}
 
 export default ChatContextProvider;
