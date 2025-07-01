@@ -1,11 +1,10 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
 import ChatBubble from "./ChatBubble";
 
 function AIChatBubble({ children }) {
   return (
     <ChatBubble
-      onPress={() => Alert.alert("Hi", "This is alert")}
       isOwnMessage={false}
       bubbleColor="lightgrey"
       withTail={true}
