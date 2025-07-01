@@ -1,6 +1,11 @@
+import { memo } from "react";
 import { StyleSheet, View, TextInput, Button } from "react-native";
 
-function MessageInput({ message, onChange, onSendMessage }) {
+const MessageInput = memo(function MessageInput({
+  message,
+  onChange,
+  onSendMessage,
+}) {
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -12,7 +17,7 @@ function MessageInput({ message, onChange, onSendMessage }) {
       <Button title="Send" onPress={onSendMessage} />
     </View>
   );
-}
+});
 
 const styles = StyleSheet.create({
   inputContainer: {
@@ -24,6 +29,10 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     justifyContent: "space-between",
     alignItems: "center",
+  },
+  textInput: {
+    flex: 1,
+    marginRight: 10,
   },
 });
 
