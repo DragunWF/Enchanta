@@ -1,7 +1,8 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+
+import { StatusBar } from "expo-status-bar";
+import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
@@ -29,20 +30,33 @@ export default function App() {
           <BottomTabs.Screen
             name="Settings"
             component={SettingsScreen}
-            options={{}}
+            options={{
+              tabBarIcon: ({ color, size }) => {
+                return <Ionicons name="settings" color={color} size={size} />;
+              },
+            }}
           />
-          <BottomTabs.Screen name="Chat" component={ChatScreen} options={{}} />
+          <BottomTabs.Screen
+            name="Chat"
+            component={ChatScreen}
+            options={{
+              tabBarIcon: ({ color, size }) => {
+                return <Ionicons name="chatbubble" color={color} size={size} />;
+              },
+            }}
+          />
           <BottomTabs.Screen
             name="MemoryJournal"
             component={MemoryJournalScreen}
-            options={{}}
+            options={{
+              tabBarLabel: "Memory Journal",
+              tabBarIcon: ({ color, size }) => {
+                return <Ionicons name="book" color={color} size={size} />;
+              },
+            }}
           />
         </BottomTabs.Navigator>
       </NavigationContainer>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  
-});
