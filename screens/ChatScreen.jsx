@@ -1,19 +1,24 @@
 import {
   StyleSheet,
   View,
-  Text,
-  Alert,
   TextInput,
   Button,
   Image,
   ScrollView,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 
-import ChatBubble from "../components/ChatBubble";
+import PlayerChatBubble from "../components/PlayerChatBubble";
+import AIChatBubble from "../components/AIChatBubble";
 
 function ChatScreen() {
   return (
-    <View style={styles.rootContainer}>
+    <KeyboardAvoidingView
+      style={styles.rootContainer}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+    >
       <View style={styles.botImageContainer}>
         <Image
           source={require("../assets/images/curious-mage.png")}
@@ -21,67 +26,45 @@ function ChatScreen() {
         />
       </View>
       <View style={styles.chatContainer}>
-        <ScrollView>
-          <ChatBubble
-            isOwnMessage={true}
-            bubbleColor="#1084ff"
-            tailColor="#1084ff"
-            withTail={true}
-            style={styles.chatBubble}
-          >
-            <Text style={styles.textOwn}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              atque repudiandae alias nisi aut? Ut perferendis similique non
-              vel! Blanditiis nihil enim culpa ex numquam commodi saepe? Non, ex
-              recusandae.
-            </Text>
-          </ChatBubble>
-          <ChatBubble
-            onPress={() => Alert.alert("Hi", "This is alert")}
-            isOwnMessage={false}
-            bubbleColor="lightgrey"
-            withTail={true}
-            style={styles.chatBubble}
-          >
-            <Text style={styles.text}>hi.</Text>
-          </ChatBubble>
-          <ChatBubble
-            isOwnMessage={true}
-            bubbleColor="#1084ff"
-            tailColor="#1084ff"
-            withTail={true}
-            style={styles.chatBubble}
-          >
-            <Text style={styles.textOwn}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas
-              atque repudiandae alias nisi aut? Ut perferendis similique non
-              vel! Blanditiis nihil enim culpa ex numquam commodi saepe? Non, ex
-              recusandae.
-            </Text>
-          </ChatBubble>
-          <ChatBubble
-            onPress={() => Alert.alert("Hi", "This is alert")}
-            isOwnMessage={false}
-            bubbleColor="lightgrey"
-            withTail={true}
-            style={styles.chatBubble}
-          >
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-              Aspernatur perferendis hic, veritatis, non cum veniam iusto
-              consequuntur rem porro quasi, quod alias neque fuga? Quaerat
-              distinctio et voluptas earum. Esse quisquam magnam officia velit,
-              laborum, minus dolore unde nemo sit nam pariatur dolor nobis
-              cupiditate excepturi aliquam similique totam ut!
-            </Text>
-          </ChatBubble>
+        <ScrollView
+          contentContainerStyle={styles.scrollContent}
+          keyboardShouldPersistTaps="handled"
+        >
+          <PlayerChatBubble>
+            Hello there! I'm ready for the next quest.
+          </PlayerChatBubble>
+          <AIChatBubble>
+            Welcome back, adventurer! The ancient scrolls speak of a new
+            challenge awaiting you in the Whispering Woods. Are you prepared?
+          </AIChatBubble>
+          <AIChatBubble>
+            The Whispering Woods, huh? Sounds intriguing! What kind of challenge
+            are we talking about this time? Last time it was goblins, and my
+            sword arm is still a bit sore.
+          </AIChatBubble>
+          <AIChatBubble>
+            Fear not, the goblins have retreated for now. This quest involves
+            solving riddles left by the forest spirits to uncover a hidden
+            artifact. It requires more wit than brute strength.
+          </AIChatBubble>
+          <PlayerChatBubble>
+            Riddles, excellent! My brain could use a workout. Lead the way, AI.
+            I'm up for the task!
+          </PlayerChatBubble>
+          <AIChatBubble>
+            Follow the path winding north from your current location. The first
+            riddle awaits you beneath the oldest oak tree. Good luck!
+          </AIChatBubble>
         </ScrollView>
       </View>
       <View style={styles.inputContainer}>
-        <TextInput placeholder="Enter your message..." />
+        <TextInput
+          placeholder="Enter your message..."
+          style={styles.textInput}
+        />
         <Button title="Send" />
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
@@ -96,7 +79,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "90%",
-    height: 250,
+    height: 225,
     borderRadius: 15,
   },
   chatContainer: {
@@ -104,16 +87,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingHorizontal: 10,
   },
-  chatBubble: {
-    padding: 10,
-  },
-  text: {
-    color: "black",
-    fontFamily: "quicksand",
-  },
-  textOwn: {
-    color: "white",
-    fontFamily: "quicksand",
+  scrollContent: {
+    paddingBottom: 20,
   },
   inputContainer: {
     flexDirection: "row",
@@ -123,6 +98,11 @@ const styles = StyleSheet.create({
     backgroundColor: "lightgray",
     borderRadius: 25,
     justifyContent: "space-between",
+    alignItems: "center",
+  },
+  textInput: {
+    flex: 1,
+    marginRight: 10,
   },
 });
 
