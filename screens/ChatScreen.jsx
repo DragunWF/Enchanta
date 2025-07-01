@@ -6,16 +6,19 @@ import Conversation from "../components/Conversation";
 import Toast from "react-native-toast-message";
 import BotImage from "../components/BotImage";
 import MessageInput from "../components/MessageInput";
+import { getMessageResponse } from "../helpers/chatbot";
 
 function ChatScreen() {
   const [playerMessage, setPlayerMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const chatContext = useContext(ChatContext);
 
   function playerMessageInputHandler(enteredMessage) {
     setPlayerMessage(enteredMessage);
   }
 
-  function sendMessageHandler() {
+  async function sendMessageHandler() {
     if (!isValidMessage()) {
       Toast.show({
         type: "info",
@@ -26,6 +29,21 @@ function ChatScreen() {
 
     chatContext.addMessage(playerMessage, true);
     setPlayerMessage("");
+
+    try {
+      setIsLoading(true);
+      const botResponse = await getMessageResponse(playerMessage);
+      chatContext.addMessage(botResponse, false);
+    } catch (err) {
+      Toast.show({
+        type: "error",
+        text1: "Error!",
+        text2:
+          "An unexpected error occurred while the bot was trying to respond to your message.",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   function isValidMessage() {
@@ -66,10 +84,6 @@ const styles = StyleSheet.create({
     flex: 2,
     marginTop: 10,
     paddingHorizontal: 10,
-  },
-  textInput: {
-    flex: 1,
-    marginRight: 10,
   },
 });
 

@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API_KEY = "YOUR_GEMINI_API_KEY"; // Replace with your actual API key
-const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
+const API_KEY = "";
+const MODEL_NAME = "gemini-1.5-flash"; 
+const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
 const geminiApi = axios.create({
   baseURL: API_URL,
@@ -29,5 +30,6 @@ export async function generateText(prompt) {
       "Error generating text:",
       error.response ? error.response.data : error.message
     );
+    throw error; // Re-throw to handle upstream
   }
 }
