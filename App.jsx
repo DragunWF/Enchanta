@@ -26,7 +26,17 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <BottomTabs.Navigator initialRouteName="Chat">
+        <BottomTabs.Navigator
+          initialRouteName="Chat"
+          screenOptions={{
+            headerTitleStyle: {
+              fontFamily: "quicksand-bold",
+            },
+            tabBarLabelStyle: {
+              fontFamily: "quicksand",
+            },
+          }}
+        >
           <BottomTabs.Screen
             name="Settings"
             component={SettingsScreen}
@@ -40,6 +50,7 @@ export default function App() {
             name="Chat"
             component={ChatScreen}
             options={{
+              title: "Chat with Angelina",
               tabBarIcon: ({ color, size }) => {
                 return <Ionicons name="chatbubble" color={color} size={size} />;
               },
