@@ -9,6 +9,7 @@ import AppLoading from "expo-app-loading";
 import ChatScreen from "./screens/ChatScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import MemoryJournalScreen from "./screens/MemoryJournalScreen";
+import Toast from "react-native-toast-message";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -24,7 +25,7 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="light" />
+      <StatusBar style="black" />
       <NavigationContainer>
         <BottomTabs.Navigator
           initialRouteName="Chat"
@@ -68,6 +69,7 @@ export default function App() {
           />
         </BottomTabs.Navigator>
       </NavigationContainer>
+      <Toast />
     </>
   );
 }
