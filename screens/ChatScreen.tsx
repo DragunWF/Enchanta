@@ -6,13 +6,18 @@ import Conversation from "../components/Conversation";
 import Toast from "react-native-toast-message";
 import BotImage from "../components/BotImage";
 import MessageInput from "../components/MessageInput";
-import { getMessageResponse } from "../helpers/chatbot";
+import { getFullPrompt, getBotResponseMessage } from "../helpers/chatbot";
+import { BotContext } from "../store/botContext";
 
 function ChatScreen() {
   const [playerMessage, setPlayerMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+
   const chatContext = useContext(ChatContext);
+  const botContext = useContext(BotContext);
+
+  console.log(getFullPrompt(botContext, chatContext));
 
   function playerMessageInputHandler(enteredMessage: string) {
     setPlayerMessage(enteredMessage);
@@ -32,7 +37,7 @@ function ChatScreen() {
 
     try {
       setIsLoading(true);
-      const botResponse = await getMessageResponse(playerMessage);
+      const botResponse = await getBotResponseMessage(playerMessage);
       chatContext.addMessage(botResponse, false);
     } catch (err) {
       Toast.show({

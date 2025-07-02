@@ -11,6 +11,7 @@ import ChatScreen from "./screens/ChatScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import MemoryJournalScreen from "./screens/MemoryJournalScreen";
 import ChatContextProvider from "./store/chatContext";
+import BotContextProvider from "./store/botContext";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -27,53 +28,57 @@ export default function App() {
   return (
     <>
       <StatusBar style="dark" />
-      <ChatContextProvider>
-        <NavigationContainer>
-          <BottomTabs.Navigator
-            initialRouteName="Chat"
-            screenOptions={{
-              headerTitleStyle: {
-                fontFamily: "quicksand-bold",
-              },
-              tabBarLabelStyle: {
-                fontFamily: "quicksand",
-              },
-            }}
-          >
-            <BottomTabs.Screen
-              name="Settings"
-              component={SettingsScreen}
-              options={{
-                tabBarIcon: ({ color, size }) => {
-                  return <Ionicons name="settings" color={color} size={size} />;
+      <BotContextProvider>
+        <ChatContextProvider>
+          <NavigationContainer>
+            <BottomTabs.Navigator
+              initialRouteName="Chat"
+              screenOptions={{
+                headerTitleStyle: {
+                  fontFamily: "quicksand-bold",
+                },
+                tabBarLabelStyle: {
+                  fontFamily: "quicksand",
                 },
               }}
-            />
-            <BottomTabs.Screen
-              name="Chat"
-              component={ChatScreen}
-              options={{
-                title: "Chat with Angelina",
-                tabBarIcon: ({ color, size }) => {
-                  return (
-                    <Ionicons name="chatbubble" color={color} size={size} />
-                  );
-                },
-              }}
-            />
-            <BottomTabs.Screen
-              name="MemoryJournal"
-              component={MemoryJournalScreen}
-              options={{
-                tabBarLabel: "Memory Journal",
-                tabBarIcon: ({ color, size }) => {
-                  return <Ionicons name="book" color={color} size={size} />;
-                },
-              }}
-            />
-          </BottomTabs.Navigator>
-        </NavigationContainer>
-      </ChatContextProvider>
+            >
+              <BottomTabs.Screen
+                name="Settings"
+                component={SettingsScreen}
+                options={{
+                  tabBarIcon: ({ color, size }) => {
+                    return (
+                      <Ionicons name="settings" color={color} size={size} />
+                    );
+                  },
+                }}
+              />
+              <BottomTabs.Screen
+                name="Chat"
+                component={ChatScreen}
+                options={{
+                  title: "Chat with Angelina",
+                  tabBarIcon: ({ color, size }) => {
+                    return (
+                      <Ionicons name="chatbubble" color={color} size={size} />
+                    );
+                  },
+                }}
+              />
+              <BottomTabs.Screen
+                name="MemoryJournal"
+                component={MemoryJournalScreen}
+                options={{
+                  tabBarLabel: "Memory Journal",
+                  tabBarIcon: ({ color, size }) => {
+                    return <Ionicons name="book" color={color} size={size} />;
+                  },
+                }}
+              />
+            </BottomTabs.Navigator>
+          </NavigationContainer>
+        </ChatContextProvider>
+      </BotContextProvider>
       <Toast />
     </>
   );

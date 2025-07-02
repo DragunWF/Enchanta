@@ -2,13 +2,19 @@
   NOTE: That changing the names here will also require you to change the name of its
   corresponding image in the "../assets/images" directory.
 */
-export const MOODS = {
-  annoyed: "annoyed",
-  cheerful: "cheerful",
-  curious: "curious",
-  neutral: "neutral",
-  playful: "playful",
-  serious: "serious",
-  sleepy: "sleepy",
-  lovestruck: "lovestruck",
-};
+export enum MOOD {
+  ANNOYED = "annoyed",
+  CHEERFUL = "cheerful",
+  CURIOUS = "curious",
+  NEUTRAL = "neutral",
+  PLAYFUL = "playful",
+  SERIOUS = "serious",
+  SLEEPY = "sleepy",
+  LOVESTRUCK = "lovestruck",
+}
+
+export enum BOND_LEVEL {
+  LOW = "low",
+  MEDIUM = "medium",
+  HIGH = "high",
+}

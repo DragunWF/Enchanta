@@ -1,31 +1,43 @@
-import { createContext, useState, ReactNode } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
+import {
+  getRandomBondLevel,
+  getRandomMoodName,
+  getRandomQuirk,
+} from "../helpers/chatbot";
+import { getCurrentDateToday } from "../helpers/utils";
+import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 
-interface BotContextType {
+export interface BotContextType {
   mood: string;
   importantFacts: string[];
   datetime: string;
   bondLevel: string;
   quirkVariation: string;
 }
+export const BotContext = createContext<BotContextType>({} as BotContextType);
 
 interface BotContextProviderProps {
   children: ReactNode;
 }
 
-export const BotContext = createContext<BotContextType>({
-  mood: "",
-  importantFacts: [],
-  datetime: "",
-  bondLevel: "",
-  quirkVariation: "",
-});
-
 function BotContextProvider({ children }: BotContextProviderProps) {
   const [mood, setMood] = useState("");
-  const [importantFacts, setImportantFacts] = useState([]);
+  const [importantFacts, setImportantFacts] = useState(["None"]); // Temporary
   const [datetime, setDatetime] = useState("");
   const [bondLevel, setBondLevel] = useState("");
   const [quirkVariation, setQuirkVariation] = useState("");
+
+  useEffect(() => {
+    // Set initial values
+    setMood(getRandomMoodName());
+    setQuirkVariation(getRandomQuirk());
+    setBondLevel(getRandomBondLevel());
+    setDatetime(getCurrentDateToday());
+  }, []);
+
+  function updateMood(mood: MOOD) {}
+
+  function updateBond(bondLevel: BOND_LEVEL) {}
 
   const value: BotContextType = {
     mood,

@@ -2,23 +2,21 @@ import { createContext, useReducer, ReactNode } from "react";
 import { messageData } from "../helpers/dummyData";
 import Message from "../models/message";
 
-interface ChatContextType {
+export interface ChatContextType {
   messageHistory: Message[];
   addMessage: (message: string, isPlayer: boolean) => void;
   clearChatHistory: () => void;
 }
 
+type ChatAction = { type: "ADD"; payload: Message } | { type: "CLEAR" };
+
+export const ChatContext = createContext<ChatContextType>(
+  {} as ChatContextType
+);
+
 interface ChatContextProviderProps {
   children: ReactNode;
 }
-
-type ChatAction = { type: "ADD"; payload: Message } | { type: "CLEAR" };
-
-export const ChatContext = createContext<ChatContextType>({
-  messageHistory: [],
-  addMessage: (message: string, isPlayer: boolean) => {},
-  clearChatHistory: () => {},
-});
 
 function ChatContextProvider({ children }: ChatContextProviderProps) {
   const [messageHistoryState, dispatch] = useReducer(chatReducer, [

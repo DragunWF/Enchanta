@@ -7,7 +7,7 @@ interface BotImageProps {
 function BotImage({ onMoodChange }: BotImageProps) {
   return (
     <Image
-      source={require("../assets/images/curious-mage.png")}
+      source={require("../assets/images/lovestruck-mage.png")}
       style={styles.image}
     />
   );
