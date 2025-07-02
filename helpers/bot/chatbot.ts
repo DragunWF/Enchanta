@@ -11,17 +11,21 @@ import { BOND_LEVEL } from "../../constants/botFactors";
 import { ChatContextType } from "../../store/chatContext";
 import { BotContextType } from "../../store/botContext";
 import { factorTemplates, prompt } from "./botPrompt";
+import { extractBotResponseWithFallback } from "./responseParser";
 import BotMood from "../../models/botMood";
 
-export function getBotResponseMessage(
+export async function getBotResponseMessage(
   botContext: BotContextType,
   chatContext: ChatContextType,
   mostRecentMessage: string
 ) {
-  const response = generateText(
+  // TODO: Continue implementing this method
+  const aiResponse = await generateText(
     getFullPrompt(botContext, chatContext, mostRecentMessage)
   );
-  return response;
+  const formattedResponse = extractBotResponseWithFallback(aiResponse);
+  console.log(formattedResponse);
+  return aiResponse;
 }
 
 export function getFullPrompt(

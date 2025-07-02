@@ -1,3 +1,6 @@
+import { moodNames } from "./botFactorsData";
+import { quirkVariations } from "./botFactorsData";
+
 // Templates IDs to be replaced with their actual IDs to prevent prompt injection
 export const factorTemplates = {
   mood: "ja3ha2z",
@@ -26,8 +29,10 @@ Key User Info: ${
 Personality Twist: ${factorTemplates.quirkVariation}
 
 **ALLOWED VALUES (you must only use these exact values):**
-Moods: []
-Quirk Variations: [] (use "normal" most often - only use others occasionally for variety)
+Moods: ${moodNames.join(", ")}
+Quirk Variations: ${quirkVariations.join(
+  ", "
+)} (use "normal" most often - only use others occasionally for variety)
 
 **Previous Context (for reference only):**
 ${factorTemplates.conversationHistory}
