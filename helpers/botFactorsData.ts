@@ -1,5 +1,5 @@
 import BotMood from "../models/botMood";
-import { MOODS } from "../constants/botMoodNames";
+import { MOODS } from "../constants/botFactors";
 
 const baseImagePath = "../assets/images";
 

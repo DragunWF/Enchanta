@@ -10,4 +10,5 @@ export const MOODS = {
   playful: "playful",
   serious: "serious",
   sleepy: "sleepy",
+  lovestruck: "lovestruck",
 };
