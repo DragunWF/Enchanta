@@ -1,5 +1,4 @@
 import { createContext, useReducer, ReactNode } from "react";
-import { messageData } from "../helpers/dummyData";
 import Message from "../models/message";
 
 export interface ChatContextType {

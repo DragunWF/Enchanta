@@ -1,5 +1,5 @@
-import BotMood from "../models/botMood";
-import { BOND_LEVEL, MOOD } from "../constants/botFactors";
+import BotMood from "../../models/botMood";
+import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 
 const moodImages = {
   [MOOD.ANNOYED]: require("../assets/images/annoyed-mage.png"),

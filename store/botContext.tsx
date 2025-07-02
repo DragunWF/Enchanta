@@ -3,8 +3,8 @@ import {
   getRandomBondLevel,
   getRandomMoodName,
   getRandomQuirk,
-} from "../helpers/chatbot";
-import { getCurrentDateToday } from "../helpers/utils";
+} from "../helpers/bot/chatbot";
+import { getCurrentDateToday } from "../helpers/tools/utils";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 
 export interface BotContextType {

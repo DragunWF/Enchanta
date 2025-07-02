@@ -6,7 +6,7 @@ import Conversation from "../components/Conversation";
 import Toast from "react-native-toast-message";
 import BotImage from "../components/BotImage";
 import MessageInput from "../components/MessageInput";
-import { getBotResponseMessage } from "../helpers/chatbot";
+import { getBotResponseMessage } from "../helpers/bot/chatbot";
 import { BotContext } from "../store/botContext";
 
 function ChatScreen() {

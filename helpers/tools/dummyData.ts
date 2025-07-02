@@ -1,4 +1,4 @@
-import Message from "../models/message";
+import Message from "../../models/message";
 
 // NOTE: This is primarily used for testing
 export const messageData: Message[] = [
