@@ -1,8 +1,8 @@
 class BotMood {
-  #name;
-  #imageSource;
+  #name: string;
+  #imageSource: string;
 
-  constructor(name, imageSource) {
+  constructor(name: string, imageSource: string) {
     this.#name = name;
     this.#imageSource = imageSource;
   }

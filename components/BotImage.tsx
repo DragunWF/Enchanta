@@ -1,6 +1,10 @@
 import { StyleSheet, Image } from "react-native";
 
-function BotImage({ onMoodChange }) {
+interface BotImageProps {
+  onMoodChange: () => void;
+}
+
+function BotImage({ onMoodChange }: BotImageProps) {
   return (
     <Image
       source={require("../assets/images/curious-mage.png")}

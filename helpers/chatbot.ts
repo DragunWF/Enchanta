@@ -4,6 +4,6 @@ import { generateText } from "./gemini";
 const prompt =
   "You are an assistant. Respond to the user with the utmost respect.";
 
-export function getMessageResponse(message) {
+export function getMessageResponse(message: string) {
   return generateText(`${prompt}\n\nUser Message: ${message}`);
 }

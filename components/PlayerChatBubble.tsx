@@ -1,8 +1,13 @@
+import { ReactNode } from "react";
 import { StyleSheet, Text } from "react-native";
 
 import ChatBubble from "./ChatBubble";
 
-function PlayerChatBubble({ children }) {
+interface PlayerChatBubbleProps {
+  children: ReactNode;
+}
+
+function PlayerChatBubble({ children }: PlayerChatBubbleProps) {
   return (
     <ChatBubble
       isOwnMessage={true}

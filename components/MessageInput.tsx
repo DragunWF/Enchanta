@@ -1,11 +1,17 @@
 import { memo } from "react";
 import { StyleSheet, View, TextInput, Button } from "react-native";
 
+interface MessageInputProps {
+  message: string;
+  onChange: (enteredText: string) => void;
+  onSendMessage: () => void;
+}
+
 const MessageInput = memo(function MessageInput({
   message,
   onChange,
   onSendMessage,
-}) {
+}: MessageInputProps) {
   return (
     <View style={styles.inputContainer}>
       <TextInput

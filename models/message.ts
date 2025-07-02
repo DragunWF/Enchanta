@@ -1,9 +1,9 @@
 class Message {
-  #id;
-  #content;
-  #isPlayer;
+  #id: number;
+  #content: string;
+  #isPlayer: boolean;
 
-  constructor(id, content, isPlayer) {
+  constructor(id: number, content: string, isPlayer: boolean) {
     this.#id = id;
     this.#content = content;
     this.#isPlayer = isPlayer;

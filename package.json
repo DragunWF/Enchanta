@@ -1,7 +1,7 @@
 {
   "name": "enchanta",
   "version": "1.0.0",
-  "main": "index.jsx",
+  "main": "index.tsx",
   "scripts": {
     "start": "expo start --tunnel",
     "android": "expo start --android",
@@ -25,7 +25,12 @@
     "react-native-toast-message": "^2.3.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.0"
+    "@babel/core": "^7.20.0",
+    "@react-native/typescript-config": "^0.80.1",
+    "@types/jest": "^30.0.0",
+    "@types/react": "^19.1.8",
+    "@types/react-test-renderer": "^19.1.0",
+    "typescript": "^5.8.3"
   },
   "private": true
 }

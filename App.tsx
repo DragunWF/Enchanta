@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="black" />
+      <StatusBar style="dark" />
       <ChatContextProvider>
         <NavigationContainer>
           <BottomTabs.Navigator

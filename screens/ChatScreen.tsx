@@ -14,7 +14,7 @@ function ChatScreen() {
   const [error, setError] = useState(null);
   const chatContext = useContext(ChatContext);
 
-  function playerMessageInputHandler(enteredMessage) {
+  function playerMessageInputHandler(enteredMessage: string) {
     setPlayerMessage(enteredMessage);
   }
 
@@ -57,7 +57,7 @@ function ChatScreen() {
       keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
     >
       <View style={styles.botImageContainer}>
-        <BotImage />
+        <BotImage onMoodChange={false} />
       </View>
       <View style={styles.chatContainer}>
         <Conversation messageData={chatContext.messageHistory} />

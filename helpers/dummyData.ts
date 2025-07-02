@@ -1,7 +1,7 @@
 import Message from "../models/message";
 
 // NOTE: This is primarily used for testing
-export const messageData = [
+export const messageData: Message[] = [
   new Message(1, "Hey! How's it going?", true),
   new Message(
     2,

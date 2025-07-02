@@ -1,8 +1,33 @@
-import { View, Pressable, StyleSheet } from "react-native";
+import React, { ReactNode } from "react";
+import {
+  View,
+  Pressable,
+  StyleSheet,
+  ViewStyle,
+  PressableProps,
+  ViewProps,
+} from "react-native";
 import { Path, Svg } from "react-native-svg";
 import { moderateScale } from "react-native-size-matters";
 
-const ChatBubble = ({
+interface ChatBubbleProps {
+  isOwnMessage: boolean;
+  children: ReactNode;
+  bubbleColor?: string;
+  tailColor?: string;
+  withTail?: boolean;
+  style?: ViewStyle;
+  onPress?: () => void;
+  hitSlop?: PressableProps["hitSlop"];
+  maxWidth?: number;
+}
+
+interface StyleObjParams {
+  isOwnMessage: boolean;
+  maxWidth?: number;
+}
+
+function ChatBubble({
   isOwnMessage,
   children,
   bubbleColor = isOwnMessage ? "#1084ff" : "grey",
@@ -13,7 +38,7 @@ const ChatBubble = ({
   hitSlop,
   maxWidth,
   ...rest
-}) => {
+}: ChatBubbleProps & Omit<ViewProps & PressableProps, keyof ChatBubbleProps>) {
   const styles = getStyleObj({ isOwnMessage, maxWidth });
   const SvgContainerStyle = isOwnMessage
     ? styles.svgContainerOwn
@@ -41,7 +66,7 @@ const ChatBubble = ({
             width={moderateScale(15.5, 0.6)}
             height={moderateScale(17.5, 0.6)}
             viewBox="32.485 17.5 15.515 17.5"
-            enable-background="new 32.485 17.5 15.515 17.5"
+            enableBackground="new 32.485 17.5 15.515 17.5"
           >
             <Path d={tailPath} fill={tailColor} x="0" y="0" />
           </Svg>
@@ -49,9 +74,9 @@ const ChatBubble = ({
       )}
     </Container>
   );
-};
+}
 
-const getStyleObj = ({ isOwnMessage, maxWidth }) => {
+const getStyleObj = ({ isOwnMessage, maxWidth }: StyleObjParams) => {
   return StyleSheet.create({
     bubble: {
       maxWidth: moderateScale(maxWidth || 250, 2),
