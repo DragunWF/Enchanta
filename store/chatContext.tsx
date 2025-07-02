@@ -19,9 +19,7 @@ interface ChatContextProviderProps {
 }
 
 function ChatContextProvider({ children }: ChatContextProviderProps) {
-  const [messageHistoryState, dispatch] = useReducer(chatReducer, [
-    ...messageData,
-  ]);
+  const [messageHistoryState, dispatch] = useReducer(chatReducer, []);
 
   function addMessage(message: string, isPlayer: boolean) {
     dispatch({

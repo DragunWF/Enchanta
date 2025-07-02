@@ -37,7 +37,7 @@ function ChatScreen() {
 
     try {
       setIsLoading(true);
-      const botResponse = await getBotResponseMessage(playerMessage);
+      const botResponse = await getBotResponseMessage(botContext, chatContext);
       chatContext.addMessage(botResponse, false);
     } catch (err) {
       Toast.show({
