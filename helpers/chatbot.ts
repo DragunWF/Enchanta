@@ -6,7 +6,7 @@ import {
   moods,
   quirkVariations,
 } from "./botFactorsData";
-import { getRandomArrayItem } from "./utils";
+import { getCurrentDateToday, getRandomArrayItem } from "./utils";
 import { BOND_LEVEL } from "../constants/botFactors";
 import { ChatContextType } from "../store/chatContext";
 import { BotContextType } from "../store/botContext";
@@ -56,14 +56,11 @@ ${factorTemplates.conversationHistory}
 - Stay in character as a real mage, not an AI
 - Let your current mood and bond level guide your tone
 
-Respond now to their message:
-`;
-
-`
 Respond now to their message in this JSON format:
 \`\`\`json
 {
   "reply": "your message here",
+  "updatedMood: "leave this as blank if there is none",
   "bondLevel": "changes to bond level goes here",
   "newImportantFact": "leave this as blank if there is no new important fact about the user"
 }
@@ -101,7 +98,7 @@ export function getFullPrompt(
   );
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.datetime,
-    botContext.datetime
+    getCurrentDateToday()
   );
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.bondLevel,

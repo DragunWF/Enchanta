@@ -2,15 +2,12 @@ import { StyleSheet, Image } from "react-native";
 
 import { moods } from "../helpers/botFactorsData";
 import BotMood from "../models/botMood";
-import { MOOD } from "../constants/botFactors";
 
 interface BotImageProps {
   moodName: string;
 }
 
 function BotImage({ moodName }: BotImageProps) {
-  console.log(Object.values(MOOD));
-  console.log(moodName);
   const currentMood: BotMood = moods[moodName];
 
   return <Image source={currentMood.getImageSource()} style={styles.image} />;
