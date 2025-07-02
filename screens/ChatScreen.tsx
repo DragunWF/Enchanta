@@ -57,7 +57,7 @@ function ChatScreen() {
       keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
     >
       <View style={styles.botImageContainer}>
-        <BotImage onMoodChange={false} />
+        <BotImage onMoodChange={() => {}} />
       </View>
       <View style={styles.chatContainer}>
         <Conversation messageData={chatContext.messageHistory} />
