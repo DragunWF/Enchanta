@@ -21,7 +21,7 @@ interface BotContextProviderProps {
 }
 
 function BotContextProvider({ children }: BotContextProviderProps) {
-  const [mood, setMood] = useState("");
+  const [mood, setMood] = useState("neutral");
   const [importantFacts, setImportantFacts] = useState(["None"]); // Temporary
   const [datetime, setDatetime] = useState("");
   const [bondLevel, setBondLevel] = useState("");

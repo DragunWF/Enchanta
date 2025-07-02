@@ -1,16 +1,19 @@
 import { StyleSheet, Image } from "react-native";
 
+import { moods } from "../helpers/botFactorsData";
+import BotMood from "../models/botMood";
+import { MOOD } from "../constants/botFactors";
+
 interface BotImageProps {
-  onMoodChange: () => void;
+  moodName: string;
 }
 
-function BotImage({ onMoodChange }: BotImageProps) {
-  return (
-    <Image
-      source={require("../assets/images/lovestruck-mage.png")}
-      style={styles.image}
-    />
-  );
+function BotImage({ moodName }: BotImageProps) {
+  console.log(Object.values(MOOD));
+  console.log(moodName);
+  const currentMood: BotMood = moods[moodName];
+
+  return <Image source={currentMood.getImageSource()} style={styles.image} />;
 }
 
 const styles = StyleSheet.create({

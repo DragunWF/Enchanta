@@ -6,7 +6,7 @@ import Conversation from "../components/Conversation";
 import Toast from "react-native-toast-message";
 import BotImage from "../components/BotImage";
 import MessageInput from "../components/MessageInput";
-import { getFullPrompt, getBotResponseMessage } from "../helpers/chatbot";
+import { getBotResponseMessage } from "../helpers/chatbot";
 import { BotContext } from "../store/botContext";
 
 function ChatScreen() {
@@ -64,7 +64,7 @@ function ChatScreen() {
       keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
     >
       <View style={styles.botImageContainer}>
-        <BotImage onMoodChange={() => {}} />
+        <BotImage moodName={botContext.mood} />
       </View>
       <View style={styles.chatContainer}>
         <Conversation messageData={chatContext.messageHistory} />

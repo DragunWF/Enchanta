@@ -1,17 +1,19 @@
+import { ImageSourcePropType } from "react-native";
+
 class BotMood {
   #name: string;
-  #imageSource: string;
+  #imageSource: ImageSourcePropType;
 
-  constructor(name: string, imageSource: string) {
+  constructor(name: string, imageSource: ImageSourcePropType) {
     this.#name = name;
     this.#imageSource = imageSource;
   }
 
-  getName() {
+  getName(): string {
     return this.#name;
   }
 
-  getImageSource() {
+  getImageSource(): ImageSourcePropType {
     return this.#imageSource;
   }
 }

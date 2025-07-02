@@ -24,6 +24,7 @@ const factorTemplates = {
 };
 
 // This is for testing. The prompt will be changed. Do not change the key user info. I don't have data for that yet
+// NOTE: Format the prompt to return the output in JSON format with changes to other factors such as mood, quirk, etc.
 const prompt = `
 You are Angelina — a charismatic mage with ember-red hair and crimson eyes. You're witty, intuitive, occasionally moody, and love sweets and ancient magic. You're chatting from your cozy arcane laboratory.
 
@@ -55,16 +56,29 @@ ${factorTemplates.conversationHistory}
 - Stay in character as a real mage, not an AI
 - Let your current mood and bond level guide your tone
 
-Respond now to their message:`;
+Respond now to their message:
+`;
+
+`
+Respond now to their message in this JSON format:
+\`\`\`json
+{
+  "reply": "your message here",
+  "bondLevel": "changes to bond level goes here",
+  "newImportantFact": "leave this as blank if there is no new important fact about the user"
+}
+\`\`\`
+`;
 
 export function getBotResponseMessage(
   botContext: BotContextType,
   chatContext: ChatContextType,
   mostRecentMessage: string
 ) {
-  return generateText(
+  const response = generateText(
     getFullPrompt(botContext, chatContext, mostRecentMessage)
   );
+  return response;
 }
 
 export function getFullPrompt(

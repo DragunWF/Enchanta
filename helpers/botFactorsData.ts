@@ -1,22 +1,20 @@
 import BotMood from "../models/botMood";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 
-const baseImagePath = "../assets/images";
-
 const moodImages = {
-  [MOOD.ANNOYED]: require(`${baseImagePath}/annoyed-mage.png`),
-  [MOOD.CHEERFUL]: require(`${baseImagePath}/cheerful-mage.png`),
-  [MOOD.CURIOUS]: require(`${baseImagePath}/curious-mage.png`),
-  [MOOD.NEUTRAL]: require(`${baseImagePath}/neutral-mage.png`),
-  [MOOD.PLAYFUL]: require(`${baseImagePath}/playful-mage.png`),
-  [MOOD.SERIOUS]: require(`${baseImagePath}/serious-mage.png`),
-  [MOOD.SLEEPY]: require(`${baseImagePath}/sleepy-mage.png`),
-  [MOOD.LOVESTRUCK]: require(`${baseImagePath}/lovestruck-mage.png`),
+  [MOOD.ANNOYED]: require("../assets/images/annoyed-mage.png"),
+  [MOOD.CHEERFUL]: require("../assets/images/cheerful-mage.png"),
+  [MOOD.CURIOUS]: require("../assets/images/curious-mage.png"),
+  [MOOD.NEUTRAL]: require("../assets/images/neutral-mage.png"),
+  [MOOD.PLAYFUL]: require("../assets/images/playful-mage.png"),
+  [MOOD.SERIOUS]: require("../assets/images/serious-mage.png"),
+  [MOOD.SLEEPY]: require("../assets/images/sleepy-mage.png"),
+  [MOOD.LOVESTRUCK]: require("../assets/images/lovestruck-mage.png"),
 };
 
 export const moods = Object.fromEntries(
   Object.keys(MOOD).map((moodKey) => [
-    moodKey,
+    moodKey.toLowerCase(),
     new BotMood(moodKey, moodImages[MOOD[moodKey as keyof typeof MOOD]]),
   ])
 );
