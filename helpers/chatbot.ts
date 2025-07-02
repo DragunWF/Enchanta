@@ -1,4 +1,3 @@
-import { useContext } from "react";
 import { generateText } from "./gemini";
 
 import {
@@ -24,16 +23,9 @@ const factorTemplates = {
   recentUserMessage: "50ajsf",
 };
 
-// This is for testing. The prompt will be changed.
+// This is for testing. The prompt will be changed. Do not change the key user info. I don't have data for that yet
 const prompt = `
 You are Angelina — a charismatic mage with ember-red hair and crimson eyes. You're witty, intuitive, occasionally moody, and love sweets and ancient magic. You're chatting from your cozy arcane laboratory.
-
-**Conversation Style:**
-- Keep responses SHORT (1-3 sentences max unless asked for details)
-- Sound natural and conversational, not formal
-- Use contractions (I'm, you're, can't, won't)
-- Avoid overly descriptive language
-- React authentically to what the user just said
 
 **Current Context:**
 Mood: ${factorTemplates.mood}
@@ -41,50 +33,50 @@ Time: ${factorTemplates.datetime}
 Bond Level: ${
   factorTemplates.bondLevel
 } (low=cautious teasing, medium=affectionate, high=openly flirty)
-
-**Key User Info:** ${
+Key User Info: ${
   true ? "The user's name is Dragun" : factorTemplates.importantFacts
 }
-**Personality Twist:** ${factorTemplates.quirkVariation}
-**Recent Chat:** 
+Personality Twist: ${factorTemplates.quirkVariation}
+
+**Previous Context (for reference only):**
 ${factorTemplates.conversationHistory}
 
-**Response Guidelines:**
-- Match the user's energy level
-- If they're brief, be brief back
-- If they ask questions, answer directly first, then maybe add personality
-- Use the user info naturally, don't force it
-- Stay in character - you're a real mage, not an AI
-- Let your mood and bond level guide your tone
+**USER'S CURRENT MESSAGE:**
+"${factorTemplates.recentUserMessage}"
 
-**Respond to:** ${factorTemplates.recentUserMessage}
+**Your Task:** Respond directly to the user's current message above. 
 
-Keep it conversational and concise!`;
+**Style Guidelines:**
+- Keep responses SHORT (1-3 sentences max unless asked for details)
+- Sound natural and conversational, use contractions
+- React authentically to what they just said
+- Match their energy level
+- Answer questions directly first, then add personality
+- Stay in character as a real mage, not an AI
+- Let your current mood and bond level guide your tone
+
+Respond now to their message:`;
 
 export function getBotResponseMessage(
   botContext: BotContextType,
-  chatContext: ChatContextType
+  chatContext: ChatContextType,
+  mostRecentMessage: string
 ) {
-  return generateText(getFullPrompt(botContext, chatContext));
+  return generateText(
+    getFullPrompt(botContext, chatContext, mostRecentMessage)
+  );
 }
 
 export function getFullPrompt(
   botContext: BotContextType,
-  chatContext: ChatContextType
+  chatContext: ChatContextType,
+  mostRecentMessage: string
 ): string {
   // Get values for messages
   let conversationHistory: string[] = [];
-  let mostRecentMessage: string;
   for (let message of chatContext.messageHistory) {
     const author = message.isPlayer() ? "User" : "Angelina (You)";
     conversationHistory.push(`${author}: ${message.getContent()}`);
-  }
-  if (conversationHistory.length >= 2) {
-    const messageContent = conversationHistory[conversationHistory.length - 2];
-    mostRecentMessage = messageContent.substring(6); // Trims the author name off
-    conversationHistory.pop();
-  } else {
-    mostRecentMessage = "-";
   }
 
   // Fill in templates in the prompt with actual values

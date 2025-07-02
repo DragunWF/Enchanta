@@ -17,8 +17,6 @@ function ChatScreen() {
   const chatContext = useContext(ChatContext);
   const botContext = useContext(BotContext);
 
-  console.log(getFullPrompt(botContext, chatContext));
-
   function playerMessageInputHandler(enteredMessage: string) {
     setPlayerMessage(enteredMessage);
   }
@@ -33,11 +31,14 @@ function ChatScreen() {
     }
 
     chatContext.addMessage(playerMessage, true);
-    setPlayerMessage("");
 
     try {
       setIsLoading(true);
-      const botResponse = await getBotResponseMessage(botContext, chatContext);
+      const botResponse = await getBotResponseMessage(
+        botContext,
+        chatContext,
+        playerMessage
+      );
       chatContext.addMessage(botResponse, false);
     } catch (err) {
       Toast.show({
@@ -48,6 +49,7 @@ function ChatScreen() {
       });
     } finally {
       setIsLoading(false);
+      setPlayerMessage("");
     }
   }
 
