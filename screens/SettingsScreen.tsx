@@ -1,13 +1,18 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { StyleSheet, View, Text, TextInput, Button } from "react-native";
+import { Dropdown } from "react-native-element-dropdown";
 
 import Title from "../components/ui/Title";
 import { ChatContext } from "../store/chatContext";
 import { BotContext } from "../store/botContext";
+import { moodNames } from "../helpers/bot/botFactorsData";
 
 function SettingsScreen() {
   const chatContext = useContext(ChatContext);
   const botContext = useContext(BotContext);
+
+  // Add state to track selected mood
+  const [selectedMood, setSelectedMood] = useState(moodNames[0]);
 
   return (
     <View>
@@ -15,7 +20,19 @@ function SettingsScreen() {
       <View style={styles.settingContainer}>
         <Text style={styles.settingLabel}>Bot Current Mood</Text>
         <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder="Hello" />
+          <Dropdown
+            style={styles.textInput}
+            data={moodNames}
+            selectedTextStyle={{ color: "white" }}
+            placeholderStyle={{ color: "white" }}
+            placeholder="Current Mood"
+            valueField="value"
+            labelField="label"
+            value={selectedMood} // Add this line
+            onChange={(item) => {
+              setSelectedMood(item.value); // Update state when selection changes
+            }}
+          />
           <View style={styles.button}>
             <Button title="Save" />
           </View>
