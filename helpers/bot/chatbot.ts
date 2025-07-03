@@ -25,7 +25,7 @@ export async function getBotResponseMessage(
   );
   const formattedResponse = extractBotResponse(aiResponse);
 
-  const reply = formattedResponse?.reply;
+  let reply = formattedResponse?.reply;
   const updatedMood = formattedResponse?.updatedMood;
   const bondLevelChange = formattedResponse?.bondLevelChange;
   const newImportantFact = formattedResponse?.newImportantFact;
@@ -33,6 +33,9 @@ export async function getBotResponseMessage(
 
   console.log(formattedResponse);
 
+  if (!reply) {
+    reply = "..."; // Fallback
+  }
   if (updatedMood) {
     botContext.updateMood(updatedMood);
   }
