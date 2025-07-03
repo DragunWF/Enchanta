@@ -128,7 +128,7 @@ export function getRandomMoodName(): string {
   if (excludedInitialMoods.includes(randomMood)) {
     return getRandomMoodName();
   }
-  return getRandomMoodName();
+  return randomMood;
 }
 
 export function getRandomBondLevel(): BOND_LEVEL {
