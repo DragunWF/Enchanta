@@ -12,6 +12,7 @@ import { ChatContextType } from "../../store/chatContext";
 import { BotContextType } from "../../store/botContext";
 import { factorTemplates, prompt } from "./botPrompt";
 import { extractBotResponse } from "./responseParser";
+import { logBotResponse } from "../tools/loggers";
 import BotMood from "../../models/botMood";
 
 export async function getBotResponseMessage(
@@ -31,7 +32,7 @@ export async function getBotResponseMessage(
   const newImportantFact = formattedResponse?.newImportantFact;
   const updatedQuirk = formattedResponse?.updatedQuirk;
 
-  console.log(formattedResponse);
+  logBotResponse(formattedResponse);
 
   if (!reply) {
     reply = "..."; // Fallback

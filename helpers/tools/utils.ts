@@ -27,5 +27,15 @@ export function generateLatestId(values: Message[] | ImportantFact[]): number {
       maxId = obj.getId();
     }
   }
-  return maxId + 1;
+  return maxId + 1 + Math.random();
+}
+
+export function toTitleCase(word: string): string {
+  if (!word) {
+    return "";
+  }
+  if (word.length === 1) {
+    return word.toUpperCase();
+  }
+  return `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`;
 }

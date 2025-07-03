@@ -31,6 +31,7 @@ function ChatScreen() {
     }
 
     chatContext.addMessage(playerMessage, true);
+    setPlayerMessage("");
 
     try {
       setIsLoading(true);
@@ -49,7 +50,6 @@ function ChatScreen() {
       });
     } finally {
       setIsLoading(false);
-      setPlayerMessage("");
     }
   }
 
