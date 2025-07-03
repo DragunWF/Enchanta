@@ -4,6 +4,17 @@ import { toTitleCase } from "./utils";
 
 let responseCount = 0;
 
+export function logAiResponse(response: string | null) {
+  if (!response) {
+    return null;
+  }
+  console.info(`
++ ----------------------------------------------------------- +
+${response}
++ ----------------------------------------------------------- +
+`);
+}
+
 export function logBotResponse(response: BotResponse | null) {
   responseCount++;
   if (!response) {

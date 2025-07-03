@@ -12,7 +12,7 @@ import { ChatContextType } from "../../store/chatContext";
 import { BotContextType } from "../../store/botContext";
 import { factorTemplates, prompt } from "./botPrompt";
 import { extractBotResponse } from "./responseParser";
-import { logBotResponse } from "../tools/loggers";
+import { logAiResponse, logBotResponse } from "../tools/loggers";
 import BotMood from "../../models/botMood";
 
 export async function getBotResponseMessage(
@@ -23,6 +23,7 @@ export async function getBotResponseMessage(
   const aiResponse = await generateText(
     getFullPrompt(botContext, chatContext, mostRecentMessage)
   );
+
   const formattedResponse = extractBotResponse(aiResponse);
 
   let reply = formattedResponse?.reply;
@@ -31,10 +32,8 @@ export async function getBotResponseMessage(
   const newImportantFact = formattedResponse?.newImportantFact;
   const updatedQuirk = formattedResponse?.updatedQuirk;
 
-  logBotResponse(formattedResponse);
-
   if (!reply) {
-    reply = "..."; // Fallback
+    reply = "..."; // Fallback reply
   }
   if (updatedMood) {
     botContext.updateMood(updatedMood);

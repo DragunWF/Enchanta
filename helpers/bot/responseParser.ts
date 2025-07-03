@@ -1,11 +1,10 @@
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
-import { moodNames } from "./botFactorsData";
 import { quirkVariations } from "./botFactorsData";
 
 export interface BotResponse {
   reply: string;
-  updatedMood: MOOD | string;
-  bondLevelChange: BOND_LEVEL | string;
+  updatedMood: MOOD | null;
+  bondLevelChange: BOND_LEVEL | null;
   newImportantFact: string;
   updatedQuirk: string;
 }
@@ -46,51 +45,44 @@ export function extractBotResponse(aiResponse: string): BotResponse | null {
       }
     }
 
-    // Validate mood and quirk values if they're not empty
-    if (parsed.updatedMood && !moodNames.includes(parsed.updatedMood)) {
-      console.warn(
-        `Invalid mood value: ${parsed.updatedMood}, resetting to empty`
-      );
-      parsed.updatedMood = "";
+    // Convert and validate mood value
+    let validatedMood: MOOD | null = null;
+    if (Object.values(MOOD).includes(parsed.updatedMood)) {
+      validatedMood = parsed.updatedMood as MOOD;
+    } else if (parsed.updatedMood) {
+      console.warn(`Invalid mood value: ${parsed.updatedMood}, using default`);
+      validatedMood = MOOD.NEUTRAL; // or whatever your default should be
     }
 
+    // Convert and validate bond level change
+    let validatedBondLevel: BOND_LEVEL | null = null;
+    if (Object.values(BOND_LEVEL).includes(parsed.bondLevelChange)) {
+      validatedBondLevel = parsed.bondLevelChange as BOND_LEVEL;
+    } else if (parsed.bondLevelChange) {
+      console.warn(
+        `Invalid bond level value: ${parsed.bondLevelChange}, using default`
+      );
+      validatedBondLevel = BOND_LEVEL.MEDIUM; // or whatever your default should be
+    }
+
+    // Validate quirk value
+    let validatedQuirk = String(parsed.updatedQuirk || "");
     if (parsed.updatedQuirk && !quirkVariations.includes(parsed.updatedQuirk)) {
       console.warn(
         `Invalid quirk value: ${parsed.updatedQuirk}, resetting to empty`
       );
-      parsed.updatedQuirk = "";
+      validatedQuirk = "";
     }
 
-    // Ensure string types and handle null/undefined
     return {
       reply: String(parsed.reply || ""),
-      updatedMood: String(parsed.updatedMood || ""),
-      bondLevelChange: String(parsed.bondLevelChange || ""),
+      updatedMood: validatedMood,
+      bondLevelChange: validatedBondLevel,
       newImportantFact: String(parsed.newImportantFact || ""),
-      updatedQuirk: String(parsed.updatedQuirk || ""),
+      updatedQuirk: validatedQuirk,
     };
   } catch (error) {
     console.error("Failed to parse Angelina response:", error);
     return null;
   }
-}
-
-export function extractBotResponseWithFallback(
-  aiResponse: string
-): BotResponse {
-  const extracted = extractBotResponse(aiResponse);
-
-  if (extracted) {
-    return extracted;
-  }
-
-  // Fallback: treat entire response as reply if JSON parsing fails
-  console.warn("JSON parsing failed, using fallback extraction");
-  return {
-    reply: aiResponse.trim(),
-    updatedMood: "",
-    bondLevelChange: "",
-    newImportantFact: "",
-    updatedQuirk: "",
-  };
 }
