@@ -1,5 +1,11 @@
 import { useRef, useEffect } from "react";
-import { StyleSheet, FlatList, ListRenderItemInfo } from "react-native";
+import {
+  StyleSheet,
+  FlatList,
+  ListRenderItemInfo,
+  Text,
+  View,
+} from "react-native";
 import PlayerChatBubble from "../ChatBubbles/PlayerChatBubble";
 import AIChatBubble from "../ChatBubbles/AIChatBubble";
 
@@ -30,6 +36,16 @@ function Conversation({ messageData }: ConversationProps) {
     return <AIChatBubble>{message.getContent()}</AIChatBubble>;
   }
 
+  if (!messageData.length) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>
+          Enter your message to start chatting now!
+        </Text>
+      </View>
+    );
+  }
+
   return (
     <FlatList
       ref={flatListRef}
@@ -47,6 +63,15 @@ function Conversation({ messageData }: ConversationProps) {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  text: {
+    fontFamily: "quicksand",
+    fontSize: 14,
+  },
   list: {
     paddingBottom: 20,
   },
