@@ -57,8 +57,9 @@ ${factorTemplates.conversationHistory}
 {
   "reply": "your conversational response here",
   "updatedMood": "only if mood changes from current context, otherwise empty string",
-  "bondLevelChange": "only if bond level should change (up/down/same), otherwise empty string", 
-  "newImportantFact": "only if user reveals new important info about themselves, otherwise empty string"
+  "bondLevelChange": "only if bond level should change (low/medium/high), otherwise empty string", 
+  "newImportantFact": "only if user reveals new important info about themselves, otherwise empty string",
+  "updatedQuirk": "only change this occassionally or when it fits the context"
 }
 \`\`\`
 

@@ -1,15 +1,16 @@
+import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import { moodNames } from "./botFactorsData";
 import { quirkVariations } from "./botFactorsData";
 
 export interface BotResponse {
   reply: string;
-  updatedMood: string;
-  bondLevelChange: string;
+  updatedMood: MOOD;
+  bondLevelChange: BOND_LEVEL;
   newImportantFact: string;
   updatedQuirk: string;
 }
 
-function extractBotResponse(aiResponse: string): BotResponse | null {
+export function extractBotResponse(aiResponse: string): BotResponse | null {
   try {
     // Remove any leading/trailing whitespace
     const cleanResponse = aiResponse.trim();

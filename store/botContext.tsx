@@ -4,15 +4,16 @@ import {
   getRandomMoodName,
   getRandomQuirk,
 } from "../helpers/bot/chatbot";
-import { getCurrentDateToday } from "../helpers/tools/utils";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 
 export interface BotContextType {
   mood: string;
   importantFacts: string[];
-  datetime: string;
   bondLevel: string;
   quirkVariation: string;
+  updateMood: (mood: MOOD) => void;
+  updateBond: (bondLevel: BOND_LEVEL) => void;
+  updateQuirk: (quirk: string) => void;
 }
 export const BotContext = createContext<BotContextType>({} as BotContextType);
 
@@ -23,7 +24,6 @@ interface BotContextProviderProps {
 function BotContextProvider({ children }: BotContextProviderProps) {
   const [mood, setMood] = useState("neutral");
   const [importantFacts, setImportantFacts] = useState(["None"]); // Temporary
-  const [datetime, setDatetime] = useState("");
   const [bondLevel, setBondLevel] = useState("");
   const [quirkVariation, setQuirkVariation] = useState("");
 
@@ -32,19 +32,28 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     setMood(getRandomMoodName());
     setQuirkVariation(getRandomQuirk());
     setBondLevel(getRandomBondLevel());
-    setDatetime(getCurrentDateToday());
   }, []);
 
-  function updateMood(mood: MOOD) {}
+  function updateMood(mood: MOOD) {
+    setMood(mood);
+  }
 
-  function updateBond(bondLevel: BOND_LEVEL) {}
+  function updateBond(bondLevel: BOND_LEVEL) {
+    setBondLevel(bondLevel);
+  }
+
+  function updateQuirk(quirk: string) {
+    setQuirkVariation(quirk);
+  }
 
   const value: BotContextType = {
     mood,
     importantFacts,
-    datetime,
     bondLevel,
     quirkVariation,
+    updateMood,
+    updateBond,
+    updateQuirk,
   };
 
   return <BotContext.Provider value={value}>{children}</BotContext.Provider>;

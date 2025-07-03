@@ -11,7 +11,7 @@ import { BOND_LEVEL } from "../../constants/botFactors";
 import { ChatContextType } from "../../store/chatContext";
 import { BotContextType } from "../../store/botContext";
 import { factorTemplates, prompt } from "./botPrompt";
-import { extractBotResponseWithFallback } from "./responseParser";
+import { extractBotResponse } from "./responseParser";
 import BotMood from "../../models/botMood";
 
 export async function getBotResponseMessage(
@@ -23,9 +23,27 @@ export async function getBotResponseMessage(
   const aiResponse = await generateText(
     getFullPrompt(botContext, chatContext, mostRecentMessage)
   );
-  const formattedResponse = extractBotResponseWithFallback(aiResponse);
+  const formattedResponse = extractBotResponse(aiResponse);
+
+  const reply = formattedResponse?.reply;
+  const updatedMood = formattedResponse?.updatedMood;
+  const bondLevelChange = formattedResponse?.bondLevelChange;
+  const newImportantFact = formattedResponse?.newImportantFact;
+  const updatedQuirk = formattedResponse?.updatedQuirk;
+
   console.log(formattedResponse);
-  return aiResponse;
+
+  if (updatedMood) {
+    botContext.updateMood(updatedMood);
+  }
+  if (bondLevelChange) {
+    botContext.updateBond(bondLevelChange);
+  }
+  if (updatedQuirk) {
+    botContext.updateQuirk(updatedQuirk);
+  }
+
+  return reply;
 }
 
 export function getFullPrompt(
