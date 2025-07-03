@@ -20,7 +20,6 @@ export async function getBotResponseMessage(
   chatContext: ChatContextType,
   mostRecentMessage: string
 ) {
-  // TODO: Continue implementing this method
   const aiResponse = await generateText(
     getFullPrompt(botContext, chatContext, mostRecentMessage)
   );
@@ -59,8 +58,15 @@ export function getFullPrompt(
   mostRecentMessage: string
 ): string {
   // Get values for messages
+  const messageCountForContext = 25;
+  const messageHistory = chatContext.messageHistory;
+  const startIndex =
+    messageHistory.length > messageCountForContext
+      ? messageHistory.length - messageCountForContext
+      : 0;
   let conversationHistory: string[] = [];
-  for (let message of chatContext.messageHistory) {
+  for (let i = startIndex; i < messageHistory.length; i++) {
+    const message = messageHistory[i];
     const author = message.isPlayer() ? "User" : "Angelina (You)";
     conversationHistory.push(`${author}: ${message.getContent()}`);
   }
