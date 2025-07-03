@@ -25,8 +25,8 @@ export function logBotResponse(response: BotResponse | null) {
 + ----------------------------------------------------------- +
 Bot Response (${responseCount}):
 New Important Fact: ${formatFactor(response.newImportantFact)}
-Updated Mood: ${formatFactor(response.updatedMood)}
-Bond Level Change: ${formatFactor(response.bondLevelChange)}
+Updated Mood: ${formatFactor(response.updatedMood as string)}
+Bond Level Change: ${formatFactor(response.bondLevelChange as string)}
 Updated Quirk: ${formatFactor(response.updatedQuirk)}
 
 Reply:

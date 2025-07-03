@@ -7,7 +7,7 @@ import {
   quirkVariations,
 } from "./botFactorsData";
 import { getCurrentDateToday, getRandomArrayItem } from "../tools/utils";
-import { BOND_LEVEL } from "../../constants/botFactors";
+import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import { ChatContextType } from "../../store/chatContext";
 import { BotContextType } from "../../store/botContext";
 import { factorTemplates, prompt } from "./botPrompt";
@@ -121,7 +121,14 @@ export function getRandomMood(): BotMood {
 }
 
 export function getRandomMoodName(): string {
-  return getRandomArrayItem(moodNames);
+  // Excluded some moods for the starting point for realism and immersion
+  // The user will have to talk in a certain way to earn these moods
+  const excludedInitialMoods = [MOOD.LOVESTRUCK, MOOD.PLAYFUL];
+  const randomMood = getRandomArrayItem(moodNames);
+  if (excludedInitialMoods.includes(randomMood)) {
+    return getRandomMoodName();
+  }
+  return getRandomMoodName();
 }
 
 export function getRandomBondLevel(): BOND_LEVEL {
