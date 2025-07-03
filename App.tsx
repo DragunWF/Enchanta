@@ -69,6 +69,7 @@ export default function App() {
                 name="MemoryJournal"
                 component={MemoryJournalScreen}
                 options={{
+                  headerTitle: "Memory Journal",
                   tabBarLabel: "Memory Journal",
                   tabBarIcon: ({ color, size }) => {
                     return <Ionicons name="book" color={color} size={size} />;
