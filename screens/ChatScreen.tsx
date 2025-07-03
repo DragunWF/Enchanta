@@ -1,13 +1,13 @@
 import { useContext, useState } from "react";
 import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
+import Toast from "react-native-toast-message";
 
 import { ChatContext } from "../store/chatContext";
-import Conversation from "../components/Conversation";
-import Toast from "react-native-toast-message";
-import BotImage from "../components/BotImage";
-import MessageInput from "../components/MessageInput";
 import { getBotResponseMessage } from "../helpers/bot/chatbot";
 import { BotContext } from "../store/botContext";
+import Conversation from "../components/ui/Conversation";
+import BotImage from "../components/ui/BotImage";
+import MessageInput from "../components/ui/MessageInput";
 
 function ChatScreen() {
   const [playerMessage, setPlayerMessage] = useState("");

@@ -1,9 +1,9 @@
 import { useRef, useEffect } from "react";
 import { StyleSheet, FlatList, ListRenderItemInfo } from "react-native";
-import PlayerChatBubble from "./PlayerChatBubble";
-import AIChatBubble from "./AIChatBubble";
+import PlayerChatBubble from "../ChatBubbles/PlayerChatBubble";
+import AIChatBubble from "../ChatBubbles/AIChatBubble";
 
-import Message from "../models/message";
+import Message from "../../models/message";
 
 interface ConversationProps {
   messageData: Message[];

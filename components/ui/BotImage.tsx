@@ -1,7 +1,7 @@
 import { StyleSheet, Image } from "react-native";
 
-import { moods } from "../helpers/bot/botFactorsData";
-import BotMood from "../models/botMood";
+import { moods } from "../../helpers/bot/botFactorsData";
+import BotMood from "../../models/botMood";
 
 interface BotImageProps {
   moodName: string;
