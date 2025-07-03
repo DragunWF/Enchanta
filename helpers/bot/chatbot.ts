@@ -32,6 +32,8 @@ export async function getBotResponseMessage(
   const newImportantFact = formattedResponse?.newImportantFact;
   const updatedQuirk = formattedResponse?.updatedQuirk;
 
+  logBotResponse(formattedResponse);
+
   if (!reply) {
     reply = "..."; // Fallback reply
   }
