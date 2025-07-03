@@ -4,8 +4,8 @@ import { quirkVariations } from "./botFactorsData";
 
 export interface BotResponse {
   reply: string;
-  updatedMood: MOOD;
-  bondLevelChange: BOND_LEVEL;
+  updatedMood: MOOD | string;
+  bondLevelChange: BOND_LEVEL | string;
   newImportantFact: string;
   updatedQuirk: string;
 }
