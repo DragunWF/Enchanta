@@ -28,6 +28,7 @@ function ChatScreen() {
         text1: "Empty Message!",
         text2: "Your message is empty, enter something to chat.",
       });
+      return;
     }
 
     chatContext.addMessage(playerMessage, true);
@@ -54,7 +55,7 @@ function ChatScreen() {
   }
 
   function isValidMessage() {
-    return playerMessage.length > 0;
+    return playerMessage.trim().length > 0;
   }
 
   return (
