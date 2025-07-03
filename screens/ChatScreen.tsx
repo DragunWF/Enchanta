@@ -5,9 +5,9 @@ import Toast from "react-native-toast-message";
 import { ChatContext } from "../store/chatContext";
 import { getBotResponseMessage } from "../helpers/bot/chatbot";
 import { BotContext } from "../store/botContext";
-import Conversation from "../components/ui/Conversation";
-import BotImage from "../components/ui/BotImage";
-import MessageInput from "../components/ui/MessageInput";
+import Conversation from "../components/ChatScreen/Conversation";
+import BotImage from "../components/ChatScreen/BotImage";
+import MessageInput from "../components/ChatScreen/MessageInput";
 
 function ChatScreen() {
   const [playerMessage, setPlayerMessage] = useState("");
