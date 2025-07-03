@@ -23,9 +23,7 @@ Time: ${factorTemplates.datetime}
 Bond Level: ${
   factorTemplates.bondLevel
 } (low=cautious teasing, medium=affectionate, high=openly flirty)
-Key User Info: ${
-  true ? "The user's name is Dragun" : factorTemplates.importantFacts
-}
+Key User Info: ${factorTemplates.importantFacts}
 Personality Twist: ${factorTemplates.quirkVariation}
 
 **ALLOWED VALUES (you must only use these exact values):**

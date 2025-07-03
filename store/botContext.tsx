@@ -5,16 +5,22 @@ import {
   getRandomQuirk,
 } from "../helpers/bot/chatbot";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
+import { generateLatestId } from "../helpers/tools/utils";
+import ImportantFact from "../models/importantFact";
 
 export interface BotContextType {
   mood: string;
-  importantFacts: string[];
+  importantFacts: ImportantFact[];
   bondLevel: string;
   quirkVariation: string;
   updateMood: (mood: MOOD) => void;
   updateBond: (bondLevel: BOND_LEVEL) => void;
   updateQuirk: (quirk: string) => void;
+  getImportantFacts: () => ImportantFact[];
+  addImportantFact: (importantFact: string) => void;
+  deleteImportantFact: (targetId: number) => void;
 }
+
 export const BotContext = createContext<BotContextType>({} as BotContextType);
 
 interface BotContextProviderProps {
@@ -23,7 +29,7 @@ interface BotContextProviderProps {
 
 function BotContextProvider({ children }: BotContextProviderProps) {
   const [mood, setMood] = useState("neutral");
-  const [importantFacts, setImportantFacts] = useState(["None"]); // Temporary
+  const [importantFacts, setImportantFacts] = useState<ImportantFact[]>([]); // Added type annotation
   const [bondLevel, setBondLevel] = useState("");
   const [quirkVariation, setQuirkVariation] = useState("");
 
@@ -46,6 +52,24 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     setQuirkVariation(quirk);
   }
 
+  function getImportantFacts(): ImportantFact[] {
+    return importantFacts;
+  }
+
+  function addImportantFact(importantFact: string) {
+    const latestId = generateLatestId(importantFacts);
+    setImportantFacts((current) => [
+      ...current,
+      new ImportantFact(latestId, importantFact),
+    ]);
+  }
+
+  function deleteImportantFact(targetId: number) {
+    setImportantFacts((current) =>
+      current.filter((importantFact) => importantFact.getId() !== targetId)
+    );
+  }
+
   const value: BotContextType = {
     mood,
     importantFacts,
@@ -54,6 +78,9 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     updateMood,
     updateBond,
     updateQuirk,
+    getImportantFacts,
+    addImportantFact,
+    deleteImportantFact,
   };
 
   return <BotContext.Provider value={value}>{children}</BotContext.Provider>;

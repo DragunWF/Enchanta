@@ -1,5 +1,6 @@
 import { createContext, useReducer, ReactNode } from "react";
 import Message from "../models/message";
+import { generateLatestId } from "../helpers/tools/utils";
 
 export interface ChatContextType {
   messageHistory: Message[];
@@ -21,9 +22,10 @@ function ChatContextProvider({ children }: ChatContextProviderProps) {
   const [messageHistoryState, dispatch] = useReducer(chatReducer, []);
 
   function addMessage(message: string, isPlayer: boolean) {
+    const latestId = generateLatestId(messageHistoryState);
     dispatch({
       type: "ADD",
-      payload: new Message(Math.random(), message, isPlayer),
+      payload: new Message(latestId, message, isPlayer),
     });
   }
 

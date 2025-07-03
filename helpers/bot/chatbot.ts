@@ -42,6 +42,9 @@ export async function getBotResponseMessage(
   if (updatedQuirk) {
     botContext.updateQuirk(updatedQuirk);
   }
+  if (newImportantFact) {
+    botContext.addImportantFact(newImportantFact);
+  }
 
   return reply;
 }
@@ -56,6 +59,12 @@ export function getFullPrompt(
   for (let message of chatContext.messageHistory) {
     const author = message.isPlayer() ? "User" : "Angelina (You)";
     conversationHistory.push(`${author}: ${message.getContent()}`);
+  }
+
+  // Format values for important facts
+  let importantFactContents: string[] = [];
+  for (let fact of botContext.getImportantFacts()) {
+    importantFactContents.push(fact.getContent());
   }
 
   // Fill in templates in the prompt with actual values
@@ -75,6 +84,10 @@ export function getFullPrompt(
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.quirkVariation,
     botContext.quirkVariation
+  );
+  modifiedPrompt = modifiedPrompt.replace(
+    factorTemplates.importantFacts,
+    importantFactContents.join(", ")
   );
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.conversationHistory,

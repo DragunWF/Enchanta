@@ -1,3 +1,6 @@
+import ImportantFact from "../../models/importantFact";
+import Message from "../../models/message";
+
 export function getRandomArrayItem(arr: any): any {
   return arr[Math.floor(Math.random() * arr.length)];
 }
@@ -15,4 +18,14 @@ export function getCurrentDateToday(): string {
   };
 
   return new Intl.DateTimeFormat("en-US", options).format(today);
+}
+
+export function generateLatestId(values: Message[] | ImportantFact[]): number {
+  let maxId = 0;
+  for (let obj of values) {
+    if (obj.getId() > maxId) {
+      maxId = obj.getId();
+    }
+  }
+  return maxId + 1;
 }
