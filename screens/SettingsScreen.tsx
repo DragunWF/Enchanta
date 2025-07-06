@@ -1,73 +1,90 @@
 import { useEffect, useContext, useState } from "react";
-import { StyleSheet, View, Text, TextInput, Button } from "react-native";
-import { Dropdown } from "react-native-element-dropdown";
+import { StyleSheet, View } from "react-native";
 
 import Title from "../components/ui/Title";
+import SettingDropdown from "../components/ui/SettingDropdown";
+import { DropdownItem } from "../components/ui/SettingDropdown";
 import { ChatContext } from "../store/chatContext";
 import { BotContext } from "../store/botContext";
-import { MOOD } from "../constants/botFactors";
+import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 import { toTitleCase } from "../helpers/tools/utils";
+import { quirkVariations } from "../helpers/bot/botFactorsData";
 
 function SettingsScreen() {
   const chatContext = useContext(ChatContext);
   const botContext = useContext(BotContext);
 
-  const moodNames = [];
-  for (let mood of Object.values(MOOD)) {
-    moodNames.push({ label: toTitleCase(mood), value: mood });
-  }
+  const moodDropdownItems = Object.values(MOOD).map((mood) =>
+    convertToDropdownItem(mood)
+  );
+  const bondDropdownItems = Object.values(BOND_LEVEL).map((bondLevel) =>
+    convertToDropdownItem(bondLevel)
+  );
+  const quirkVariationDropdownItems = quirkVariations.map((quirkVariation) =>
+    convertToDropdownItem(quirkVariation)
+  );
 
   // Add state to track selected mood
-  const [selectedMood, setSelectedMood] = useState({
-    label: botContext.mood,
-    value: botContext.mood,
-  });
+  const [selectedMood, setSelectedMood] = useState({} as DropdownItem);
+  const [selectedBondLevel, setSelectedBondLevel] = useState(
+    {} as DropdownItem
+  );
+  const [selectedQuirkVariation, setSelectedQuirkVariation] = useState(
+    {} as DropdownItem
+  );
 
   useEffect(() => {
-    setSelectedMood({
-      label: botContext.mood,
-      value: botContext.mood,
-    });
+    setSelectedMood(convertToDropdownItem(botContext.mood));
+    setSelectedBondLevel(convertToDropdownItem(botContext.bondLevel));
+    setSelectedQuirkVariation(convertToDropdownItem(botContext.quirkVariation));
   }, [botContext.mood]);
 
-  function onMoodDropdownSelected(item: any) {
-    setSelectedMood({
-      label: item,
-      value: item,
-    });
+  function convertToDropdownItem(value: string): DropdownItem {
+    return {
+      label: toTitleCase(value),
+      value,
+    };
+  }
+
+  function onMoodDropdownSelected(item: DropdownItem) {
+    setSelectedMood(item);
+    botContext.updateMood(item.value as MOOD);
+  }
+
+  function onBondLevelDropdownSelected(item: DropdownItem) {
+    setSelectedBondLevel(item);
+    botContext.updateBond(item.value as BOND_LEVEL);
+  }
+
+  function onQuirkVariationDropdownSelected(item: DropdownItem) {
+    setSelectedQuirkVariation(item);
+    botContext.updateQuirk(item.value);
   }
 
   return (
     <View>
       <Title>Settings</Title>
-      <View style={styles.settingContainer}>
-        <Text style={styles.settingLabel}>Bot Current Mood</Text>
-        <View style={styles.inputContainer}>
-          <Dropdown
-            style={styles.textInput}
-            data={moodNames}
-            selectedTextStyle={{ color: "black" }}
-            placeholderStyle={{ color: "gray" }}
-            placeholder="Current Mood"
-            valueField="value"
-            labelField="label"
-            value={selectedMood} // Add this line
-            onChange={onMoodDropdownSelected}
-          />
-          <View style={styles.button}>
-            <Button title="Save" />
-          </View>
-        </View>
-      </View>
-      <View style={styles.settingContainer}>
-        <Text style={styles.settingLabel}>Bot Quirk Variation</Text>
-        <View style={styles.inputContainer}>
-          <TextInput style={styles.textInput} placeholder="Hello" />
-          <View style={styles.button}>
-            <Button title="Save" />
-          </View>
-        </View>
-      </View>
+      <SettingDropdown
+        label="Bot Current Mood"
+        data={moodDropdownItems}
+        onChange={onMoodDropdownSelected}
+        value={selectedMood.value}
+        placeholder="Current Mood"
+      />
+      <SettingDropdown
+        label="Bot Current Bond Level"
+        data={bondDropdownItems}
+        onChange={onBondLevelDropdownSelected}
+        value={selectedBondLevel.value}
+        placeholder="Current Bond Level"
+      />
+      <SettingDropdown
+        label="Bot Quirk Variation"
+        data={quirkVariationDropdownItems}
+        onChange={onQuirkVariationDropdownSelected}
+        value={selectedQuirkVariation.value}
+        placeholder="Quirk Variation"
+      />
     </View>
   );
 }
