@@ -1,11 +1,6 @@
 import { generateText } from "../tools/gemini";
 
-import {
-  bondLevels,
-  moodNames,
-  moods,
-  quirkVariations,
-} from "./botFactorsData";
+import { bondLevels, moods, quirkVariations } from "./botFactorsData";
 import { getCurrentDateToday, getRandomArrayItem } from "../tools/utils";
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import { ChatContextType } from "../../store/ChatContext";
@@ -14,6 +9,8 @@ import { factorTemplates, prompt } from "./botPrompt";
 import { extractBotResponse } from "./responseParser";
 import { logAiResponse, logBotResponse } from "../tools/loggers";
 import BotMood from "../../models/botMood";
+
+const moodNames = Object.values(MOOD);
 
 export async function getBotResponseMessage(
   botContext: BotContextType,

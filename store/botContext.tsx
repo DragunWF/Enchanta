@@ -19,6 +19,7 @@ export interface BotContextType {
   getImportantFacts: () => ImportantFact[];
   addImportantFact: (importantFact: string) => void;
   deleteImportantFact: (targetId: number) => void;
+  clearImportantFacts: () => void;
 }
 
 export const BotContext = createContext<BotContextType>({} as BotContextType);
@@ -70,6 +71,10 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     );
   }
 
+  function clearImportantFacts() {
+    setImportantFacts([]);
+  }
+
   const value: BotContextType = {
     mood,
     importantFacts,
@@ -81,6 +86,7 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     getImportantFacts,
     addImportantFact,
     deleteImportantFact,
+    clearImportantFacts,
   };
 
   return <BotContext.Provider value={value}>{children}</BotContext.Provider>;

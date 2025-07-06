@@ -1,5 +1,7 @@
-import { moodNames } from "./botFactorsData";
+import { MOOD } from "../../constants/botFactors";
 import { quirkVariations } from "./botFactorsData";
+
+const moodNames = Object.values(MOOD);
 
 // Templates IDs to be replaced with their actual IDs to prevent prompt injection
 export const factorTemplates = {

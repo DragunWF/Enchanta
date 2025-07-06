@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Alert } from "react-native";
 
 import Title from "../components/ui/Title";
 import SettingDropdown from "../components/SettingScreen/SettingDropdown";
@@ -25,7 +25,6 @@ function SettingsScreen() {
     convertToDropdownItem(quirkVariation)
   );
 
-  // Add state to track selected mood
   const [selectedMood, setSelectedMood] = useState({} as DropdownItem);
   const [selectedBondLevel, setSelectedBondLevel] = useState(
     {} as DropdownItem
@@ -62,13 +61,68 @@ function SettingsScreen() {
     botContext.updateQuirk(item.value);
   }
 
-  function resetConversationHandler() {}
+  function resetConversationHandler() {
+    confirmationAlert(
+      "This will clear the entire chat history and it cannot be undone!",
+      () => {
+        chatContext.clearChatHistory();
+      }
+    );
+  }
 
-  function resetBehaviorHandler() {}
+  function resetBehaviorHandler() {
+    confirmationAlert(
+      "This will set the bond level and quirk variation back to their default state.",
+      () => {
+        resetBondLevel();
+        resetQuirkVariation();
+      }
+    );
+  }
 
-  function resetMemoryJournalHandler() {}
+  function resetMemoryJournalHandler() {
+    confirmationAlert(
+      "This will set the bond level and quirk variation back to their default state.",
+      () => {
+        botContext.clearImportantFacts();
+      }
+    );
+  }
 
-  function resetAllHandler() {}
+  function resetAllHandler() {
+    confirmationAlert(
+      "This will reset the conversation, bot behavior, and memory journal. Are you sure you want to do this? This cannot be undone!",
+      () => {
+        chatContext.clearChatHistory();
+        resetBondLevel();
+        resetQuirkVariation();
+        botContext.clearImportantFacts();
+      }
+    );
+  }
+
+  function confirmationAlert(message: string, onConfirm: () => void) {
+    Alert.alert("Confirm Reset Action", message, [
+      {
+        text: "Yes",
+        onPress: onConfirm,
+      },
+      {
+        text: "No",
+        style: "cancel",
+      },
+    ]);
+  }
+
+  function resetBondLevel() {
+    setSelectedBondLevel(convertToDropdownItem(BOND_LEVEL.LOW));
+    botContext.updateBond(BOND_LEVEL.LOW);
+  }
+
+  function resetQuirkVariation() {
+    setSelectedQuirkVariation(convertToDropdownItem(quirkVariations[0]));
+    botContext.updateQuirk(quirkVariations[0]);
+  }
 
   return (
     <View>
@@ -94,7 +148,7 @@ function SettingsScreen() {
         value={selectedQuirkVariation.value}
         placeholder="Quirk Variation"
       />
-      <Text style={styles.settingTitle}>Reset Controls</Text>
+      <Text style={styles.sectionTitle}>Reset Controls</Text>
       <SettingButton
         label="Reset Conversation"
         onPress={resetConversationHandler}
@@ -110,7 +164,7 @@ function SettingsScreen() {
 }
 
 const styles = StyleSheet.create({
-  settingTitle: {
+  sectionTitle: {
     fontFamily: "quicksand-bold",
     fontSize: 16,
     marginHorizontal: 20,

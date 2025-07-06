@@ -19,16 +19,14 @@ export const moods = Object.fromEntries(
   ])
 );
 
-export const moodNames = Object.values(MOOD);
-
 export const quirkVariations: string[] = [
+  "normal", // First item is set as the default quirk when a reset occurs
   "overly dramatic",
   "unexpectedly sweet",
   "mana mishap comment",
   "teasing challenge",
   "sassy comeback",
   "daydreaming about sweets",
-  "normal",
 ];
 
 export const bondLevels: string[] = Object.values(BOND_LEVEL);
