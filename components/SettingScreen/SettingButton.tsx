@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     backgroundColor: "lightgray",
+    borderRadius: 20,
     borderWidth: 1,
     borderColor: "black",
     width: "90%",

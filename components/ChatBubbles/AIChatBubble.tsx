@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { StyleSheet, Text } from "react-native";
 
 import ChatBubble from "./ChatBubble";
+import { chatBubbleColors } from "../../constants/colors";
 
 interface AIChatBubbleProps {
   children: ReactNode;
@@ -11,7 +12,7 @@ function AIChatBubble({ children }: AIChatBubbleProps) {
   return (
     <ChatBubble
       isOwnMessage={false}
-      bubbleColor="lightgrey"
+      bubbleColor={chatBubbleColors.bot}
       withTail={true}
       style={styles.chatBubble}
     >

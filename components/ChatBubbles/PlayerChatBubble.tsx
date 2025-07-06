@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import { StyleSheet, Text } from "react-native";
 
 import ChatBubble from "./ChatBubble";
+import { chatBubbleColors } from "../../constants/colors";
 
 interface PlayerChatBubbleProps {
   children: ReactNode;
@@ -11,8 +12,8 @@ function PlayerChatBubble({ children }: PlayerChatBubbleProps) {
   return (
     <ChatBubble
       isOwnMessage={true}
-      bubbleColor="#1084ff"
-      tailColor="#1084ff"
+      bubbleColor={chatBubbleColors.player}
+      tailColor={chatBubbleColors.player}
       withTail={true}
       style={styles.chatBubble}
     >

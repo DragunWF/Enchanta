@@ -1,5 +1,12 @@
 import { useContext, useState } from "react";
-import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
+import {
+  StyleSheet,
+  View,
+  KeyboardAvoidingView,
+  ImageBackground,
+  Platform,
+} from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
 import Toast from "react-native-toast-message";
 
 import { ChatContext } from "../store/ChatContext";
@@ -8,6 +15,7 @@ import { BotContext } from "../store/BotContext";
 import Conversation from "../components/ChatScreen/Conversation";
 import BotImage from "../components/ChatScreen/BotImage";
 import MessageInput from "../components/ChatScreen/MessageInput";
+import { gradientColors } from "../constants/colors";
 
 function ChatScreen() {
   const [playerMessage, setPlayerMessage] = useState("");
@@ -59,28 +67,43 @@ function ChatScreen() {
   }
 
   return (
-    <KeyboardAvoidingView
-      style={styles.rootContainer}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-      keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
-    >
-      <View style={styles.botImageContainer}>
-        <BotImage moodName={botContext.mood} />
-      </View>
-      <View style={styles.chatContainer}>
-        <Conversation messageData={chatContext.messageHistory} />
-      </View>
-      <MessageInput
-        message={playerMessage}
-        onSendMessage={sendMessageHandler}
-        onChange={playerMessageInputHandler}
-      />
-    </KeyboardAvoidingView>
+    <LinearGradient style={styles.screen} colors={gradientColors}>
+      <ImageBackground
+        source={require("../assets/images/background.png")}
+        resizeMode="cover"
+        style={styles.screen}
+        imageStyle={styles.backgroundImage}
+      >
+        <KeyboardAvoidingView
+          style={styles.keyboardContainer}
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+        >
+          <View style={styles.botImageContainer}>
+            <BotImage moodName={botContext.mood} />
+          </View>
+          <View style={styles.chatContainer}>
+            <Conversation messageData={chatContext.messageHistory} />
+          </View>
+          <MessageInput
+            message={playerMessage}
+            onSendMessage={sendMessageHandler}
+            onChange={playerMessageInputHandler}
+          />
+        </KeyboardAvoidingView>
+      </ImageBackground>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
-  rootContainer: {
+  screen: {
+    flex: 1,
+  },
+  backgroundImage: {
+    opacity: 0.5,
+  },
+  keyboardContainer: {
     flex: 1,
   },
   botImageContainer: {
