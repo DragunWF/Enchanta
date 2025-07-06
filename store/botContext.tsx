@@ -16,10 +16,10 @@ export interface BotContextType {
   updateMood: (mood: MOOD) => void;
   updateBond: (bondLevel: BOND_LEVEL) => void;
   updateQuirk: (quirk: string) => void;
-  getImportantFacts: () => MemoryJournalEntry[];
-  addImportantFact: (importantFact: string) => void;
-  deleteImportantFact: (targetId: number) => void;
-  clearImportantFacts: () => void;
+  getMemoryJournalEntries: () => MemoryJournalEntry[];
+  addMemoryJournalEntry: (journalEntry: string) => void;
+  deleteMemoryJournalEntry: (targetId: number) => void;
+  clearMemoryJournalEntries: () => void;
 }
 
 export const BotContext = createContext<BotContextType>({} as BotContextType);
@@ -59,15 +59,15 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     return memoryJournalEntries;
   }
 
-  function addImportantFact(importantFact: string) {
+  function addJournalEntry(journalEntry: string) {
     const latestId = generateLatestId(memoryJournalEntries);
     setMemoryJournalEntries((current) => [
       ...current,
-      new MemoryJournalEntry(latestId, importantFact),
+      new MemoryJournalEntry(latestId, journalEntry),
     ]);
   }
 
-  function deleteImportantFact(targetId: number) {
+  function deleteJournalEntry(targetId: number) {
     setMemoryJournalEntries((current) =>
       current.filter((importantFact) => importantFact.getId() !== targetId)
     );
@@ -85,10 +85,10 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     updateMood,
     updateBond,
     updateQuirk,
-    getImportantFacts: getMemoryJournalEntries,
-    addImportantFact,
-    deleteImportantFact,
-    clearImportantFacts,
+    getMemoryJournalEntries: getMemoryJournalEntries,
+    addMemoryJournalEntry: addJournalEntry,
+    deleteMemoryJournalEntry: deleteJournalEntry,
+    clearMemoryJournalEntries: clearImportantFacts,
   };
 
   return <BotContext.Provider value={value}>{children}</BotContext.Provider>;

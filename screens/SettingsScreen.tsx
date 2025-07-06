@@ -88,7 +88,7 @@ function SettingsScreen() {
     confirmationAlert(
       "This will delete all the journal entries Angelina listed in the memory journal tab. Are you sure about this? This action cannot be undone!",
       () => {
-        botContext.clearImportantFacts();
+        botContext.clearMemoryJournalEntries();
       }
     );
   }
@@ -100,7 +100,7 @@ function SettingsScreen() {
         chatContext.clearChatHistory();
         resetBondLevel();
         resetQuirkVariation();
-        botContext.clearImportantFacts();
+        botContext.clearMemoryJournalEntries();
       }
     );
   }

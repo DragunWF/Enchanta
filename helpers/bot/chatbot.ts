@@ -44,7 +44,7 @@ export async function getBotResponseMessage(
     botContext.updateQuirk(updatedQuirk);
   }
   if (memoryJournalEntry) {
-    botContext.addImportantFact(memoryJournalEntry);
+    botContext.addMemoryJournalEntry(memoryJournalEntry);
   }
 
   return reply;
@@ -70,10 +70,10 @@ export function getFullPrompt(
   }
 
   // Format values for important facts
-  let importantFactContents: string[] = [];
-  for (let fact of botContext.getImportantFacts()) {
-    importantFactContents.push(fact.getContent());
-  }
+  const memoryJournalHistory = botContext.getMemoryJournalEntries();
+  const recentEntries = memoryJournalHistory
+    .slice(-10) // Gets last 10 entries (or all if fewer than 10)
+    .map((entry) => entry.getContent());
 
   // Fill in templates in the prompt with actual values
   let modifiedPrompt = prompt;
@@ -95,7 +95,7 @@ export function getFullPrompt(
   );
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.importantFacts,
-    importantFactContents.join(", ")
+    recentEntries.join(", ")
   );
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.conversationHistory,
@@ -105,6 +105,8 @@ export function getFullPrompt(
     factorTemplates.recentUserMessage,
     mostRecentMessage
   );
+
+  console.log(modifiedPrompt);
 
   return modifiedPrompt;
 }
