@@ -11,6 +11,9 @@ export enum MOOD {
   SERIOUS = "serious",
   SLEEPY = "sleepy",
   LOVESTRUCK = "lovestruck",
+  SAD = "sad",
+  PROUD = "proud",
+  SCHEMING = "scheming",
 }
 
 export enum BOND_LEVEL {

@@ -10,6 +10,9 @@ const moodImages = {
   [MOOD.SERIOUS]: require("../../assets/images/serious-mage.png"),
   [MOOD.SLEEPY]: require("../../assets/images/sleepy-mage.png"),
   [MOOD.LOVESTRUCK]: require("../../assets/images/lovestruck-mage.png"),
+  [MOOD.SAD]: require("../../assets/images/sad-mage.png"),
+  [MOOD.PROUD]: require("../../assets/images/proud-mage.png"),
+  [MOOD.SCHEMING]: require("../../assets/images/scheming-mage.png")
 };
 
 export const moods = Object.fromEntries(

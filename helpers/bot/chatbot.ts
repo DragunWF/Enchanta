@@ -122,7 +122,7 @@ export function getRandomMoodName(): string {
     Excluded some moods for the starting point for realism and immersion
     The user will have to talk in a certain way to earn these moods
   */
-  const excludedInitialMoods = [MOOD.LOVESTRUCK, MOOD.PLAYFUL];
+  const excludedInitialMoods = [MOOD.LOVESTRUCK, MOOD.PLAYFUL, MOOD.PROUD];
   const randomMood = getRandomArrayItem(moodNames);
   if (excludedInitialMoods.includes(randomMood)) {
     return getRandomMoodName();
