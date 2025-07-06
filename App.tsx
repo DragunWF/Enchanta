@@ -12,6 +12,7 @@ import SettingsScreen from "./screens/SettingsScreen";
 import MemoryJournalScreen from "./screens/MemoryJournalScreen";
 import ChatContextProvider from "./store/ChatContext";
 import BotContextProvider from "./store/BotContext";
+import { headerColors, tabBarColors } from "./constants/colors";
 
 const BottomTabs = createBottomTabNavigator();
 
@@ -27,18 +28,24 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <BotContextProvider>
         <ChatContextProvider>
           <NavigationContainer>
             <BottomTabs.Navigator
               initialRouteName="Chat"
               screenOptions={{
+                headerStyle: {
+                  backgroundColor: headerColors.background,
+                },
                 headerTitleStyle: {
                   fontFamily: "quicksand-bold",
+                  color: headerColors.text,
                 },
-                tabBarLabelStyle: {
-                  fontFamily: "quicksand",
+                tabBarActiveTintColor: tabBarColors.activeTint,
+                tabBarInactiveTintColor: tabBarColors.inactiveTint,
+                tabBarStyle: {
+                  backgroundColor: tabBarColors.background,
                 },
               }}
             >

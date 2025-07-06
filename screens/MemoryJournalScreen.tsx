@@ -6,6 +6,8 @@ import {
   FlatList,
   ListRenderItemInfo,
 } from "react-native";
+
+import CustomBackground from "../components/ui/CustomBackground";
 import { BotContext } from "../store/BotContext";
 import ImportantFact from "../models/importantFact";
 import Title from "../components/ui/Title";
@@ -24,24 +26,26 @@ function MemoryJournalScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <Title>Angelina's Memories of You</Title>
-      {isMemoryEmpty ? (
-        <View style={styles.messageContainer}>
-          <Text style={styles.messageText}>
-            Start telling things about yourself to the bot for stuff to fill up
-            here!
-          </Text>
-        </View>
-      ) : (
-        <FlatList
-          data={botContext.importantFacts}
-          renderItem={renderMemory}
-          keyExtractor={(item: ImportantFact) => String(item.getId())}
-          alwaysBounceVertical={false}
-        />
-      )}
-    </View>
+    <CustomBackground>
+      <View style={styles.container}>
+        <Title>Angelina's Memories of You</Title>
+        {isMemoryEmpty ? (
+          <View style={styles.messageContainer}>
+            <Text style={styles.messageText}>
+              Start telling things about yourself to the bot for stuff to fill
+              up here!
+            </Text>
+          </View>
+        ) : (
+          <FlatList
+            data={botContext.importantFacts}
+            renderItem={renderMemory}
+            keyExtractor={(item: ImportantFact) => String(item.getId())}
+            alwaysBounceVertical={false}
+          />
+        )}
+      </View>
+    </CustomBackground>
   );
 }
 

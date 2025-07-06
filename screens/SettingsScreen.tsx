@@ -1,15 +1,17 @@
 import { useEffect, useContext, useState } from "react";
 import { StyleSheet, View, Text, Alert } from "react-native";
 
+import { DropdownItem } from "../components/SettingScreen/SettingDropdown";
 import Title from "../components/ui/Title";
 import SettingDropdown from "../components/SettingScreen/SettingDropdown";
-import { DropdownItem } from "../components/SettingScreen/SettingDropdown";
+import SettingButton from "../components/SettingScreen/SettingButton";
+import CustomBackground from "../components/ui/CustomBackground";
+
 import { ChatContext } from "../store/ChatContext";
 import { BotContext } from "../store/BotContext";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 import { toTitleCase } from "../helpers/tools/utils";
 import { quirkVariations } from "../helpers/bot/botFactorsData";
-import SettingButton from "../components/SettingScreen/SettingButton";
 
 function SettingsScreen() {
   const chatContext = useContext(ChatContext);
@@ -125,41 +127,43 @@ function SettingsScreen() {
   }
 
   return (
-    <View>
-      <Title>Settings</Title>
-      <SettingDropdown
-        label="Bot Current Mood"
-        data={moodDropdownItems}
-        onChange={onMoodDropdownSelected}
-        value={selectedMood.value}
-        placeholder="Current Mood"
-      />
-      <SettingDropdown
-        label="Bot Current Bond Level"
-        data={bondDropdownItems}
-        onChange={onBondLevelDropdownSelected}
-        value={selectedBondLevel.value}
-        placeholder="Current Bond Level"
-      />
-      <SettingDropdown
-        label="Bot Quirk Variation"
-        data={quirkVariationDropdownItems}
-        onChange={onQuirkVariationDropdownSelected}
-        value={selectedQuirkVariation.value}
-        placeholder="Quirk Variation"
-      />
-      <Text style={styles.sectionTitle}>Reset Controls</Text>
-      <SettingButton
-        label="Reset Conversation"
-        onPress={resetConversationHandler}
-      />
-      <SettingButton label="Reset Behavior" onPress={resetBehaviorHandler} />
-      <SettingButton
-        label="Reset Memory Journal"
-        onPress={resetMemoryJournalHandler}
-      />
-      <SettingButton label="Reset All" onPress={resetAllHandler} />
-    </View>
+    <CustomBackground>
+      <View>
+        <Title>Settings</Title>
+        <SettingDropdown
+          label="Bot Current Mood"
+          data={moodDropdownItems}
+          onChange={onMoodDropdownSelected}
+          value={selectedMood.value}
+          placeholder="Current Mood"
+        />
+        <SettingDropdown
+          label="Bot Current Bond Level"
+          data={bondDropdownItems}
+          onChange={onBondLevelDropdownSelected}
+          value={selectedBondLevel.value}
+          placeholder="Current Bond Level"
+        />
+        <SettingDropdown
+          label="Bot Quirk Variation"
+          data={quirkVariationDropdownItems}
+          onChange={onQuirkVariationDropdownSelected}
+          value={selectedQuirkVariation.value}
+          placeholder="Quirk Variation"
+        />
+        <Text style={styles.sectionTitle}>Reset Controls</Text>
+        <SettingButton
+          label="Reset Conversation"
+          onPress={resetConversationHandler}
+        />
+        <SettingButton label="Reset Behavior" onPress={resetBehaviorHandler} />
+        <SettingButton
+          label="Reset Memory Journal"
+          onPress={resetMemoryJournalHandler}
+        />
+        <SettingButton label="Reset All" onPress={resetAllHandler} />
+      </View>
+    </CustomBackground>
   );
 }
 
