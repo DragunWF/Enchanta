@@ -6,7 +6,7 @@ import {
   FlatList,
   ListRenderItemInfo,
 } from "react-native";
-import { BotContext } from "../store/botContext";
+import { BotContext } from "../store/BotContext";
 import ImportantFact from "../models/importantFact";
 import Title from "../components/ui/Title";
 

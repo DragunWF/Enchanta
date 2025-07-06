@@ -8,8 +8,8 @@ import {
 } from "./botFactorsData";
 import { getCurrentDateToday, getRandomArrayItem } from "../tools/utils";
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
-import { ChatContextType } from "../../store/chatContext";
-import { BotContextType } from "../../store/botContext";
+import { ChatContextType } from "../../store/ChatContext";
+import { BotContextType } from "../../store/BotContext";
 import { factorTemplates, prompt } from "./botPrompt";
 import { extractBotResponse } from "./responseParser";
 import { logAiResponse, logBotResponse } from "../tools/loggers";
