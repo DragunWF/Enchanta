@@ -121,8 +121,10 @@ export function getRandomMood(): BotMood {
 }
 
 export function getRandomMoodName(): string {
-  // Excluded some moods for the starting point for realism and immersion
-  // The user will have to talk in a certain way to earn these moods
+  /* 
+    Excluded some moods for the starting point for realism and immersion
+    The user will have to talk in a certain way to earn these moods
+  */
   const excludedInitialMoods = [MOOD.LOVESTRUCK, MOOD.PLAYFUL];
   const randomMood = getRandomArrayItem(moodNames);
   if (excludedInitialMoods.includes(randomMood)) {
@@ -132,5 +134,17 @@ export function getRandomMoodName(): string {
 }
 
 export function getRandomBondLevel(): BOND_LEVEL {
-  return getRandomArrayItem(bondLevels);
+  /* 
+    Gives a 4/5 chance to start with a low bond level and
+    a 1/5 chance to start with a medium bond level. A high
+    bond level must be earned through conversation.
+  */
+  const possibleInitialMoods = [
+    BOND_LEVEL.LOW,
+    BOND_LEVEL.LOW,
+    BOND_LEVEL.LOW,
+    BOND_LEVEL.LOW,
+    BOND_LEVEL.MEDIUM,
+  ];
+  return getRandomArrayItem(possibleInitialMoods);
 }
