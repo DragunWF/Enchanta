@@ -11,6 +11,7 @@ import CustomBackground from "../components/ui/CustomBackground";
 import { BotContext } from "../store/BotContext";
 import ImportantFact from "../models/importantFact";
 import Title from "../components/ui/Title";
+import { mainColors } from "../constants/colors";
 
 function MemoryJournalScreen() {
   const botContext = useContext(BotContext);
@@ -52,7 +53,6 @@ function MemoryJournalScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "center",
     alignItems: "center",
   },
   factContainer: {
@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   importantFactText: {
     fontFamily: "quicksand",
     fontSize: 16,
+    color: mainColors.softWhite,
   },
   messageContainer: {
     margin: 10,
@@ -70,6 +71,7 @@ const styles = StyleSheet.create({
   messageText: {
     fontSize: 14,
     textAlign: "center",
+    color: mainColors.softWhite,
   },
 });
 

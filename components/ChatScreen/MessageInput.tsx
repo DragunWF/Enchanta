@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { StyleSheet, View, TextInput, Button } from "react-native";
+import { mainColors } from "../../constants/colors";
 
 interface MessageInputProps {
   message: string;
@@ -20,7 +21,11 @@ const MessageInput = memo(function MessageInput({
         value={message}
         onChangeText={onChange}
       />
-      <Button title="Send" onPress={onSendMessage} />
+      <Button
+        title="Send"
+        onPress={onSendMessage}
+        color={mainColors.primary300}
+      />
     </View>
   );
 });
@@ -31,7 +36,7 @@ const styles = StyleSheet.create({
     margin: 10,
     paddingHorizontal: 20,
     paddingVertical: 8,
-    backgroundColor: "lightgray",
+    backgroundColor: mainColors.secondary100,
     borderRadius: 25,
     justifyContent: "space-between",
     alignItems: "center",
@@ -39,6 +44,7 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     marginRight: 10,
+    color: mainColors.black,
   },
 });
 

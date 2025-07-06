@@ -1,5 +1,7 @@
 import { ReactNode } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
+
+import { mainColors } from "../../constants/colors";
 
 interface TitleProps {
   children: ReactNode;
@@ -18,6 +20,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 25,
     paddingBottom: 10,
     borderBottomWidth: 1,
+    borderColor: mainColors.white,
+    color: mainColors.softWhite,
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: 3, height: 3 },
+    textShadowRadius: 5,
   },
 });
 

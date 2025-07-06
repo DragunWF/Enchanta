@@ -1,5 +1,6 @@
 import { StyleSheet, View, Text } from "react-native";
 import { Dropdown } from "react-native-element-dropdown";
+import { mainColors } from "../../constants/colors";
 
 export interface DropdownItem {
   label: string;
@@ -26,7 +27,7 @@ function SettingDropdown({
       <Text style={styles.settingLabel}>{label}</Text>
       <View style={styles.inputContainer}>
         <Dropdown
-          style={styles.textInput}
+          style={styles.dropdown}
           data={data}
           selectedTextStyle={styles.selectedText}
           placeholderStyle={styles.placeholderText}
@@ -52,14 +53,19 @@ const styles = StyleSheet.create({
     fontFamily: "quicksand-bold",
     fontSize: 16,
     marginBottom: 5,
+    color: mainColors.softWhite,
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: 3, height: 3 },
+    textShadowRadius: 5,
   },
   inputContainer: {
     flexDirection: "row",
   },
-  textInput: {
+  dropdown: {
     flex: 1,
     fontFamily: "quicksand",
-    backgroundColor: "lightgray",
+    backgroundColor: mainColors.secondary100,
+    borderRadius: 15,
     padding: 10,
   },
   selectedText: {

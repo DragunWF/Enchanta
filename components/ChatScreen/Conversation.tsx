@@ -6,9 +6,10 @@ import {
   Text,
   View,
 } from "react-native";
+
+import CustomText from "../ui/CustomText";
 import PlayerChatBubble from "../ChatBubbles/PlayerChatBubble";
 import AIChatBubble from "../ChatBubbles/AIChatBubble";
-
 import Message from "../../models/message";
 
 interface ConversationProps {
@@ -39,9 +40,9 @@ function Conversation({ messageData }: ConversationProps) {
   if (!messageData.length) {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>
+        <CustomText style={styles.text}>
           Enter your message to start chatting now!
-        </Text>
+        </CustomText>
       </View>
     );
   }
@@ -70,7 +71,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: "quicksand",
-    fontSize: 14,
+    fontSize: 15,
   },
   list: {
     paddingBottom: 20,

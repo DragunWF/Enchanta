@@ -1,4 +1,5 @@
 import { StyleSheet, View, Text, Pressable } from "react-native";
+import { mainColors } from "../../constants/colors";
 
 interface SettingButtonProps {
   label: string;
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   buttonContainer: {
-    backgroundColor: "lightgray",
+    backgroundColor: mainColors.secondary100,
     borderRadius: 20,
     borderWidth: 1,
     borderColor: "black",
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontFamily: "quicksand",
-    color: "black",
+    color: mainColors.black,
     paddingVertical: 9,
     paddingHorizontal: 20,
     fontSize: 15,
