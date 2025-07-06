@@ -24,7 +24,7 @@ export function logBotResponse(response: BotResponse | null) {
   console.info(`
 + ----------------------------------------------------------- +
 Bot Response (${responseCount}):
-New Important Fact: ${formatFactor(response.newImportantFact)}
+Memory Journal Entry: ${formatFactor(response.memoryJournalEntry)}
 Updated Mood: ${formatFactor(response.updatedMood as string)}
 Bond Level Change: ${formatFactor(response.bondLevelChange as string)}
 Updated Quirk: ${formatFactor(response.updatedQuirk)}

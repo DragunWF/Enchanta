@@ -5,7 +5,7 @@ export interface BotResponse {
   reply: string;
   updatedMood: MOOD | null;
   bondLevelChange: BOND_LEVEL | null;
-  newImportantFact: string;
+  memoryJournalEntry: string;
   updatedQuirk: string;
 }
 
@@ -35,7 +35,7 @@ export function extractBotResponse(aiResponse: string): BotResponse | null {
       "reply",
       "updatedMood",
       "bondLevelChange",
-      "newImportantFact",
+      "memoryJournalEntry",
       "updatedQuirk",
     ];
     for (const field of required) {
@@ -78,7 +78,7 @@ export function extractBotResponse(aiResponse: string): BotResponse | null {
       reply: String(parsed.reply || ""),
       updatedMood: validatedMood,
       bondLevelChange: validatedBondLevel,
-      newImportantFact: String(parsed.newImportantFact || ""),
+      memoryJournalEntry: String(parsed.memoryJournalEntry || ""),
       updatedQuirk: validatedQuirk,
     };
   } catch (error) {

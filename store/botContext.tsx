@@ -6,17 +6,17 @@ import {
 } from "../helpers/bot/chatbot";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 import { generateLatestId } from "../helpers/tools/utils";
-import ImportantFact from "../models/importantFact";
+import MemoryJournalEntry from "../models/memoryJournalEntry";
 
 export interface BotContextType {
   mood: string;
-  importantFacts: ImportantFact[];
+  memoryJournalEntry: MemoryJournalEntry[];
   bondLevel: string;
   quirkVariation: string;
   updateMood: (mood: MOOD) => void;
   updateBond: (bondLevel: BOND_LEVEL) => void;
   updateQuirk: (quirk: string) => void;
-  getImportantFacts: () => ImportantFact[];
+  getImportantFacts: () => MemoryJournalEntry[];
   addImportantFact: (importantFact: string) => void;
   deleteImportantFact: (targetId: number) => void;
   clearImportantFacts: () => void;
@@ -30,7 +30,9 @@ interface BotContextProviderProps {
 
 function BotContextProvider({ children }: BotContextProviderProps) {
   const [mood, setMood] = useState("neutral");
-  const [importantFacts, setImportantFacts] = useState<ImportantFact[]>([]); // Added type annotation
+  const [memoryJournalEntries, setMemoryJournalEntries] = useState<
+    MemoryJournalEntry[]
+  >([]); // Added type annotation
   const [bondLevel, setBondLevel] = useState("");
   const [quirkVariation, setQuirkVariation] = useState("");
 
@@ -53,37 +55,37 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     setQuirkVariation(quirk);
   }
 
-  function getImportantFacts(): ImportantFact[] {
-    return importantFacts;
+  function getMemoryJournalEntries(): MemoryJournalEntry[] {
+    return memoryJournalEntries;
   }
 
   function addImportantFact(importantFact: string) {
-    const latestId = generateLatestId(importantFacts);
-    setImportantFacts((current) => [
+    const latestId = generateLatestId(memoryJournalEntries);
+    setMemoryJournalEntries((current) => [
       ...current,
-      new ImportantFact(latestId, importantFact),
+      new MemoryJournalEntry(latestId, importantFact),
     ]);
   }
 
   function deleteImportantFact(targetId: number) {
-    setImportantFacts((current) =>
+    setMemoryJournalEntries((current) =>
       current.filter((importantFact) => importantFact.getId() !== targetId)
     );
   }
 
   function clearImportantFacts() {
-    setImportantFacts([]);
+    setMemoryJournalEntries([]);
   }
 
   const value: BotContextType = {
     mood,
-    importantFacts,
+    memoryJournalEntry: memoryJournalEntries,
     bondLevel,
     quirkVariation,
     updateMood,
     updateBond,
     updateQuirk,
-    getImportantFacts,
+    getImportantFacts: getMemoryJournalEntries,
     addImportantFact,
     deleteImportantFact,
     clearImportantFacts,

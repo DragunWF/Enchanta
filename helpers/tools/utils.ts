@@ -1,4 +1,4 @@
-import ImportantFact from "../../models/importantFact";
+import MemoryJournalEntry from "../../models/memoryJournalEntry";
 import Message from "../../models/message";
 
 export function getRandomArrayItem(arr: any): any {
@@ -20,7 +20,9 @@ export function getCurrentDateToday(): string {
   return new Intl.DateTimeFormat("en-US", options).format(today);
 }
 
-export function generateLatestId(values: Message[] | ImportantFact[]): number {
+export function generateLatestId(
+  values: Message[] | MemoryJournalEntry[]
+): number {
   let maxId = 0;
   for (let obj of values) {
     if (obj.getId() > maxId) {

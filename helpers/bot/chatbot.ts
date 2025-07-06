@@ -26,7 +26,7 @@ export async function getBotResponseMessage(
   let reply = formattedResponse?.reply;
   const updatedMood = formattedResponse?.updatedMood;
   const bondLevelChange = formattedResponse?.bondLevelChange;
-  const newImportantFact = formattedResponse?.newImportantFact;
+  const memoryJournalEntry = formattedResponse?.memoryJournalEntry;
   const updatedQuirk = formattedResponse?.updatedQuirk;
 
   logBotResponse(formattedResponse);
@@ -43,8 +43,8 @@ export async function getBotResponseMessage(
   if (updatedQuirk) {
     botContext.updateQuirk(updatedQuirk);
   }
-  if (newImportantFact) {
-    botContext.addImportantFact(newImportantFact);
+  if (memoryJournalEntry) {
+    botContext.addImportantFact(memoryJournalEntry);
   }
 
   return reply;

@@ -1,4 +1,4 @@
-class ImportantFact {
+class MemoryJournalEntry {
   #id: number;
   #content: string;
 
@@ -16,4 +16,4 @@ class ImportantFact {
   }
 }
 
-export default ImportantFact;
+export default MemoryJournalEntry;
