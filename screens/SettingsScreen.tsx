@@ -86,7 +86,7 @@ function SettingsScreen() {
 
   function resetMemoryJournalHandler() {
     confirmationAlert(
-      "This will set the bond level and quirk variation back to their default state.",
+      "This will delete all the journal entries Angelina listed in the memory journal tab. Are you sure about this? This action cannot be undone!",
       () => {
         botContext.clearImportantFacts();
       }
