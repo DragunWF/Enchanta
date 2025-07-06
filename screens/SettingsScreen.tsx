@@ -89,29 +89,6 @@ function SettingsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  settingContainer: {
-    marginVertical: 10,
-    marginHorizontal: 20,
-    justifyContent: "center",
-    alignItems: "flex-start",
-  },
-  settingLabel: {
-    fontFamily: "quicksand-bold",
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  inputContainer: {
-    flexDirection: "row",
-  },
-  textInput: {
-    flex: 4,
-    backgroundColor: "lightgray",
-    padding: 10,
-  },
-  button: {
-    flex: 1,
-  },
-});
+const styles = StyleSheet.create({});
 
 export default SettingsScreen;
