@@ -57,14 +57,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   textInput: {
-    flex: 4,
+    flex: 1,
+    fontFamily: "quicksand",
     backgroundColor: "lightgray",
     padding: 10,
   },
   selectedText: {
+    fontFamily: "quicksand",
     color: "black",
   },
   placeholderText: {
+    fontFamily: "quicksand",
     color: "gray",
   },
 });

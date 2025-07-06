@@ -1,14 +1,15 @@
 import { useEffect, useContext, useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import Title from "../components/ui/Title";
-import SettingDropdown from "../components/ui/SettingDropdown";
-import { DropdownItem } from "../components/ui/SettingDropdown";
+import SettingDropdown from "../components/SettingScreen/SettingDropdown";
+import { DropdownItem } from "../components/SettingScreen/SettingDropdown";
 import { ChatContext } from "../store/chatContext";
 import { BotContext } from "../store/botContext";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 import { toTitleCase } from "../helpers/tools/utils";
 import { quirkVariations } from "../helpers/bot/botFactorsData";
+import SettingButton from "../components/SettingScreen/SettingButton";
 
 function SettingsScreen() {
   const chatContext = useContext(ChatContext);
@@ -61,6 +62,14 @@ function SettingsScreen() {
     botContext.updateQuirk(item.value);
   }
 
+  function resetConversationHandler() {}
+
+  function resetBehaviorHandler() {}
+
+  function resetMemoryJournalHandler() {}
+
+  function resetAllHandler() {}
+
   return (
     <View>
       <Title>Settings</Title>
@@ -85,10 +94,28 @@ function SettingsScreen() {
         value={selectedQuirkVariation.value}
         placeholder="Quirk Variation"
       />
+      <Text style={styles.settingTitle}>Reset Controls</Text>
+      <SettingButton
+        label="Reset Conversation"
+        onPress={resetConversationHandler}
+      />
+      <SettingButton label="Reset Behavior" onPress={resetBehaviorHandler} />
+      <SettingButton
+        label="Reset Memory Journal"
+        onPress={resetMemoryJournalHandler}
+      />
+      <SettingButton label="Reset All" onPress={resetAllHandler} />
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  settingTitle: {
+    fontFamily: "quicksand-bold",
+    fontSize: 16,
+    marginHorizontal: 20,
+    marginTop: 10,
+  },
+});
 
 export default SettingsScreen;
