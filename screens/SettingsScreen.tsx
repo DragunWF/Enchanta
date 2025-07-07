@@ -1,5 +1,5 @@
 import { useEffect, useContext, useState } from "react";
-import { StyleSheet, View, Text, Alert, ScrollView } from "react-native";
+import { StyleSheet, View, Alert, ScrollView } from "react-native";
 
 import { DropdownItem } from "../components/SettingScreen/SettingDropdown";
 import CustomText from "../components/ui/CustomText";
