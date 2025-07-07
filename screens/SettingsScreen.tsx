@@ -43,13 +43,6 @@ function SettingsScreen() {
     setSelectedQuirkVariation(convertToDropdownItem(botContext.quirkVariation));
   }, [botContext.mood]);
 
-  function convertToDropdownItem(value: string): DropdownItem {
-    return {
-      label: toTitleCase(value),
-      value,
-    };
-  }
-
   function onMoodDropdownSelected(item: DropdownItem) {
     setSelectedMood(item);
     botContext.updateMood(item.value as MOOD);
@@ -103,19 +96,6 @@ function SettingsScreen() {
         botContext.clearMemoryJournalEntries();
       }
     );
-  }
-
-  function confirmationAlert(message: string, onConfirm: () => void) {
-    Alert.alert("Confirm Reset Action", message, [
-      {
-        text: "Yes",
-        onPress: onConfirm,
-      },
-      {
-        text: "No",
-        style: "cancel",
-      },
-    ]);
   }
 
   function resetBondLevel() {
@@ -172,6 +152,26 @@ function SettingsScreen() {
       </View>
     </CustomBackground>
   );
+}
+
+function convertToDropdownItem(value: string): DropdownItem {
+  return {
+    label: toTitleCase(value),
+    value,
+  };
+}
+
+function confirmationAlert(message: string, onConfirm: () => void) {
+  Alert.alert("Confirm Reset Action", message, [
+    {
+      text: "Yes",
+      onPress: onConfirm,
+    },
+    {
+      text: "No",
+      style: "cancel",
+    },
+  ]);
 }
 
 const styles = StyleSheet.create({
