@@ -56,7 +56,7 @@ export function getFullPrompt(
   mostRecentMessage: string
 ): string {
   // Get values for messages
-  const messageCountForContext = 25;
+  const messageCountForContext = 35;
   const messageHistory = chatContext.messageHistory;
   const startIndex =
     messageHistory.length > messageCountForContext
@@ -73,7 +73,7 @@ export function getFullPrompt(
   const memoryJournalHistory = botContext.getMemoryJournalEntries();
   const recentEntries = memoryJournalHistory
     .slice(-10) // Gets last 10 entries (or all if fewer than 10)
-    .map((entry) => entry.getContent());
+    .map((entry) => `- ${entry.getContent()}`);
 
   // Fill in templates in the prompt with actual values
   let modifiedPrompt = prompt;
@@ -95,7 +95,7 @@ export function getFullPrompt(
   );
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.importantFacts,
-    recentEntries.join(", ")
+    recentEntries.join("\n")
   );
   modifiedPrompt = modifiedPrompt.replace(
     factorTemplates.conversationHistory,

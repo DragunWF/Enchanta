@@ -25,8 +25,10 @@ Time: ${factorTemplates.datetime}
 Bond Level: ${
   factorTemplates.bondLevel
 } (low=cautious, medium=acquaintance, high=openly friendly, kind, and affectionate)
-Memory Journal: ${factorTemplates.importantFacts}
 Personality Twist: ${factorTemplates.quirkVariation}
+
+Memory Journal: 
+${factorTemplates.importantFacts}
 
 **ALLOWED VALUES (you must only use these exact values):**
 Moods: ${moodNames.join(", ")}
