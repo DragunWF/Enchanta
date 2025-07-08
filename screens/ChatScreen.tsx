@@ -83,12 +83,6 @@ function ChatScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  backgroundImage: {
-    opacity: 0.5,
-  },
   keyboardContainer: {
     flex: 1,
   },
