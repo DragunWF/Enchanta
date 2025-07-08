@@ -1,11 +1,13 @@
-import { createContext, useReducer, ReactNode } from "react";
+import { createContext, useReducer, ReactNode, useState } from "react";
 import Message from "../models/message";
 import { generateLatestId } from "../helpers/tools/utils";
 
 export interface ChatContextType {
   messageHistory: Message[];
+  isImageVisible: boolean;
   addMessage: (message: string, isPlayer: boolean) => void;
   clearChatHistory: () => void;
+  toggleBotImageVisibility: () => void;
 }
 
 type ChatAction = { type: "ADD"; payload: Message } | { type: "CLEAR" };
@@ -19,6 +21,7 @@ interface ChatContextProviderProps {
 }
 
 function ChatContextProvider({ children }: ChatContextProviderProps) {
+  const [isImageVisible, setIsImageVisible] = useState(true);
   const [messageHistoryState, dispatch] = useReducer(chatReducer, []);
 
   function addMessage(message: string, isPlayer: boolean) {
@@ -33,10 +36,16 @@ function ChatContextProvider({ children }: ChatContextProviderProps) {
     dispatch({ type: "CLEAR" });
   }
 
+  function toggleBotImageVisibility() {
+    setIsImageVisible((current) => !current);
+  }
+
   const value: ChatContextType = {
     messageHistory: messageHistoryState,
+    isImageVisible,
     addMessage: addMessage,
     clearChatHistory: clearMessageHistory,
+    toggleBotImageVisibility,
   };
 
   return <ChatContext.Provider value={value}>{children}</ChatContext.Provider>;
