@@ -1,10 +1,12 @@
 import { ImageSourcePropType } from "react-native";
+import Model from "./model";
 
-class BotMood {
+class BotMood extends Model {
   #name: string;
   #imageSource: ImageSourcePropType;
 
-  constructor(name: string, imageSource: ImageSourcePropType) {
+  constructor(id: number, name: string, imageSource: ImageSourcePropType) {
+    super(id);
     this.#name = name;
     this.#imageSource = imageSource;
   }

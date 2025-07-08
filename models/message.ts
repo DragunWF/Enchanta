@@ -1,24 +1,21 @@
-class Message {
-  #id: number;
-  #content: string;
-  #isPlayer: boolean;
+import Model from "./model";
+
+class Message extends Model {
+  private content: string;
+  private isPlayerMessage: boolean;
 
   constructor(id: number, content: string, isPlayer: boolean) {
-    this.#id = id;
-    this.#content = content;
-    this.#isPlayer = isPlayer;
-  }
-
-  getId() {
-    return this.#id;
+    super(id);
+    this.content = content;
+    this.isPlayerMessage = isPlayer;
   }
 
   getContent() {
-    return this.#content;
+    return this.content;
   }
 
   isPlayer() {
-    return this.#isPlayer;
+    return this.isPlayerMessage;
   }
 }
 

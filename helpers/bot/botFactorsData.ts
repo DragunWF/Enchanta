@@ -12,13 +12,13 @@ const moodImages = {
   [MOOD.LOVESTRUCK]: require("../../assets/images/lovestruck-mage.png"),
   [MOOD.SAD]: require("../../assets/images/sad-mage.png"),
   [MOOD.PROUD]: require("../../assets/images/proud-mage.png"),
-  [MOOD.SCHEMING]: require("../../assets/images/scheming-mage.png")
+  [MOOD.SCHEMING]: require("../../assets/images/scheming-mage.png"),
 };
 
 export const moods = Object.fromEntries(
-  Object.keys(MOOD).map((moodKey) => [
+  Object.keys(MOOD).map((moodKey, index) => [
     moodKey.toLowerCase(),
-    new BotMood(moodKey, moodImages[MOOD[moodKey as keyof typeof MOOD]]),
+    new BotMood(index, moodKey, moodImages[MOOD[moodKey as keyof typeof MOOD]]),
   ])
 );
 

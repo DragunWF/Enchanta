@@ -1,18 +1,15 @@
-class MemoryJournalEntry {
-  #id: number;
-  #content: string;
+import Model from "./model";
+
+class MemoryJournalEntry extends Model {
+  private content: string;
 
   constructor(id: number, content: string) {
-    this.#id = id;
-    this.#content = content;
-  }
-
-  getId(): number {
-    return this.#id;
+    super(id);
+    this.content = content;
   }
 
   getContent(): string {
-    return this.#content;
+    return this.content;
   }
 }
 
