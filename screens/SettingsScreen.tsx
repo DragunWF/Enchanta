@@ -8,8 +8,8 @@ import SettingDropdown from "../components/SettingScreen/SettingDropdown";
 import SettingButton from "../components/SettingScreen/SettingButton";
 import CustomBackground from "../components/ui/CustomBackground";
 
-import { ChatContext } from "../store/aChatContext";
-import { BotContext } from "../store/aBotContext";
+import { ChatContext } from "../store/ChatContext";
+import { BotContext } from "../store/BotContext";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 import { toTitleCase } from "../helpers/tools/utils";
 import { quirkVariations } from "../helpers/bot/botFactorsData";

@@ -9,7 +9,7 @@ import {
 } from "react-native";
 
 import CustomBackground from "../components/ui/CustomBackground";
-import { BotContext } from "../store/aBotContext";
+import { BotContext } from "../store/BotContext";
 import MemoryJournalEntry from "../models/memoryJournalEntry";
 import Title from "../components/ui/Title";
 import { mainColors } from "../constants/colors";

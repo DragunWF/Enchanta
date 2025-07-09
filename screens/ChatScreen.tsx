@@ -6,9 +6,9 @@ import Conversation from "../components/ChatScreen/Conversation";
 import BotImage from "../components/ChatScreen/BotImage";
 import MessageInput from "../components/ChatScreen/MessageInput";
 import CustomBackground from "../components/ui/CustomBackground";
-import { ChatContext } from "../store/aChatContext";
+import { ChatContext } from "../store/ChatContext";
 import { getBotResponseMessage } from "../helpers/bot/chatbot";
-import { BotContext } from "../store/aBotContext";
+import { BotContext } from "../store/BotContext";
 
 function ChatScreen() {
   const [playerMessage, setPlayerMessage] = useState("");

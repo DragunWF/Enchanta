@@ -10,8 +10,8 @@ import AppLoading from "expo-app-loading";
 import ChatScreen from "./screens/ChatScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 import MemoryJournalScreen from "./screens/MemoryJournalScreen";
-import ChatContextProvider from "./store/aChatContext";
-import BotContextProvider from "./store/aBotContext";
+import ChatContextProvider from "./store/ChatContext";
+import BotContextProvider from "./store/BotContext";
 import { headerColors, tabBarColors } from "./constants/colors";
 
 const BottomTabs = createBottomTabNavigator();
