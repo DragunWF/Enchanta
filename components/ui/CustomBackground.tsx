@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, memo } from "react";
 import { StyleSheet, View, Text, ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -8,7 +8,7 @@ interface CustomBackgroundProps {
   children: ReactNode;
 }
 
-function CustomBackground({ children }: CustomBackgroundProps) {
+const CustomBackground = memo(({ children }: CustomBackgroundProps) => {
   return (
     <LinearGradient style={styles.screen} colors={gradientColors}>
       <ImageBackground
@@ -21,7 +21,7 @@ function CustomBackground({ children }: CustomBackgroundProps) {
       </ImageBackground>
     </LinearGradient>
   );
-}
+});
 
 const styles = StyleSheet.create({
   screen: {

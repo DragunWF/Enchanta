@@ -10,7 +10,11 @@ import { ChatContext } from "../store/ChatContext";
 import { getBotResponseMessage } from "../helpers/bot/chatbot";
 import { BotContext } from "../store/BotContext";
 
-function ChatScreen() {
+interface ChatScreenProps {
+  isImageVisible: boolean;
+}
+
+function ChatScreen({ isImageVisible }: ChatScreenProps) {
   const [playerMessage, setPlayerMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -65,7 +69,7 @@ function ChatScreen() {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
       >
-        {chatContext.isImageVisible && (
+        {isImageVisible && (
           <View style={styles.botImageContainer}>
             <BotImage moodName={botContext.mood} />
           </View>

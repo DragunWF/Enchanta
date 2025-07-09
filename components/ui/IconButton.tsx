@@ -1,14 +1,12 @@
 import { StyleSheet, Pressable, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { mainColors } from "../../constants/colors";
-
 interface IconButtonProps {
   onPress: () => void;
   icon: keyof typeof Ionicons.glyphMap;
   size: number;
   color: string;
-  style: any;
+  style?: any;
 }
 
 function IconButton({ icon, size, color, onPress, style }: IconButtonProps) {
