@@ -71,6 +71,7 @@ function SettingsScreen() {
     confirmationAlert(
       "This will set the bond level and quirk variation back to their default state.",
       () => {
+        resetMood();
         resetBondLevel();
         resetQuirkVariation();
       }
@@ -91,11 +92,17 @@ function SettingsScreen() {
       "This will reset the conversation, bot behavior, and memory journal. Are you sure you want to do this? This cannot be undone!",
       () => {
         chatContext.clearChatHistory();
+        resetMood();
         resetBondLevel();
         resetQuirkVariation();
         botContext.clearMemoryJournalEntries();
       }
     );
+  }
+
+  function resetMood() {
+    setSelectedMood(convertToDropdownItem(MOOD.NEUTRAL));
+    botContext.updateMood(MOOD.NEUTRAL);
   }
 
   function resetBondLevel() {
