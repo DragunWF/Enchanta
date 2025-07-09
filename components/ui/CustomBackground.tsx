@@ -10,6 +10,7 @@ interface CustomBackgroundProps {
 
 const CustomBackground = memo(({ children }: CustomBackgroundProps) => {
   return (
+    // @ts-ignore
     <LinearGradient style={styles.screen} colors={gradientColors}>
       <ImageBackground
         source={require("../../assets/images/background.png")}

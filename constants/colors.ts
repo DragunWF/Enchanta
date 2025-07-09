@@ -16,7 +16,7 @@ export const mainColors = {
   black: "#000000",
 };
 
-export const gradientColors = [
+export const gradientColors: readonly string[] = [
   mainColors.primary500,
   mainColors.primary300,
   mainColors.primary100,
