@@ -4,29 +4,33 @@
   "main": "index.ts",
   "scripts": {
     "start": "expo start --tunnel",
+    "startNoTunnel": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^7.4.2",
+    "@react-navigation/drawer": "^7.5.3",
     "@react-navigation/native": "^7.1.14",
     "axios": "^1.10.0",
     "expo": "~53.0.15",
     "expo-app-loading": "^2.1.1",
     "expo-font": "~13.3.2",
+    "expo-linear-gradient": "~14.1.5",
+    "expo-splash-screen": "~0.30.10",
     "expo-status-bar": "~2.2.3",
+    "expo-updates": "~0.28.16",
     "react": "19.0.0",
     "react-native": "0.79.4",
     "react-native-element-dropdown": "^2.12.4",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-reanimated": "~3.17.4",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-size-matters": "^0.4.2",
     "react-native-svg": "^15.12.0",
-    "react-native-toast-message": "^2.3.3",
-    "expo-linear-gradient": "~14.1.5",
-    "expo-splash-screen": "~0.30.10",
-    "expo-updates": "~0.28.16"
+    "react-native-toast-message": "^2.3.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
