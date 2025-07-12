@@ -15,6 +15,8 @@ const moodImages = {
   [MOOD.SCHEMING]: require("../../assets/images/scheming-mage.png"),
 };
 
+export const defaultMood = MOOD.NEUTRAL;
+
 export const moods = Object.fromEntries(
   Object.keys(MOOD).map((moodKey, index) => [
     moodKey.toLowerCase(),

@@ -12,7 +12,7 @@ import { ChatContext } from "../store/ChatContext";
 import { BotContext } from "../store/BotContext";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 import { toTitleCase } from "../helpers/tools/utils";
-import { quirkVariations } from "../helpers/bot/botFactorsData";
+import { defaultMood, quirkVariations } from "../helpers/bot/botFactorsData";
 import { mainColors } from "../constants/colors";
 
 function SettingsScreen() {
@@ -101,8 +101,8 @@ function SettingsScreen() {
   }
 
   function resetMood() {
-    setSelectedMood(convertToDropdownItem(MOOD.NEUTRAL));
-    botContext.updateMood(MOOD.NEUTRAL);
+    setSelectedMood(convertToDropdownItem(defaultMood));
+    botContext.updateMood(defaultMood);
   }
 
   function resetBondLevel() {
