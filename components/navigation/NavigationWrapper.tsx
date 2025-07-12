@@ -1,14 +1,15 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 
+import DrawerNavigator from "./DrawerNavigator";
 import CustomBackground from "../ui/CustomBackground";
 
 function NavigationWrapper() {
-  // TODO: Wrap the entire navigation component here
   return (
     <CustomBackground>
-      <View>
-        <Text>NavigationWrapper</Text>
-      </View>
+      <NavigationContainer>
+        <DrawerNavigator />
+      </NavigationContainer>
     </CustomBackground>
   );
 }

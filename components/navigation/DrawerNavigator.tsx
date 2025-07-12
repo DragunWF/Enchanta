@@ -1,18 +1,42 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StyleSheet, View, Text } from "react-native";
 
-import AdventureScreen from "../../screens/Adventure/AdventureScreen";
-import InventoryScreen from "../../screens/Adventure/InventoryScreen";
-import ShopScreen from "../../screens/Chat/ShopScreen";
+import ChatBottomTabNavigator from "./ChatBottomTabNavigator";
+import AdventureBottomTabNavigator from "./AdventureBottomTabNavigator";
 
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Adventure" component={AdventureScreen} />
-      <Drawer.Screen name="Inventory" component={InventoryScreen} />
-      <Drawer.Screen name="Shop" component={ShopScreen} />
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+        drawerStyle: {
+          backgroundColor: "#1a1a1a",
+          width: 240,
+        },
+        drawerActiveTintColor: "#fff",
+        drawerInactiveTintColor: "#ccc",
+        drawerLabelStyle: {
+          fontFamily: "quicksand-bold",
+          fontSize: 16,
+        },
+      }}
+    >
+      <Drawer.Screen
+        name="ChatBottomTabNavigator"
+        component={ChatBottomTabNavigator}
+        options={{
+          title: "Chat",
+        }}
+      />
+      <Drawer.Screen
+        name="AdventureBottomTabNavigator"
+        component={AdventureBottomTabNavigator}
+        options={{
+          title: "Adventure",
+        }}
+      />
     </Drawer.Navigator>
   );
 }

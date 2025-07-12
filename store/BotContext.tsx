@@ -10,13 +10,12 @@ import MemoryJournalEntry from "../models/memoryJournalEntry";
 
 export interface BotContextType {
   mood: string;
-  memoryJournalEntry: MemoryJournalEntry[];
+  memoryJournalEntries: MemoryJournalEntry[];
   bondLevel: string;
   quirkVariation: string;
   updateMood: (mood: MOOD) => void;
   updateBond: (bondLevel: BOND_LEVEL) => void;
   updateQuirk: (quirk: string) => void;
-  getMemoryJournalEntries: () => MemoryJournalEntry[];
   addMemoryJournalEntry: (journalEntry: string) => void;
   deleteMemoryJournalEntry: (targetId: number) => void;
   clearMemoryJournalEntries: () => void;
@@ -55,10 +54,6 @@ function BotContextProvider({ children }: BotContextProviderProps) {
     setQuirkVariation(quirk);
   }
 
-  function getMemoryJournalEntries(): MemoryJournalEntry[] {
-    return memoryJournalEntries;
-  }
-
   function addJournalEntry(journalEntry: string) {
     const latestId = generateLatestId(memoryJournalEntries);
     setMemoryJournalEntries((current) => [
@@ -79,13 +74,12 @@ function BotContextProvider({ children }: BotContextProviderProps) {
 
   const value: BotContextType = {
     mood,
-    memoryJournalEntry: memoryJournalEntries,
+    memoryJournalEntries,
     bondLevel,
     quirkVariation,
     updateMood,
     updateBond,
     updateQuirk,
-    getMemoryJournalEntries: getMemoryJournalEntries,
     addMemoryJournalEntry: addJournalEntry,
     deleteMemoryJournalEntry: deleteJournalEntry,
     clearMemoryJournalEntries: clearImportantFacts,

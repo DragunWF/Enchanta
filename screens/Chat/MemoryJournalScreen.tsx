@@ -1,31 +1,15 @@
 import { useContext } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  FlatList,
-  ListRenderItemInfo,
-  Button,
-} from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
-import { BotContext } from "../../store/BotContext";
-import MemoryJournalEntry from "../../models/memoryJournalEntry";
+import JournalEntryList from "../../components/MemoryJournal/JournalEntryList";
 import Title from "../../components/ui/Title";
+import { BotContext } from "../../store/BotContext";
 import { mainColors } from "../../constants/colors";
 
 function MemoryJournalScreen() {
   const botContext = useContext(BotContext);
-  const isMemoryEmpty = !botContext.memoryJournalEntry.length;
-
-  function renderMemory(itemData: ListRenderItemInfo<MemoryJournalEntry>) {
-    const importantFact: string = itemData.item.getContent();
-    return (
-      <View style={styles.factContainer}>
-        <Text style={styles.importantFactText}>{importantFact}</Text>
-      </View>
-    );
-  }
+  const isMemoryEmpty = !botContext.memoryJournalEntries.length;
 
   return (
     <CustomBackground>
@@ -39,13 +23,7 @@ function MemoryJournalScreen() {
             </Text>
           </View>
         ) : (
-          <FlatList
-            data={botContext.memoryJournalEntry}
-            renderItem={renderMemory}
-            keyExtractor={(item: MemoryJournalEntry) => String(item.getId())}
-            alwaysBounceVertical={false}
-            style={styles.factList}
-          />
+          <JournalEntryList data={botContext.memoryJournalEntries} />
         )}
       </View>
     </CustomBackground>
@@ -56,27 +34,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-  },
-  factList: {
-    width: "85%",
-    paddingBottom: 50,
-  },
-  factContainer: {
-    marginTop: 15,
-    marginHorizontal: 15,
-    backgroundColor: mainColors.secondary300,
-    paddingHorizontal: 30,
-    paddingVertical: 10,
-    borderRadius: 10,
-    borderWidth: 2,
-    borderColor: mainColors.secondary500,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  importantFactText: {
-    fontFamily: "quicksand",
-    fontSize: 16,
-    color: mainColors.softWhite,
   },
   messageContainer: {
     margin: 10,
