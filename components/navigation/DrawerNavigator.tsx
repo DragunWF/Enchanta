@@ -1,9 +1,9 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { StyleSheet, View, Text } from "react-native";
 
-import AdventureScreen from "../../screens/AdventureScreen";
-import InventoryScreen from "../../screens/InventoryScreen";
-import ShopScreen from "../../screens/ShopScreen";
+import AdventureScreen from "../../screens/Adventure/AdventureScreen";
+import InventoryScreen from "../../screens/Adventure/InventoryScreen";
+import ShopScreen from "../../screens/Chat/ShopScreen";
 
 const Drawer = createDrawerNavigator();
 

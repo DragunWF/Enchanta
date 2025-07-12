@@ -8,9 +8,9 @@ import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
-import ChatScreen from "./screens/ChatScreen";
-import SettingsScreen from "./screens/SettingsScreen";
-import MemoryJournalScreen from "./screens/MemoryJournalScreen";
+import ChatScreen from "./screens/Chat/ChatScreen";
+import SettingsScreen from "./screens/Adventure/SettingsScreen";
+import MemoryJournalScreen from "./screens/Chat/MemoryJournalScreen";
 import IconButton from "./components/ui/IconButton";
 import ChatContextProvider from "./store/ChatContext";
 import BotContextProvider from "./store/BotContext";

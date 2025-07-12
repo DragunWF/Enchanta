@@ -8,11 +8,11 @@ import {
   Button,
 } from "react-native";
 
-import CustomBackground from "../components/ui/CustomBackground";
-import { BotContext } from "../store/BotContext";
-import MemoryJournalEntry from "../models/memoryJournalEntry";
-import Title from "../components/ui/Title";
-import { mainColors } from "../constants/colors";
+import CustomBackground from "../../components/ui/CustomBackground";
+import { BotContext } from "../../store/BotContext";
+import MemoryJournalEntry from "../../models/memoryJournalEntry";
+import Title from "../../components/ui/Title";
+import { mainColors } from "../../constants/colors";
 
 function MemoryJournalScreen() {
   const botContext = useContext(BotContext);

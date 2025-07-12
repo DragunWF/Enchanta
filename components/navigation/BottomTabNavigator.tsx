@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 import { headerColors, tabBarColors, mainColors } from "../../constants/colors";
-import SettingsScreen from "../../screens/SettingsScreen";
-import ChatScreen from "../../screens/ChatScreen";
-import MemoryJournalScreen from "../../screens/MemoryJournalScreen";
+import SettingsScreen from "../../screens/Adventure/SettingsScreen";
+import ChatScreen from "../../screens/Chat/ChatScreen";
+import MemoryJournalScreen from "../../screens/Chat/MemoryJournalScreen";
 import IconButton from "../ui/IconButton";
 import DrawerNavigator from "./DrawerNavigator";
 

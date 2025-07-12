@@ -2,13 +2,13 @@ import { useContext, useState } from "react";
 import { StyleSheet, View, KeyboardAvoidingView, Platform } from "react-native";
 import Toast from "react-native-toast-message";
 
-import Conversation from "../components/ChatScreen/Conversation";
-import BotImage from "../components/ChatScreen/BotImage";
-import MessageInput from "../components/ChatScreen/MessageInput";
-import CustomBackground from "../components/ui/CustomBackground";
-import { ChatContext } from "../store/ChatContext";
-import { getBotResponseMessage } from "../helpers/bot/chatbot";
-import { BotContext } from "../store/BotContext";
+import Conversation from "../../components/ChatScreen/Conversation";
+import BotImage from "../../components/ChatScreen/BotImage";
+import MessageInput from "../../components/ChatScreen/MessageInput";
+import CustomBackground from "../../components/ui/CustomBackground";
+import { ChatContext } from "../../store/ChatContext";
+import { getBotResponseMessage } from "../../helpers/bot/chatbot";
+import { BotContext } from "../../store/BotContext";
 
 interface ChatScreenProps {
   isImageVisible: boolean;

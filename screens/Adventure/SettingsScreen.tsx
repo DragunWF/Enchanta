@@ -1,19 +1,19 @@
 import { useEffect, useContext, useState } from "react";
 import { StyleSheet, View, Alert, ScrollView } from "react-native";
 
-import { DropdownItem } from "../components/SettingScreen/SettingDropdown";
-import CustomText from "../components/ui/CustomText";
-import Title from "../components/ui/Title";
-import SettingDropdown from "../components/SettingScreen/SettingDropdown";
-import SettingButton from "../components/SettingScreen/SettingButton";
-import CustomBackground from "../components/ui/CustomBackground";
+import { DropdownItem } from "../../components/SettingScreen/SettingDropdown";
+import CustomText from "../../components/ui/CustomText";
+import Title from "../../components/ui/Title";
+import SettingDropdown from "../../components/SettingScreen/SettingDropdown";
+import SettingButton from "../../components/SettingScreen/SettingButton";
+import CustomBackground from "../../components/ui/CustomBackground";
 
-import { ChatContext } from "../store/ChatContext";
-import { BotContext } from "../store/BotContext";
-import { BOND_LEVEL, MOOD } from "../constants/botFactors";
-import { toTitleCase } from "../helpers/tools/utils";
-import { defaultMood, quirkVariations } from "../helpers/bot/botFactorsData";
-import { mainColors } from "../constants/colors";
+import { ChatContext } from "../../store/ChatContext";
+import { BotContext } from "../../store/BotContext";
+import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
+import { toTitleCase } from "../../helpers/tools/utils";
+import { defaultMood, quirkVariations } from "../../helpers/bot/botFactorsData";
+import { mainColors } from "../../constants/colors";
 
 function SettingsScreen() {
   const chatContext = useContext(ChatContext);
