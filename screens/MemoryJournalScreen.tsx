@@ -30,7 +30,7 @@ function MemoryJournalScreen() {
   return (
     <CustomBackground>
       <View style={styles.container}>
-        <Title>Angelina's Memories of You</Title>
+        <Title>Angelina's Thoughts of You</Title>
         {isMemoryEmpty ? (
           <View style={styles.messageContainer}>
             <Text style={styles.messageText}>
