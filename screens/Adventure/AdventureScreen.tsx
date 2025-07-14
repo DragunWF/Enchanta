@@ -21,7 +21,7 @@ function AdventureScreen() {
             <Text style={styles.cardTitle}>Adventure Title</Text>
             <Image
               style={styles.cardImage}
-              source={require("../../assets/images/sad-mage.png")}
+              source={require("../../assets/images/moods/sad-mage.png")}
               resizeMode="contain"
               onError={(error) => console.log("Image error:", error)}
             />

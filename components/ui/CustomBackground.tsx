@@ -13,7 +13,7 @@ const CustomBackground = memo(({ children }: CustomBackgroundProps) => {
     // @ts-ignore
     <LinearGradient style={styles.screen} colors={gradientColors}>
       <ImageBackground
-        source={require("../../assets/images/background.png")}
+        source={require("../../assets/images/other/background.png")}
         resizeMode="cover"
         style={styles.screen}
         imageStyle={styles.backgroundImage}

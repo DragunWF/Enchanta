@@ -2,17 +2,17 @@ import BotMood from "../../models/botMood";
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 
 const moodImages = {
-  [MOOD.ANNOYED]: require("../../assets/images/annoyed-mage.png"),
-  [MOOD.CHEERFUL]: require("../../assets/images/cheerful-mage.png"),
-  [MOOD.CURIOUS]: require("../../assets/images/curious-mage.png"),
-  [MOOD.NEUTRAL]: require("../../assets/images/neutral-mage.png"),
-  [MOOD.PLAYFUL]: require("../../assets/images/playful-mage.png"),
-  [MOOD.SERIOUS]: require("../../assets/images/serious-mage.png"),
-  [MOOD.SLEEPY]: require("../../assets/images/sleepy-mage.png"),
-  [MOOD.LOVESTRUCK]: require("../../assets/images/lovestruck-mage.png"),
-  [MOOD.SAD]: require("../../assets/images/sad-mage.png"),
-  [MOOD.PROUD]: require("../../assets/images/proud-mage.png"),
-  [MOOD.SCHEMING]: require("../../assets/images/scheming-mage.png"),
+  [MOOD.ANNOYED]: require("../../assets/images/moods/annoyed-mage.png"),
+  [MOOD.CHEERFUL]: require("../../assets/images/moods/cheerful-mage.png"),
+  [MOOD.CURIOUS]: require("../../assets/images/moods/curious-mage.png"),
+  [MOOD.NEUTRAL]: require("../../assets/images/moods/neutral-mage.png"),
+  [MOOD.PLAYFUL]: require("../../assets/images/moods/playful-mage.png"),
+  [MOOD.SERIOUS]: require("../../assets/images/moods/serious-mage.png"),
+  [MOOD.SLEEPY]: require("../../assets/images/moods/sleepy-mage.png"),
+  [MOOD.LOVESTRUCK]: require("../../assets/images/moods/lovestruck-mage.png"),
+  [MOOD.SAD]: require("../../assets/images/moods/sad-mage.png"),
+  [MOOD.PROUD]: require("../../assets/images/moods/proud-mage.png"),
+  [MOOD.SCHEMING]: require("../../assets/images/moods/scheming-mage.png"),
 };
 
 export const defaultMood = MOOD.NEUTRAL;
