@@ -4,6 +4,7 @@ import { StyleSheet, View, Text } from "react-native";
 import CustomBackground from "../../components/ui/CustomBackground";
 import JournalEntryList from "../../components/MemoryJournal/JournalEntryList";
 import Title from "../../components/ui/Title";
+import CustomText from "../../components/ui/CustomText";
 import { BotContext } from "../../store/BotContext";
 import { mainColors } from "../../constants/colors";
 
@@ -17,10 +18,10 @@ function MemoryJournalScreen() {
         <Title>Angelina's Thoughts of You</Title>
         {isMemoryEmpty ? (
           <View style={styles.messageContainer}>
-            <Text style={styles.messageText}>
+            <CustomText style={styles.messageText}>
               Start telling things about yourself to the bot for stuff to fill
               up here!
-            </Text>
+            </CustomText>
           </View>
         ) : (
           <JournalEntryList data={botContext.memoryJournalEntries} />
