@@ -37,7 +37,13 @@ function DrawerNavigator() {
           title: "Adventure",
         }}
       />
-      <Drawer.Screen name="Stats" component={StatsScreen} />
+      <Drawer.Screen
+        name="Stats"
+        component={StatsScreen}
+        options={{
+          title: "Usage Stats",
+        }}
+      />
       <Drawer.Screen name="Developer" component={DeveloperScreen} />
     </Drawer.Navigator>
   );

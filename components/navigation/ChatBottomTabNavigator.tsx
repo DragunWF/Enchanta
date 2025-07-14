@@ -41,7 +41,6 @@ function ChatBottomTabNavigator() {
           />
           <BottomTabs.Screen
             name="Chat"
-            component={() => <ChatScreen isImageVisible={isImageVisible} />}
             options={{
               title: "Chat with Angelina",
               tabBarIcon: ({ color, size }) => {
@@ -64,7 +63,9 @@ function ChatBottomTabNavigator() {
                 );
               },
             }}
-          />
+          >
+            {() => <ChatScreen isImageVisible={isImageVisible} />}
+          </BottomTabs.Screen>
           <BottomTabs.Screen
             name="MemoryJournal"
             component={MemoryJournalScreen}
