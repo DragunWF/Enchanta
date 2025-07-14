@@ -1,11 +1,4 @@
-import {
-  StyleSheet,
-  View,
-  Text,
-  ScrollView,
-  Image,
-  Pressable,
-} from "react-native";
+import { StyleSheet, View, ScrollView, Image } from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
 import Title from "../../components/ui/Title";
