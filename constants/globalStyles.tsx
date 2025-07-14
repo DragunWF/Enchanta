@@ -2,7 +2,7 @@ import { DrawerActions } from "@react-navigation/native";
 import type { DrawerNavigationProp } from "@react-navigation/drawer";
 
 import { headerColors, tabBarColors } from "./colors";
-import IconButton from "../components/ui/IconButton";
+import DrawerIconButton from "../components/navigation/DrawerIconButton";
 
 export function getBottomTabScreenOptions(
   navigation: DrawerNavigationProp<any>
@@ -20,14 +20,6 @@ export function getBottomTabScreenOptions(
     tabBarStyle: {
       backgroundColor: tabBarColors.background,
     },
-    headerLeft: () => (
-      <IconButton
-        icon="menu"
-        color={headerColors.text}
-        size={24}
-        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-        style={{ marginLeft: 15 }}
-      />
-    ),
+    headerLeft: () => <DrawerIconButton navigation={navigation} />,
   };
 }
