@@ -14,8 +14,6 @@ function Card({ children, style }: CardProps) {
 
 const styles = StyleSheet.create({
   cardContainer: {
-    marginTop: 20,
-    marginHorizontal: 20,
     borderRadius: 10,
     borderWidth: 2,
     padding: 10,
