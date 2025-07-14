@@ -16,7 +16,7 @@ import IconButton from "../ui/IconButton";
 const BottomTabs = createBottomTabNavigator();
 
 function ChatBottomTabNavigator() {
-  const [isImageVisible, setIsImageVisible] = useState(false);
+  const [isImageVisible, setIsImageVisible] = useState(true);
   const navigation = useNavigation() as DrawerNavigationProp<any>;
 
   const toggleImageVisibilityHandler = useCallback(() => {

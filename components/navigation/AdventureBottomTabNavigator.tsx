@@ -14,9 +14,12 @@ function AdventureBottomTabNavigator() {
   const navigation = useNavigation() as DrawerNavigationProp<any>;
 
   return (
-    <BottomTabs.Navigator screenOptions={getBottomTabScreenOptions(navigation)}>
-      <BottomTabs.Screen name="Adventure" component={AdventureScreen} />
+    <BottomTabs.Navigator
+      initialRouteName="Adventure"
+      screenOptions={getBottomTabScreenOptions(navigation)}
+    >
       <BottomTabs.Screen name="Inventory" component={InventoryScreen} />
+      <BottomTabs.Screen name="Adventure" component={AdventureScreen} />
       <BottomTabs.Screen name="Shop" component={ShopScreen} />
     </BottomTabs.Navigator>
   );

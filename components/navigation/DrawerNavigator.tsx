@@ -1,8 +1,8 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { StyleSheet, View, Text } from "react-native";
-
 import ChatBottomTabNavigator from "./ChatBottomTabNavigator";
 import AdventureBottomTabNavigator from "./AdventureBottomTabNavigator";
+import StatsScreen from "../../screens/Stats/StatsScreen";
+import DeveloperScreen from "../../screens/Developer/DeveloperScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -37,10 +37,10 @@ function DrawerNavigator() {
           title: "Adventure",
         }}
       />
+      <Drawer.Screen name="Stats" component={StatsScreen} />
+      <Drawer.Screen name="Developer" component={DeveloperScreen} />
     </Drawer.Navigator>
   );
 }
-
-const styles = StyleSheet.create({});
 
 export default DrawerNavigator;
