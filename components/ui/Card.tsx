@@ -1,0 +1,26 @@
+import { ReactNode } from "react";
+import { StyleSheet, View } from "react-native";
+
+import { mainColors } from "../../constants/colors";
+
+interface CardProps {
+  children: ReactNode;
+}
+
+function Card({ children }: CardProps) {
+  return <View style={styles.cardContainer}>{children}</View>;
+}
+
+const styles = StyleSheet.create({
+  cardContainer: {
+    marginTop: 20,
+    marginHorizontal: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    padding: 10,
+    borderColor: mainColors.secondary300,
+    backgroundColor: mainColors.secondary500,
+  },
+});
+
+export default Card;
