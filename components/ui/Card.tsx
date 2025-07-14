@@ -5,10 +5,11 @@ import { mainColors } from "../../constants/colors";
 
 interface CardProps {
   children: ReactNode;
+  style?: object;
 }
 
-function Card({ children }: CardProps) {
-  return <View style={styles.cardContainer}>{children}</View>;
+function Card({ children, style }: CardProps) {
+  return <View style={[styles.cardContainer, style]}>{children}</View>;
 }
 
 const styles = StyleSheet.create({
