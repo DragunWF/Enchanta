@@ -1,5 +1,5 @@
-import { memo } from "react";
-import { StyleSheet, View, TextInput, Button } from "react-native";
+import { memo, useState } from "react";
+import { StyleSheet, View, TextInput, Button, Platform } from "react-native";
 import { mainColors } from "../../constants/colors";
 
 interface MessageInputProps {
@@ -13,19 +13,23 @@ const MessageInput = memo(function MessageInput({
   onChange,
   onSendMessage,
 }: MessageInputProps) {
+  const [inputHeight, setInputHeight] = useState(40); // default height
+
+  // TODO: Make the button its own component (Make it a flat button)
   return (
     <View style={styles.inputContainer}>
       <TextInput
-        placeholder="Enter your message..."
-        style={styles.textInput}
+        style={[styles.textInput, { height: Math.max(40, inputHeight) }]}
         value={message}
         onChangeText={onChange}
+        placeholder="Type your message..."
+        placeholderTextColor={mainColors.black + "80"}
+        multiline
+        onContentSizeChange={(e) =>
+          setInputHeight(e.nativeEvent.contentSize.height)
+        }
       />
-      <Button
-        title="Send"
-        onPress={onSendMessage}
-        color={mainColors.primary300}
-      />
+      <Button title="Send" onPress={onSendMessage} />
     </View>
   );
 });
@@ -39,12 +43,16 @@ const styles = StyleSheet.create({
     backgroundColor: mainColors.secondary100,
     borderRadius: 25,
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-end", // align to bottom since input grows vertically
   },
   textInput: {
     flex: 1,
     marginRight: 10,
     color: mainColors.black,
+    fontSize: 16,
+    paddingVertical: Platform.OS === "ios" ? 8 : 4,
+    paddingHorizontal: 0,
+    textAlignVertical: "top",
   },
 });
 
