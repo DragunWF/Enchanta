@@ -1,15 +1,18 @@
+import { useNavigation } from "@react-navigation/native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import type { DrawerNavigationProp } from "@react-navigation/drawer";
 
 import ChatBottomTabNavigator from "./ChatBottomTabNavigator";
 import AdventureBottomTabNavigator from "./AdventureBottomTabNavigator";
-import DrawerIconButton from "./DrawerIconButton";
 import StatsScreen from "../../screens/Stats/StatsScreen";
 import DeveloperScreen from "../../screens/Developer/DeveloperScreen";
-import { headerColors } from "../../constants/colors";
+import { getDrawerSingleScreenOptions } from "../../constants/globalStyles";
 
 const Drawer = createDrawerNavigator();
 
 function DrawerNavigator() {
+  const navigation = useNavigation() as DrawerNavigationProp<any>;
+
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -43,25 +46,12 @@ function DrawerNavigator() {
       <Drawer.Screen
         name="Stats"
         component={StatsScreen}
-        options={{
-          title: "Usage Stats",
-        }}
+        options={getDrawerSingleScreenOptions(navigation, "Stats")}
       />
       <Drawer.Screen
         name="Developer"
         component={DeveloperScreen}
-        options={({ navigation }) => ({
-          title: "Developer",
-          headerShown: true,
-          headerStyle: {
-            backgroundColor: headerColors.background,
-          },
-          headerTitleStyle: {
-            fontFamily: "quicksand-bold",
-            color: headerColors.text,
-          },
-          headerLeft: () => <DrawerIconButton navigation={navigation} />,
-        })}
+        options={getDrawerSingleScreenOptions(navigation, "Developer")}
       />
     </Drawer.Navigator>
   );

@@ -23,3 +23,21 @@ export function getBottomTabScreenOptions(
     headerLeft: () => <DrawerIconButton navigation={navigation} />,
   };
 }
+
+export function getDrawerSingleScreenOptions(
+  navigation: DrawerNavigationProp<any>,
+  title: string
+) {
+  return {
+    title,
+    headerShown: true,
+    headerStyle: {
+      backgroundColor: headerColors.background,
+    },
+    headerTitleStyle: {
+      fontFamily: "quicksand-bold",
+      color: headerColors.text,
+    },
+    headerLeft: () => <DrawerIconButton navigation={navigation} />,
+  };
+}
