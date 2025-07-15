@@ -33,6 +33,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     width: "90%",
+    elevation: 5,
+    shadowColor: "black",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 8,
   },
   buttonText: {
     fontFamily: "quicksand",

@@ -25,6 +25,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     width: "80%",
+    elevation: 2,
+    shadowColor: "black",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 8,
   },
   cardButtonText: {
     fontFamily: "quicksand-bold",

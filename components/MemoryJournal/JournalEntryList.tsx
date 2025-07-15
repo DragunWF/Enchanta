@@ -50,6 +50,11 @@ const styles = StyleSheet.create({
     borderColor: mainColors.secondary500,
     flexDirection: "row",
     justifyContent: "space-between",
+    elevation: 5,
+    shadowColor: "black",
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 5 },
+    shadowRadius: 8,
   },
   importantFactText: {
     fontFamily: "quicksand",
