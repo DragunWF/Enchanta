@@ -1,6 +1,6 @@
-import { StyleSheet } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import type { DrawerNavigationProp } from "@react-navigation/drawer";
 
 import AdventureScreen from "../../screens/Adventure/AdventureScreen";
@@ -18,13 +18,35 @@ function AdventureBottomTabNavigator() {
       initialRouteName="Adventure"
       screenOptions={getBottomTabScreenOptions(navigation)}
     >
-      <BottomTabs.Screen name="Inventory" component={InventoryScreen} />
-      <BottomTabs.Screen name="Adventure" component={AdventureScreen} />
-      <BottomTabs.Screen name="Shop" component={ShopScreen} />
+      <BottomTabs.Screen
+        name="Inventory"
+        component={InventoryScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="bag" color={color} size={size} />;
+          },
+        }}
+      />
+      <BottomTabs.Screen
+        name="Adventure"
+        component={AdventureScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="map" color={color} size={size} />;
+          },
+        }}
+      />
+      <BottomTabs.Screen
+        name="Shop"
+        component={ShopScreen}
+        options={{
+          tabBarIcon: ({ color, size }) => {
+            return <Ionicons name="storefront" color={color} size={size} />;
+          },
+        }}
+      />
     </BottomTabs.Navigator>
   );
 }
-
-const styles = StyleSheet.create({});
 
 export default AdventureBottomTabNavigator;
