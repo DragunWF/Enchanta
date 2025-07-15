@@ -8,6 +8,7 @@ export const mainColors = {
   secondary500: "#7a3ca6", // Rich purple — nice contrast for buttons, tab icons, etc.
   secondary300: "#a06ec7", // Soft lavender for hover or card backgrounds
   secondary100: "#e6d8f2", // Light lavender for secondary backgrounds, form fields
+  accent700: "#489fbdff", // Deep aqua for strong accents, like important buttons or highlights
   accent500: "#5bb7d5", // Soft aqua — matches your player chat bubble color, keeps visual consistency
   accent300: "#90d7e3", // Lighter aqua for hover states, highlights, or glow effects
   accent100: "#d9f2f9", // Very light aqua for backgrounds or subtle highlights

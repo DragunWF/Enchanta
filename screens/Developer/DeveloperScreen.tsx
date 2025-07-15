@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text, Image } from "react-native";
+import { StyleSheet, View, ScrollView, Image } from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
 import Title from "../../components/ui/Title";
@@ -6,27 +6,52 @@ import CustomText from "../../components/ui/CustomText";
 import Card from "../../components/ui/Card";
 import CustomButton from "../../components/ui/CustomButton";
 import { mainColors } from "../../constants/colors";
+import { openLinkInBrowser } from "../../helpers/tools/utils";
 
 function DeveloperScreen() {
+  function openGitHubHandler() {
+    openLinkInBrowser("https://github.com/DragunWF");
+  }
+
+  function openLinkedInHandler() {
+    openLinkInBrowser("https://www.linkedin.com/in/marc-plarisan/");
+  }
+
+  function openItchioHandler() {
+    openLinkInBrowser("https://dragunwf.itch.io/");
+  }
+
   return (
     <CustomBackground>
       <View style={styles.rootContainer}>
         <Title>Developer Information</Title>
-        <View style={styles.contentContainer}>
-          <Image
-            style={styles.developerImage}
-            source={require("../../assets/images/other/developer.png")}
-          />
-        </View>
-        <Card>
-          <CustomText style={styles.cardText}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit hic
-            ea voluptatem, autem qui eos similique libero fuga, dolorem maxime
-            consectetur impedit provident! Ipsam odio, dicta placeat
-            reprehenderit perspiciatis delectus.
-          </CustomText>
-        </Card>
-        <CustomButton onPress={() => {}}>GitHub</CustomButton>
+        <ScrollView alwaysBounceVertical={false}>
+          <View style={styles.contentContainer}>
+            <Image
+              style={styles.developerImage}
+              source={require("../../assets/images/other/developer.png")}
+            />
+            <Card style={styles.cardContainer}>
+              <CustomText style={styles.cardText}>
+                This app, Enchanta, was created by Marc Plarisan, a software
+                developer from the Philippines. Online, he’s better known by the
+                alias "DragunWF". Feel free to explore his other projects and
+                connect with him through the button links below.
+              </CustomText>
+            </Card>
+            <View style={styles.buttonListContainer}>
+              <CustomButton onPress={openGitHubHandler}>
+                GitHub Profile
+              </CustomButton>
+              <CustomButton onPress={openLinkedInHandler}>
+                LinkedIn Profile
+              </CustomButton>
+              <CustomButton onPress={openItchioHandler}>
+                Itch.io Page
+              </CustomButton>
+            </View>
+          </View>
+        </ScrollView>
       </View>
     </CustomBackground>
   );
@@ -41,6 +66,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     alignItems: "center",
   },
+  cardContainer: {
+    width: "100%",
+    marginTop: 25,
+  },
   developerImage: {
     width: "100%",
     height: 250,
@@ -48,6 +77,13 @@ const styles = StyleSheet.create({
   },
   cardText: {
     color: mainColors.white,
+    textAlign: "justify",
+  },
+  buttonListContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 25,
+    gap: 20,
   },
 });
 

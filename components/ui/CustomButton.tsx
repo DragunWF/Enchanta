@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { StyleSheet, View, Text, Pressable } from "react-native";
 
+import CustomText from "./CustomText";
 import { mainColors } from "../../constants/colors";
 
 interface CustomButtonProps {
@@ -16,7 +17,7 @@ function CustomButton({ children, onPress, style }: CustomButtonProps) {
       style={({ pressed }) => pressed && styles.pressed}
     >
       <View style={[styles.buttonContainer, style]}>
-        <Text style={styles.buttonText}>{children}</Text>
+        <CustomText style={styles.buttonText}>{children}</CustomText>
       </View>
     </Pressable>
   );
@@ -24,10 +25,13 @@ function CustomButton({ children, onPress, style }: CustomButtonProps) {
 
 const styles = StyleSheet.create({
   pressed: {
-    opacity: 0.5,
+    opacity: 0.8,
   },
   buttonContainer: {
-    backgroundColor: mainColors.accent500,
+    width: 300,
+    borderWidth: 2,
+    borderColor: mainColors.accent500,
+    backgroundColor: mainColors.accent700,
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 8,
@@ -38,7 +42,7 @@ const styles = StyleSheet.create({
     color: mainColors.white,
     fontFamily: "quicksand",
     textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: 1, height: 1 },
+    textShadowOffset: { width: 2, height: 2 },
     textShadowRadius: 3,
   },
 });

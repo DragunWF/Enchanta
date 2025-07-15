@@ -1,3 +1,4 @@
+import * as Linking from "expo-linking";
 import MemoryJournalEntry from "../../models/memoryJournalEntry";
 import Message from "../../models/message";
 
@@ -40,4 +41,14 @@ export function toTitleCase(word: string): string {
     return word.toUpperCase();
   }
   return `${word[0].toUpperCase()}${word.substring(1).toLowerCase()}`;
+}
+
+export function openLinkInBrowser(url: string) {
+  if (url && url.startsWith("http")) {
+    Linking.openURL(url).catch((err) =>
+      console.error("Failed to open URL:", err)
+    );
+  } else {
+    console.warn("Invalid URL:", url);
+  }
 }
