@@ -70,7 +70,7 @@ export function getFullPrompt(
   }
 
   // Format values for important facts
-  const memoryJournalHistory = botContext.getMemoryJournalEntries();
+  const memoryJournalHistory = botContext.memoryJournalEntries;
   const recentEntries = memoryJournalHistory
     .slice(-10) // Gets last 10 entries (or all if fewer than 10)
     .map((entry) => `- ${entry.getContent()}`);

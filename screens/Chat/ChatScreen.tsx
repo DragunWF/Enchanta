@@ -53,6 +53,7 @@ function ChatScreen({ isImageVisible }: ChatScreenProps) {
         text2:
           "An unexpected error occurred while the bot was trying to respond to your message.",
       });
+      console.error("Error in sendMessageHandler:", err);
     } finally {
       setIsLoading(false);
     }

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { StyleSheet, View, Text, Pressable } from "react-native";
+import { StyleSheet, View, Pressable } from "react-native";
 
 import CustomText from "./CustomText";
 import { mainColors } from "../../constants/colors";
