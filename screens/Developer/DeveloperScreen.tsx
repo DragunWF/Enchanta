@@ -4,6 +4,7 @@ import CustomBackground from "../../components/ui/CustomBackground";
 import Title from "../../components/ui/Title";
 import CustomText from "../../components/ui/CustomText";
 import Card from "../../components/ui/Card";
+import CustomButton from "../../components/ui/CustomButton";
 import { mainColors } from "../../constants/colors";
 
 function DeveloperScreen() {
@@ -25,6 +26,7 @@ function DeveloperScreen() {
             reprehenderit perspiciatis delectus.
           </CustomText>
         </Card>
+        <CustomButton onPress={() => {}}>GitHub</CustomButton>
       </View>
     </CustomBackground>
   );
