@@ -34,9 +34,9 @@ function DeveloperScreen() {
             <Card style={styles.cardContainer}>
               <CustomText style={styles.cardText}>
                 This app, Enchanta, was created by Marc Plarisan, a software
-                developer from the Philippines. Online, he’s better known by the
-                alias "DragunWF". Feel free to explore his other projects and
-                connect with him through the button links below.
+                developer from the Philippines. He is usually under the alias
+                "DragunWF". Feel free to explore his other projects and connect
+                with him through the button links below.
               </CustomText>
             </Card>
             <View style={styles.buttonListContainer}>
