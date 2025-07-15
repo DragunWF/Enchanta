@@ -7,6 +7,7 @@ import AdventureBottomTabNavigator from "./AdventureBottomTabNavigator";
 import StatsScreen from "../../screens/Stats/StatsScreen";
 import DeveloperScreen from "../../screens/Developer/DeveloperScreen";
 import { getDrawerSingleScreenOptions } from "../../constants/globalStyles";
+import { drawerColors } from "../../constants/colors";
 
 const Drawer = createDrawerNavigator();
 
@@ -18,11 +19,11 @@ function DrawerNavigator() {
       screenOptions={{
         headerShown: false,
         drawerStyle: {
-          backgroundColor: "#1a1a1a",
+          backgroundColor: drawerColors.background,
           width: 240,
         },
-        drawerActiveTintColor: "#fff",
-        drawerInactiveTintColor: "#ccc",
+        drawerActiveTintColor: drawerColors.activeTint,
+        drawerInactiveTintColor: drawerColors.inactiveTint,
         drawerLabelStyle: {
           fontFamily: "quicksand-bold",
           fontSize: 16,

@@ -36,6 +36,12 @@ export const tabBarColors = {
   inactiveTint: "#ffe0e0", // Soft faded pink
 };
 
+export const drawerColors = {
+  background: "#1a1a1a", // Dark background for the drawer
+  activeTint: mainColors.white,
+  inactiveTint: "#ccc",
+};
+
 export const headerColors = {
   background: mainColors.primary500,
   text: mainColors.white,
