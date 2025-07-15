@@ -1,5 +1,12 @@
 import { memo, useState } from "react";
-import { StyleSheet, View, TextInput, Button, Platform } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TextInput,
+  TouchableOpacity,
+  Text,
+  Platform,
+} from "react-native";
 import { mainColors } from "../../constants/colors";
 
 interface MessageInputProps {
@@ -15,7 +22,6 @@ const MessageInput = memo(function MessageInput({
 }: MessageInputProps) {
   const [inputHeight, setInputHeight] = useState(40); // default height
 
-  // TODO: Make the button its own component (Make it a flat button)
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -28,8 +34,15 @@ const MessageInput = memo(function MessageInput({
         onContentSizeChange={(e) =>
           setInputHeight(e.nativeEvent.contentSize.height)
         }
+        textAlignVertical="top"
       />
-      <Button title="Send" onPress={onSendMessage} />
+      <TouchableOpacity
+        style={styles.sendButton}
+        onPress={onSendMessage}
+        activeOpacity={0.7}
+      >
+        <Text style={styles.sendButtonText}>Send</Text>
+      </TouchableOpacity>
     </View>
   );
 });
@@ -53,6 +66,19 @@ const styles = StyleSheet.create({
     paddingVertical: Platform.OS === "ios" ? 8 : 4,
     paddingHorizontal: 0,
     textAlignVertical: "top",
+  },
+  sendButton: {
+    backgroundColor: "transparent", // No background
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+    justifyContent: "center",
+    alignItems: "center",
+    minHeight: 40, // Ensures button height matches default input height
+  },
+  sendButtonText: {
+    color: mainColors.primary500,
+    fontSize: 16,
+    fontWeight: "500",
   },
 });
 
