@@ -2,40 +2,21 @@ import { StyleSheet, View, ScrollView, Image } from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
 import Title from "../../components/ui/Title";
-import Card from "../../components/ui/Card";
-import CardTitle from "../../components/ui/CardTitle";
-import CardText from "../../components/ui/CardText";
-import CardButton from "../../components/ui/CardButton";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
+import AdventureCard from "../../components/Adventure/AdventureCard";
+import { adventureLands } from "../../helpers/adventure/adventureData";
 
-interface ChooseAdventureScreenProps {
-  navigation: BottomTabNavigationProp<any>;
-}
-
-function ChooseAdventureScreen({ navigation }: ChooseAdventureScreenProps) {
+function ChooseAdventureScreen() {
   return (
     <CustomBackground>
       <Title>Choose your Adventure</Title>
       <ScrollView alwaysBounceVertical={false}>
         <View style={styles.cardListContainer}>
-          <Card style={styles.adventureCardContainer}>
-            <CardTitle>Adventure Title</CardTitle>
-            <Image
-              style={styles.cardImage}
-              source={require("../../assets/images/moods/sad-mage.png")}
-              resizeMode="contain"
-              onError={(error) => console.log("Image error:", error)}
+          {adventureLands.map((adventure) => (
+            <AdventureCard
+              key={adventure.getId()}
+              adventureId={adventure.getId()}
             />
-            <CardText>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
-              nemo expedita! Voluptas, consectetur. Porro ratione praesentium
-              necessitatibus maxime, error tempore deleniti perspiciatis impedit
-              omnis eveniet quos tenetur magnam eaque accusantium.
-            </CardText>
-            <CardButton onPress={() => navigation.navigate("Adventure")}>
-              Start the Adventure!
-            </CardButton>
-          </Card>
+          ))}
         </View>
       </ScrollView>
     </CustomBackground>
@@ -49,18 +30,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     paddingBottom: 20,
     gap: 25,
-  },
-  adventureCardContainer: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 5,
-  },
-  cardImage: {
-    width: "100%",
-    height: 200,
-    marginBottom: 10,
-    borderRadius: 15,
   },
 });
 
