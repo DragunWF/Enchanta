@@ -1,5 +1,6 @@
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import { BotResponse } from "../chatbot/chatbotResponseParser";
+import { GeminiMessagePart } from "./gemini";
 import { toTitleCase } from "./utils";
 
 let responseCount = 0;
@@ -37,4 +38,26 @@ ${response.reply}
 
 function formatFactor(factor: string | MOOD | BOND_LEVEL): string {
   return factor ? toTitleCase(factor) : "None";
+}
+
+export function logGeminiResponseHistory(history: GeminiMessagePart[]) {
+  let responseContent: string[] = [];
+  for (let message of history) {
+    responseContent.push(`
++++ ----------------- +++
+Role: ${message.role}
+
+Response: 
+${message.text}
++++ ----------------- +++
+`);
+  }
+
+  console.info(`
++ ----------------------------------------------------------- +
+${responseContent.join("\n")}
+
+HISTORY LENGTH: ${history.length}
++ ----------------------------------------------------------- +
+`);
 }

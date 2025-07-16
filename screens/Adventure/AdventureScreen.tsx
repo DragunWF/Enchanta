@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useState, useEffect, useContext, useRef, useCallback } from "react";
 import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
@@ -7,7 +7,10 @@ import CardText from "../../components/ui/CardText";
 import ChoiceButton from "../../components/Adventure/ChoiceButton";
 import Title from "../../components/ui/Title";
 import { AdventureContext } from "../../store/AdventureContext";
-import { getAdventureInitialBotResponse } from "../../helpers/adventure/adventureBot";
+import {
+  getAdventureInitialBotResponse,
+  getAdventureBotResponse,
+} from "../../helpers/adventure/adventureBot";
 
 function AdventureScreen() {
   const adventureContext = useContext(AdventureContext);
@@ -24,11 +27,10 @@ function AdventureScreen() {
     async function fetchInitialResponse() {
       try {
         setIsLoading(true);
-        const initialResponse = getAdventureInitialBotResponse(
+        const initialResponse = await getAdventureInitialBotResponse(
           adventureContext,
           chosenAdventureLand
         );
-        console.log("Initial AI Response:", initialResponse);
         typeWriteText(0, initialResponse?.narrationText || "No text.");
         setPlayerChoices(initialResponse?.choices || []);
       } catch (error) {
@@ -46,7 +48,7 @@ function AdventureScreen() {
         clearTimeout(timeoutRef.current);
       }
     };
-  }, [adventureContext, chosenAdventureLand]);
+  }, [chosenAdventureLand]);
 
   useEffect(() => {
     if (!selectedPlayerChoice) {
@@ -56,12 +58,11 @@ function AdventureScreen() {
     async function fetchAdventureResponse() {
       try {
         setIsLoading(true);
-        const aiResponse = await getAdventureInitialBotResponse(
+        const aiResponse = await getAdventureBotResponse(
           adventureContext,
-          chosenAdventureLand
+          selectedPlayerChoice
         );
         if (aiResponse) {
-          console.log("AI Response:", aiResponse);
           typeWriteText(0, aiResponse.narrationText);
           setPlayerChoices(aiResponse?.choices || []);
         } else {
@@ -77,49 +78,61 @@ function AdventureScreen() {
     fetchAdventureResponse();
   }, [selectedPlayerChoice]);
 
-  function typeWriteText(textIndex: number, fullText: string) {
+  const typeWriteText = useCallback((textIndex: number, fullText: string) => {
     if (textIndex >= fullText.length) {
       return;
     }
 
     timeoutRef.current = setTimeout(() => {
-      setNarrationText(fullText.slice(0, textIndex + 1));
+      setNarrationText((prev) => fullText.slice(0, textIndex + 1));
       typeWriteText(textIndex + 1, fullText);
     }, 15);
-  }
+  }, []);
 
   function handleChoiceSelection(choice: string) {
     setSelectedPlayerChoice(choice);
   }
 
+  let content = (
+    <>
+      <Card style={styles.narrationCard}>
+        <CardText>{narrationText}</CardText>
+      </Card>
+      <View style={styles.buttonListContainer}>
+        {playerChoices.map((choice, index) => (
+          <ChoiceButton
+            key={index}
+            onSelectChoice={handleChoiceSelection}
+            label={choice}
+          />
+        ))}
+      </View>
+    </>
+  );
   if (isLoading) {
-    return <ActivityIndicator />;
+    content = (
+      <View style={styles.fallbackContainer}>
+        <ActivityIndicator />
+      </View>
+    );
   }
 
   return (
     <CustomBackground>
       <View style={styles.rootContainer}>
         <Title>Adventure on {chosenAdventureLand?.getTitle()}</Title>
-        <ScrollView alwaysBounceVertical={false}>
-          <Card style={styles.narrationCard}>
-            <CardText>{narrationText}</CardText>
-          </Card>
-          <View style={styles.buttonListContainer}>
-            {playerChoices.map((choice, index) => (
-              <ChoiceButton
-                key={index}
-                onSelectChoice={handleChoiceSelection}
-                label={choice}
-              />
-            ))}
-          </View>
-        </ScrollView>
+        <ScrollView alwaysBounceVertical={false}>{content}</ScrollView>
       </View>
     </CustomBackground>
   );
 }
 
 const styles = StyleSheet.create({
+  fallbackContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
   rootContainer: {
     flex: 1,
     alignItems: "center",
@@ -133,6 +146,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     gap: 15,
     marginTop: 20,
+    paddingBottom: 40,
   },
 });
 
