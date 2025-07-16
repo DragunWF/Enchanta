@@ -36,7 +36,7 @@ const geminiApi = axios.create({
 });
 
 export async function generateText(prompt: string): Promise<string> {
-  return await generateGeminiResponse([{ role: "model", text: prompt }]);
+  return await generateGeminiResponse([{ role: "user", text: prompt }]);
 }
 
 export async function generateTextWithHistory(
@@ -50,24 +50,20 @@ async function generateGeminiResponse(
 ): Promise<string> {
   try {
     const response = await geminiApi.post<GeminiResponse>("", {
-      contents: [
-        {
-          parts: messageHistory,
-        },
-      ],
+      contents: messageHistory.map((message) => ({
+        role: message.role,
+        parts: [{ text: message.text }],
+      })),
     });
     return response.data.candidates[0].content.parts[0].text;
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error generating text with history:",
+        "Error generating text:",
         error.response ? error.response.data : error.message
       );
     } else {
-      console.error(
-        "Unexpected error for generating text with history:",
-        error
-      );
+      console.error("Unexpected error for generating text:", error);
     }
     throw error; // Re-throw to handle upstream
   }
