@@ -12,6 +12,11 @@ const API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
 const MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
+interface GeminiMessagePart {
+  role: "user" | "model";
+  text: string;
+}
+
 // Define the expected response structure
 interface GeminiResponse {
   candidates: Array<{
@@ -31,29 +36,38 @@ const geminiApi = axios.create({
 });
 
 export async function generateText(prompt: string): Promise<string> {
+  return await generateGeminiResponse([{ role: "model", text: prompt }]);
+}
+
+export async function generateTextWithHistory(
+  messageHistory: GeminiMessagePart[]
+): Promise<string> {
+  return await generateGeminiResponse(messageHistory);
+}
+
+async function generateGeminiResponse(
+  messageHistory: GeminiMessagePart[]
+): Promise<string> {
   try {
     const response = await geminiApi.post<GeminiResponse>("", {
       contents: [
         {
-          parts: [
-            {
-              text: prompt,
-            },
-          ],
+          parts: messageHistory,
         },
       ],
     });
     return response.data.candidates[0].content.parts[0].text;
   } catch (error) {
-    // Type guard to check if it's an Axios error
     if (axios.isAxiosError(error)) {
       console.error(
-        "Error generating text:",
+        "Error generating text with history:",
         error.response ? error.response.data : error.message
       );
     } else {
-      // Handle non-Axios errors
-      console.error("Unexpected error:", error);
+      console.error(
+        "Unexpected error for generating text with history:",
+        error
+      );
     }
     throw error; // Re-throw to handle upstream
   }
