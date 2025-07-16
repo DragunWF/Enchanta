@@ -2,7 +2,6 @@ import { StyleSheet, View, ScrollView, Image } from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
 import Title from "../../components/ui/Title";
-import CustomText from "../../components/ui/CustomText";
 import Card from "../../components/ui/Card";
 import CardText from "../../components/ui/CardText";
 import CustomButton from "../../components/ui/CustomButton";

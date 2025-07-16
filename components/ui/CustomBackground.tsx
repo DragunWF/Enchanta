@@ -1,5 +1,5 @@
 import { ReactNode, memo } from "react";
-import { StyleSheet, View, Text, ImageBackground } from "react-native";
+import { StyleSheet, ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import { gradientColors } from "../../constants/colors";

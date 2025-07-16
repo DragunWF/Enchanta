@@ -1,6 +1,5 @@
 import { ReactNode } from "react";
 import { StyleSheet, View, Pressable } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { AntDesign } from "@expo/vector-icons";
 
 import CustomText from "./CustomText";
