@@ -12,13 +12,15 @@ function CardText({ children, style }: CardTextProps) {
   return <Text style={[styles.cardText, style]}>{children}</Text>;
 }
 
+const fontSize = 14;
 const styles = StyleSheet.create({
   cardText: {
     fontFamily: "quicksand",
-    fontSize: 14,
+    fontSize: fontSize,
     textAlign: "justify",
     marginHorizontal: 20,
     marginBottom: 10,
+    lineHeight: fontSize * 1.5,
     color: mainColors.white,
   },
 });

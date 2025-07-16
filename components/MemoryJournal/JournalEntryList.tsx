@@ -34,6 +34,7 @@ function JournalEntryList({ data }: JournalEntryListProps) {
   );
 }
 
+const fontSize = 16;
 const styles = StyleSheet.create({
   factList: {
     width: "85%",
@@ -58,7 +59,8 @@ const styles = StyleSheet.create({
   },
   importantFactText: {
     fontFamily: "quicksand",
-    fontSize: 16,
+    fontSize: fontSize,
+    lineHeight: fontSize * 1.5,
     color: mainColors.softWhite,
   },
 });

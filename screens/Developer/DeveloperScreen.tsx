@@ -4,6 +4,7 @@ import CustomBackground from "../../components/ui/CustomBackground";
 import Title from "../../components/ui/Title";
 import CustomText from "../../components/ui/CustomText";
 import Card from "../../components/ui/Card";
+import CardText from "../../components/ui/CardText";
 import CustomButton from "../../components/ui/CustomButton";
 import { mainColors } from "../../constants/colors";
 import { openLinkInBrowser } from "../../helpers/tools/utils";
@@ -32,21 +33,24 @@ function DeveloperScreen() {
               source={require("../../assets/images/other/developer.png")}
             />
             <Card style={styles.cardContainer}>
-              <CustomText style={styles.cardText}>
+              <CardText style={styles.cardText}>
                 This app, Enchanta, was created by Marc Plarisan, a software
                 developer from the Philippines. He is usually under the alias
                 "DragunWF". Feel free to explore his other projects and connect
                 with him through the button links below.
-              </CustomText>
+              </CardText>
             </Card>
             <View style={styles.buttonListContainer}>
-              <CustomButton onPress={openGitHubHandler}>
+              <CustomButton icon="github" onPress={openGitHubHandler}>
                 GitHub Profile
               </CustomButton>
-              <CustomButton onPress={openLinkedInHandler}>
+              <CustomButton
+                icon="linkedin-square"
+                onPress={openLinkedInHandler}
+              >
                 LinkedIn Profile
               </CustomButton>
-              <CustomButton onPress={openItchioHandler}>
+              <CustomButton icon="laptop" onPress={openItchioHandler}>
                 Itch.io Page
               </CustomButton>
             </View>
@@ -65,6 +69,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginHorizontal: 20,
     alignItems: "center",
+    paddingBottom: 40,
   },
   cardContainer: {
     width: "100%",
