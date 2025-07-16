@@ -9,7 +9,10 @@ import AdventureLand from "../../models/adventureLand";
 import { AdventureContextType } from "../../store/AdventureContext";
 import { generateText, generateTextWithHistory } from "../tools/gemini";
 import { extractAdventureBotResponse } from "./adventureResponseParser";
-import { logGeminiResponseHistory } from "../tools/loggers";
+import {
+  logGeminiResponseHistory,
+  logGeminiHistoryCompact,
+} from "../tools/loggers";
 
 export async function getAdventureInitialBotResponse(
   adventureContext: AdventureContextType,
@@ -59,8 +62,7 @@ export async function getAdventureBotResponse(
     ...adventureContext.adventureLogs,
     { role: "user", text: playerResponsePrompt },
   ];
-  //   logGeminiResponseHistory(updatedMessageHistory);
-  console.log(updatedMessageHistory.length, "Length");
+  logGeminiHistoryCompact(updatedMessageHistory);
 
   // Use the complete history array
   const aiResponse = await generateTextWithHistory(updatedMessageHistory);
