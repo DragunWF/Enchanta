@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import type { DrawerNavigationProp } from "@react-navigation/drawer";
 
-import AdventureScreen from "../../screens/Adventure/AdventureScreen";
+import AdventureStackNavigator from "./AdventureStackNavigator";
 import InventoryScreen from "../../screens/Adventure/InventoryScreen";
 import ShopScreen from "../../screens/Chat/ShopScreen";
 import { getBottomTabScreenOptions } from "../../constants/globalStyles";
@@ -15,7 +15,7 @@ function AdventureBottomTabNavigator() {
 
   return (
     <BottomTabs.Navigator
-      initialRouteName="Adventure"
+      initialRouteName="AdventureStackNavigator"
       screenOptions={getBottomTabScreenOptions(navigation)}
     >
       <BottomTabs.Screen
@@ -28,9 +28,10 @@ function AdventureBottomTabNavigator() {
         }}
       />
       <BottomTabs.Screen
-        name="Adventure"
-        component={AdventureScreen}
+        name="AdventureStackNavigator"
+        component={AdventureStackNavigator}
         options={{
+          title: "Adventure",
           tabBarIcon: ({ color, size }) => {
             return <Ionicons name="map" color={color} size={size} />;
           },
