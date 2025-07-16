@@ -1,5 +1,6 @@
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import { quirkVariations } from "./chatbotFactorsData";
+import { parseAiJsonResponse } from "../tools/utils";
 
 export interface BotResponse {
   reply: string;
@@ -11,24 +12,11 @@ export interface BotResponse {
 
 export function extractBotResponse(aiResponse: string): BotResponse | null {
   try {
-    // Remove any leading/trailing whitespace
-    const cleanResponse = aiResponse.trim();
-
-    // Extract JSON from code blocks
-    const jsonMatch = cleanResponse.match(/```json\s*([\s\S]*?)\s*```/);
-
-    if (!jsonMatch) {
-      // Try to find JSON without code blocks
-      const directJsonMatch = cleanResponse.match(/\{[\s\S]*\}/);
-      if (!directJsonMatch) {
-        console.error("No JSON found in response");
-        return null;
-      }
-      return JSON.parse(directJsonMatch[0]);
+    const parsed = parseAiJsonResponse(aiResponse);
+    if (!parsed) {
+      console.error("Failed to parse AI response");
+      return null;
     }
-
-    const jsonString = jsonMatch[1];
-    const parsed = JSON.parse(jsonString);
 
     // Validate required fields
     const required = [

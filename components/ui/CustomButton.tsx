@@ -10,9 +10,10 @@ interface CustomButtonProps {
   onPress: () => void;
   style?: object;
   icon?: string | undefined;
+  textStyle?: object;
 }
 
-function CustomButton({ children, onPress, style, icon }: CustomButtonProps) {
+function CustomButton({ children, onPress, style, icon, textStyle }: CustomButtonProps) {
   return (
     <Pressable
       onPress={onPress}

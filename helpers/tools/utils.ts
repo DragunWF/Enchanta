@@ -52,3 +52,23 @@ export function openLinkInBrowser(url: string) {
     console.warn("Invalid URL:", url);
   }
 }
+
+export function parseAiJsonResponse(aiResponse: string) {
+  const cleanResponse = aiResponse.trim();
+
+  // Extract JSON from code blocks
+  const jsonMatch = cleanResponse.match(/```json\s*([\s\S]*?)\s*```/);
+
+  if (!jsonMatch) {
+    // Try to find JSON without code blocks
+    const directJsonMatch = cleanResponse.match(/\{[\s\S]*\}/);
+    if (!directJsonMatch) {
+      console.error("No JSON found in response");
+      return null;
+    }
+    return JSON.parse(directJsonMatch[0]);
+  }
+
+  const jsonString = jsonMatch[1];
+  return JSON.parse(jsonString);
+}
