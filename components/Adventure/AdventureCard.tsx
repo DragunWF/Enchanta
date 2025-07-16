@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
@@ -5,6 +6,7 @@ import Card from "../../components/ui/Card";
 import CardTitle from "../../components/ui/CardTitle";
 import CardButton from "../ui/CardButton";
 import CardText from "../ui/CardText";
+import { AdventureContext } from "../../store/AdventureContext";
 import { adventureLands } from "../../helpers/adventure/adventureData";
 import { StackNavigationProp } from "@react-navigation/stack";
 
@@ -13,6 +15,7 @@ interface AdventureCardProps {
 }
 
 function AdventureCard({ adventureId }: AdventureCardProps) {
+  const adventureContext = useContext(AdventureContext);
   const navigation = useNavigation() as StackNavigationProp<any>;
   const adventure = adventureLands.find(
     (adventure) => adventure.getId() === adventureId
@@ -22,7 +25,8 @@ function AdventureCard({ adventureId }: AdventureCardProps) {
     if (!adventure) {
       return;
     }
-    navigation.replace("Adventure", { adventureId: adventure.getId() });
+    navigation.replace("Adventure", { adventureLand: adventure });
+    adventureContext.selectAdventureLand(adventure);
     console.info(`Starting adventure: ${adventure.getTitle()}`);
   }
 

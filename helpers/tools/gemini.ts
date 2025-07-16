@@ -12,7 +12,7 @@ const API_KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
 const MODEL_NAME = "gemini-2.5-flash-lite-preview-06-17";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
 
-interface GeminiMessagePart {
+export interface GeminiMessagePart {
   role: "user" | "model";
   text: string;
 }
