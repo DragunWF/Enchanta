@@ -1,5 +1,5 @@
 import { MOOD } from "../../constants/botFactors";
-import { quirkVariations } from "./botFactorsData";
+import { quirkVariations } from "./chatbotFactorsData";
 
 const moodNames = Object.values(MOOD);
 

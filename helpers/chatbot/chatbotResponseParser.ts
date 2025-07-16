@@ -1,5 +1,5 @@
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
-import { quirkVariations } from "./botFactorsData";
+import { quirkVariations } from "./chatbotFactorsData";
 
 export interface BotResponse {
   reply: string;

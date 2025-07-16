@@ -12,7 +12,10 @@ import { ChatContext } from "../../store/ChatContext";
 import { BotContext } from "../../store/BotContext";
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import { toTitleCase } from "../../helpers/tools/utils";
-import { defaultMood, quirkVariations } from "../../helpers/bot/botFactorsData";
+import {
+  defaultMood,
+  quirkVariations,
+} from "../../helpers/chatbot/chatbotFactorsData";
 import { mainColors } from "../../constants/colors";
 
 function SettingsScreen() {

@@ -3,7 +3,7 @@ import {
   getRandomBondLevel,
   getRandomMoodName,
   getRandomQuirk,
-} from "../helpers/bot/chatbot";
+} from "../helpers/chatbot/chatbot";
 import { BOND_LEVEL, MOOD } from "../constants/botFactors";
 import { generateLatestId } from "../helpers/tools/utils";
 import MemoryJournalEntry from "../models/memoryJournalEntry";

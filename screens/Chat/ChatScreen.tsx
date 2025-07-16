@@ -7,7 +7,7 @@ import BotImage from "../../components/ChatScreen/BotImage";
 import MessageInput from "../../components/ChatScreen/MessageInput";
 import CustomBackground from "../../components/ui/CustomBackground";
 import { ChatContext } from "../../store/ChatContext";
-import { getBotResponseMessage } from "../../helpers/bot/chatbot";
+import { getBotResponseMessage } from "../../helpers/chatbot/chatbot";
 import { BotContext } from "../../store/BotContext";
 
 interface ChatScreenProps {

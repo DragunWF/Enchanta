@@ -1,5 +1,5 @@
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
-import { BotResponse } from "../bot/responseParser";
+import { BotResponse } from "../chatbot/chatbotResponseParser";
 import { toTitleCase } from "./utils";
 
 let responseCount = 0;

@@ -1,6 +1,6 @@
 import { StyleSheet, Image } from "react-native";
 
-import { moods } from "../../helpers/bot/botFactorsData";
+import { moods } from "../../helpers/chatbot/chatbotFactorsData";
 import BotMood from "../../models/botMood";
 
 interface BotImageProps {

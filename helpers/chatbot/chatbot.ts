@@ -1,12 +1,12 @@
 import { generateText } from "../tools/gemini";
 
-import { bondLevels, moods, quirkVariations } from "./botFactorsData";
+import { bondLevels, moods, quirkVariations } from "./chatbotFactorsData";
 import { getCurrentDateToday, getRandomArrayItem } from "../tools/utils";
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import { ChatContextType } from "../../store/ChatContext";
 import { BotContextType } from "../../store/BotContext";
-import { factorTemplates, prompt } from "./botPrompt";
-import { extractBotResponse } from "./responseParser";
+import { factorTemplates, prompt } from "./chatbotPrompt";
+import { extractBotResponse } from "./chatbotResponseParser";
 import { logAiResponse, logBotResponse } from "../tools/loggers";
 import BotMood from "../../models/botMood";
 
