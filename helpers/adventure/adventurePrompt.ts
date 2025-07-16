@@ -1,4 +1,4 @@
-export const adventurePromptTemplates = {
+export const adventurePromptTemplate = {
   adventureTitle: "248ash",
   adventureDescription: "dfhas",
 };
@@ -12,8 +12,8 @@ You must generate an immersive, fantasy-styled event in second-person narration 
 
 ## 🌍 Adventure Landscape Context
 
-Landscape Title: ${adventurePromptTemplates.adventureTitle}
-Landscape Description: ${adventurePromptTemplates.adventureDescription}
+Landscape Title: ${adventurePromptTemplate.adventureTitle}
+Landscape Description: ${adventurePromptTemplate.adventureDescription}
 
 ---
 
@@ -67,4 +67,14 @@ You must process this input and generate the next appropriate adventure segment 
 
 The experience should feel like a living magical journey — full of danger, arcane discoveries, twists, and companion moments with Angelina.  
 Do **not** include anything outside the JSON response.
+`;
+
+export const playerResponsePromptTemplate = {
+  playerChoice: "dahsuda",
+  itemUsed: "dh438a$d",
+};
+
+export const playerResponsePrompt = `
+Player Choice: ${playerResponsePromptTemplate.playerChoice}
+Item Used: ${playerResponsePromptTemplate.itemUsed}
 `;

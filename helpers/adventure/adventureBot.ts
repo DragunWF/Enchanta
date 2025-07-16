@@ -1,4 +1,9 @@
-import { adventurePrompt, adventurePromptTemplates } from "./adventurePrompt";
+import {
+  adventurePrompt,
+  adventurePromptTemplate,
+  playerResponsePrompt,
+  playerResponsePromptTemplate,
+} from "./adventurePrompt";
 
 import AdventureLand from "../../models/adventureLand";
 import { AdventureContextType } from "../../store/AdventureContext";
@@ -9,7 +14,7 @@ export async function getAdventureInitialBotResponse(
   adventureContext: AdventureContextType,
   chosenAdventureLand: AdventureLand | null
 ) {
-  const prompt = getFullPrompt(chosenAdventureLand);
+  const prompt = getFullIntialAdventurePrompt(chosenAdventureLand);
   if (!prompt) {
     throw new Error("No adventure land selected");
   }
@@ -20,7 +25,7 @@ export async function getAdventureInitialBotResponse(
   return extractAdventureBotResponse(aiResponse);
 }
 
-function getFullPrompt(
+function getFullIntialAdventurePrompt(
   adventureLand: AdventureLand | null
 ): string | undefined {
   if (!adventureLand) {
@@ -29,12 +34,53 @@ function getFullPrompt(
 
   let modifiedPrompt = adventurePrompt;
   modifiedPrompt = modifiedPrompt.replace(
-    adventurePromptTemplates.adventureTitle,
+    adventurePromptTemplate.adventureTitle,
     adventureLand.getTitle()
   );
   modifiedPrompt = modifiedPrompt.replace(
-    adventurePromptTemplates.adventureDescription,
+    adventurePromptTemplate.adventureDescription,
     adventureLand.getDescription()
   );
+  return modifiedPrompt;
+}
+
+export async function getAdventureBotResponse(
+  adventureContext: AdventureContextType,
+  playerChoice: string
+) {
+  if (!playerChoice) {
+    throw new Error("No choice selected!");
+  }
+
+  const playerResponsePrompt = getFullPlayerResponsePrompt(playerChoice);
+  // Create a new array with the latest message included
+  const updatedMessageHistory = [
+    ...adventureContext.adventureLogs,
+    { role: "user", text: playerResponsePrompt },
+  ];
+
+  // Use the complete history array
+  const aiResponse = await generateTextWithHistory(updatedMessageHistory);
+
+  // After getting the response, update the context
+  adventureContext.addAdventureLog({
+    role: "user",
+    text: playerResponsePrompt,
+  });
+  adventureContext.addAdventureLog({ role: "model", text: aiResponse });
+
+  return extractAdventureBotResponse(aiResponse);
+}
+
+function getFullPlayerResponsePrompt(playerChoice: string) {
+  let modifiedPrompt = playerResponsePrompt;
+  modifiedPrompt = modifiedPrompt.replace(
+    playerResponsePromptTemplate.playerChoice,
+    playerChoice
+  );
+  modifiedPrompt = modifiedPrompt.replace(
+    playerResponsePromptTemplate.itemUsed,
+    "none"
+  ); // Assuming no item used by default
   return modifiedPrompt;
 }
