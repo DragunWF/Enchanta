@@ -12,6 +12,7 @@ import { extractAdventureBotResponse } from "./adventureResponseParser";
 import {
   logGeminiResponseHistory,
   logGeminiHistoryCompact,
+  logAiResponse,
 } from "../tools/loggers";
 
 export async function getAdventureInitialBotResponse(
@@ -72,6 +73,9 @@ export async function getAdventureBotResponse(
     text: playerResponsePrompt,
   });
   adventureContext.addAdventureLog({ role: "model", text: aiResponse });
+
+  logGeminiHistoryCompact(updatedMessageHistory);
+  logAiResponse(aiResponse);
 
   return extractAdventureBotResponse(aiResponse);
 }

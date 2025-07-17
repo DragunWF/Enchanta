@@ -42,13 +42,16 @@ Return your output using this strict JSON structure:
 
 - Narration must be immersive, fantasy-styled, and tailored to the selected **Adventure Landscape**.
 - Angelina must appear in **every scene**, reacting with charm, wit, concern, or mischief.
-- Always include **exactly four** choices.
+- Always include **exactly four** choices unless the game is over.
 - Choices must be short, actionable, and relevant to the current situation.
 - Scenes should contain risk. Many choices can result in harm, item loss, or failure.
 - Only grant items on **rare occasions**.
 - \`itemGained\` should be \`null\` unless an item is awarded.
 - Set \`isGameover\` to \`true\` only when the player dies or completes the adventure.
 - \`tag\` must be one of the following five values only: "calm", "mystery", "danger", "action", or "aftermath". No other values are allowed.
+- Many choices should have real consequences — death, dismemberment, or irreversible failure.
+- Game over should not be rare. It's okay if more than half the player's decisions lead to failure.
+- Write deaths in vivid, poetic, and impactful ways. Angelina should react emotionally or eerily to the player’s demise.
 
 ---
 
@@ -67,7 +70,7 @@ You must process this input and generate the next appropriate adventure segment 
 
 ## 🎯 Overall Objective
 
-The experience should feel like a living magical journey — full of danger, arcane discoveries, twists, and companion moments with Angelina.  
+The experience should feel like a living magical journey — full of danger, arcane discoveries, twists, and companion moments with Angelina. Death should be frequent, and choices should carry high risk. Encourage exploration, but punish recklessness.
 Do **not** include anything outside the JSON response.
 `;
 

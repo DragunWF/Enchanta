@@ -74,6 +74,7 @@ function AdventureScreen() {
         );
         if (aiResponse) {
           typeWriteText(0, aiResponse.narrationText);
+          adventureContext.updateCurrentScenario(aiResponse.tag || "calm");
 
           // @ts-ignore
           setPlayerChoices(aiResponse?.choices || []);
