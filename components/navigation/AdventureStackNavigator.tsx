@@ -1,12 +1,21 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Ionicons } from "@expo/vector-icons";
+import { Route } from "@react-navigation/native";
+import type { StackNavigationProp } from "@react-navigation/stack";
 
 import AdventureScreen from "../../screens/Adventure/AdventureScreen";
 import ChooseAdventureScreen from "../../screens/Adventure/ChooseAdventureScreen";
-import IconButton from "../ui/IconButton";
 import ResultsScreen from "../../screens/Adventure/ResultsScreen";
 
-const Stack = createStackNavigator();
+export type AdventureStackParamList = {
+  ChooseAdventure: undefined;
+  Adventure: undefined;
+  Results: {
+    navigation: StackNavigationProp<any>;
+    route: Route<string, { gameOverSummary?: string }>;
+  };
+};
+
+const Stack = createStackNavigator<AdventureStackParamList>();
 
 function AdventureStackNavigator() {
   return (

@@ -28,6 +28,7 @@ interface AdventureScreenProps {
 
 function AdventureScreen({ navigation }: AdventureScreenProps) {
   const adventureContext = useContext(AdventureContext);
+
   const [narrationText, setNarrationText] = useState<string>("");
   const [playerChoices, setPlayerChoices] = useState<string[]>([]);
   const [selectedPlayerChoice, setSelectedPlayerChoice] = useState<
@@ -35,8 +36,11 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   >(null);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const chosenAdventureLand = adventureContext.selectedAdventureLand;
+
+  const gameOverSummary = useRef<string>("");
   const timeoutRef = useRef<number | null>(null);
+
+  const chosenAdventureLand = adventureContext.selectedAdventureLand;
 
   useEffect(() => {
     async function fetchInitialResponse() {
@@ -87,6 +91,11 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
           // @ts-ignore
           setPlayerChoices(aiResponse?.choices || []);
           setIsGameOver(aiResponse.isGameover);
+
+          if (aiResponse.isGameover) {
+            gameOverSummary.current = aiResponse.gameOverSummary;
+            adventureContext.clearAdventureLogs(); // Resets the prompt history
+          }
         } else {
           console.error("Failed to extract AI response.");
         }
@@ -111,12 +120,12 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
     }, 15);
   }, []);
 
-  function handleChoiceSelection(choice: string) {
+  function choiceSelectionHandler(choice: string) {
     setSelectedPlayerChoice(choice);
   }
 
   function seeResultsHandler() {
-    navigation.replace("Results");
+    navigation.replace("Results", { gameOverSummary: gameOverSummary.current });
   }
 
   let content = (
@@ -129,7 +138,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
           playerChoices.map((choice, index) => (
             <ChoiceButton
               key={index}
-              onSelectChoice={handleChoiceSelection}
+              onSelectChoice={choiceSelectionHandler}
               label={choice}
             />
           ))

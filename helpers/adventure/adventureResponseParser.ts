@@ -3,6 +3,7 @@ import { parseAiJsonResponse } from "../tools/utils";
 interface AdventureResponse {
   narrationText: string;
   isGameover: boolean;
+  gameOverSummary: string;
   tag: string;
   choices: string[4];
   itemGained: string;
@@ -32,6 +33,7 @@ export function extractAdventureBotResponse(
       narrationText: parsed.narrationText,
       tag: parsed.tag || "calm", // Default to "calm" if tag is missing
       isGameover: Boolean(parsed.isGameover),
+      gameOverSummary: parsed.gameOverSummary || "",
       choices: parsed.choices || [],
       itemGained: parsed.itemGained || "",
     };
