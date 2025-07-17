@@ -6,26 +6,34 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
+import type { StackNavigationProp } from "@react-navigation/stack";
 
 import CustomBackground from "../../components/ui/CustomBackground";
 import Card from "../../components/ui/Card";
 import CardText from "../../components/ui/CardText";
 import ChoiceButton from "../../components/Adventure/ChoiceButton";
 import Title from "../../components/ui/Title";
+import CustomButton from "../../components/ui/CustomButton";
 import { AdventureContext } from "../../store/AdventureContext";
 import {
   getAdventureInitialBotResponse,
   getAdventureBotResponse,
 } from "../../helpers/adventure/adventureBot";
 import { ScenarioImageSources } from "../../models/adventureLand";
+import { mainColors } from "../../constants/colors";
 
-function AdventureScreen() {
+interface AdventureScreenProps {
+  navigation: StackNavigationProp<any>;
+}
+
+function AdventureScreen({ navigation }: AdventureScreenProps) {
   const adventureContext = useContext(AdventureContext);
   const [narrationText, setNarrationText] = useState<string>("");
   const [playerChoices, setPlayerChoices] = useState<string[]>([]);
   const [selectedPlayerChoice, setSelectedPlayerChoice] = useState<
     string | null
   >(null);
+  const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const chosenAdventureLand = adventureContext.selectedAdventureLand;
   const timeoutRef = useRef<number | null>(null);
@@ -78,6 +86,7 @@ function AdventureScreen() {
 
           // @ts-ignore
           setPlayerChoices(aiResponse?.choices || []);
+          setIsGameOver(aiResponse.isGameover);
         } else {
           console.error("Failed to extract AI response.");
         }
@@ -106,19 +115,32 @@ function AdventureScreen() {
     setSelectedPlayerChoice(choice);
   }
 
+  function seeResultsHandler() {
+    navigation.replace("Results");
+  }
+
   let content = (
     <>
       <Card style={styles.narrationCard}>
         <CardText>{narrationText}</CardText>
       </Card>
       <View style={styles.buttonListContainer}>
-        {playerChoices.map((choice, index) => (
-          <ChoiceButton
-            key={index}
-            onSelectChoice={handleChoiceSelection}
-            label={choice}
-          />
-        ))}
+        {!isGameOver ? (
+          playerChoices.map((choice, index) => (
+            <ChoiceButton
+              key={index}
+              onSelectChoice={handleChoiceSelection}
+              label={choice}
+            />
+          ))
+        ) : (
+          <CustomButton
+            style={styles.gameOverButton}
+            onPress={seeResultsHandler}
+          >
+            See Results Screen
+          </CustomButton>
+        )}
       </View>
     </>
   );
@@ -178,6 +200,10 @@ const styles = StyleSheet.create({
     gap: 15,
     marginTop: 20,
     paddingBottom: 40,
+  },
+  gameOverButton: {
+    backgroundColor: mainColors.primary500,
+    borderColor: mainColors.primary700,
   },
 });
 
