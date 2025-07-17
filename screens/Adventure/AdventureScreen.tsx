@@ -30,6 +30,8 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   const adventureContext = useContext(AdventureContext);
 
   const [narrationText, setNarrationText] = useState<string>("");
+  const [isNarrationComplete, setIsNarrationComplete] =
+    useState<boolean>(false); // Makes sure that buttons only appear after the narration text is displayed fully
   const [playerChoices, setPlayerChoices] = useState<string[]>([]);
   const [selectedPlayerChoice, setSelectedPlayerChoice] = useState<
     string | null
@@ -39,8 +41,19 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
 
   const gameOverSummary = useRef<string>("");
   const timeoutRef = useRef<number | null>(null);
-
   const chosenAdventureLand = adventureContext.selectedAdventureLand;
+
+  const typeWriteText = useCallback((textIndex: number, fullText: string) => {
+    if (textIndex >= fullText.length) {
+      setIsNarrationComplete(true);
+      return;
+    }
+
+    timeoutRef.current = setTimeout(() => {
+      setNarrationText((prev) => fullText.slice(0, textIndex + 1));
+      typeWriteText(textIndex + 1, fullText);
+    }, 15);
+  }, []);
 
   useEffect(() => {
     async function fetchInitialResponse() {
@@ -109,18 +122,8 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
     fetchAdventureResponse();
   }, [selectedPlayerChoice]);
 
-  const typeWriteText = useCallback((textIndex: number, fullText: string) => {
-    if (textIndex >= fullText.length) {
-      return;
-    }
-
-    timeoutRef.current = setTimeout(() => {
-      setNarrationText((prev) => fullText.slice(0, textIndex + 1));
-      typeWriteText(textIndex + 1, fullText);
-    }, 15);
-  }, []);
-
   function choiceSelectionHandler(choice: string) {
+    setIsNarrationComplete(false); // Make buttons disappear until narration text is done typing
     setSelectedPlayerChoice(choice);
   }
 
@@ -133,24 +136,26 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
       <Card style={styles.narrationCard}>
         <CardText>{narrationText}</CardText>
       </Card>
-      <View style={styles.buttonListContainer}>
-        {!isGameOver ? (
-          playerChoices.map((choice, index) => (
-            <ChoiceButton
-              key={index}
-              onSelectChoice={choiceSelectionHandler}
-              label={choice}
-            />
-          ))
-        ) : (
-          <CustomButton
-            style={styles.gameOverButton}
-            onPress={seeResultsHandler}
-          >
-            See Results Screen
-          </CustomButton>
-        )}
-      </View>
+      {isNarrationComplete && (
+        <View style={styles.buttonListContainer}>
+          {!isGameOver ? (
+            playerChoices.map((choice, index) => (
+              <ChoiceButton
+                key={index}
+                onSelectChoice={choiceSelectionHandler}
+                label={choice}
+              />
+            ))
+          ) : (
+            <CustomButton
+              style={styles.gameOverButton}
+              onPress={seeResultsHandler}
+            >
+              See Results Screen
+            </CustomButton>
+          )}
+        </View>
+      )}
     </>
   );
   if (isLoading) {
@@ -163,7 +168,9 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
 
   const currentScenarioImageSource =
     chosenAdventureLand?.getRandomScenarioImage(
-      (isGameOver ? "aftermath" : adventureContext.currentScenario) as keyof ScenarioImageSources
+      (isGameOver
+        ? "aftermath"
+        : adventureContext.currentScenario) as keyof ScenarioImageSources
     );
 
   return (
