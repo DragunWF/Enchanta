@@ -62,7 +62,6 @@ export async function getAdventureBotResponse(
     ...adventureContext.adventureLogs,
     { role: "user", text: playerResponsePrompt },
   ];
-  logGeminiHistoryCompact(updatedMessageHistory);
 
   // Use the complete history array
   const aiResponse = await generateTextWithHistory(updatedMessageHistory);

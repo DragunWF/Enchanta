@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+import { logGeminiHistoryCompact } from "./loggers";
 
 /*
    Preferred Gemini Models:
@@ -49,6 +50,8 @@ async function generateGeminiResponse(
   messageHistory: GeminiMessagePart[]
 ): Promise<string> {
   try {
+    // logGeminiHistoryCompact(messageHistory); // Uncomment for debugging
+
     const response = await geminiApi.post<GeminiResponse>("", {
       contents: messageHistory.map((message) => ({
         role: message.role,

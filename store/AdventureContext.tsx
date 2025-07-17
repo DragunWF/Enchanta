@@ -72,7 +72,7 @@ function AdventureContextProvider({ children }: AdventureContextProviderProps) {
 function dataReducer(state: any[], action: AdventureContextAction) {
   switch (action.type) {
     case ACTION_TYPE.ADD:
-      return [action.payload, ...state];
+      return [...state, action.payload];
     case ACTION_TYPE.SET:
       return action.payload;
     case ACTION_TYPE.UPDATE:
