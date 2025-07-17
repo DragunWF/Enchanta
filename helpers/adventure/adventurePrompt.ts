@@ -25,6 +25,7 @@ Return your output using this strict JSON structure:
 {
   "narrationText": "<Immersive story description of the current situation. Must include Angelina’s presence and reaction.>",
   "isGameover": <true or false>,
+  "tag": "calm | mystery | danger | action | aftermath",
   "choices": [
     "Choice A goes here",
     "Choice B goes here",
@@ -47,6 +48,7 @@ Return your output using this strict JSON structure:
 - Only grant items on **rare occasions**.
 - \`itemGained\` should be \`null\` unless an item is awarded.
 - Set \`isGameover\` to \`true\` only when the player dies or completes the adventure.
+- \`tag\` must be one of the following five values only: "calm", "mystery", "danger", "action", or "aftermath". No other values are allowed.
 
 ---
 
