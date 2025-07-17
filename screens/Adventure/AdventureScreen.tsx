@@ -1,5 +1,11 @@
 import { useState, useEffect, useContext, useRef, useCallback } from "react";
-import { StyleSheet, View, ScrollView, ActivityIndicator } from "react-native";
+import {
+  StyleSheet,
+  View,
+  ScrollView,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
 import Card from "../../components/ui/Card";
@@ -11,6 +17,7 @@ import {
   getAdventureInitialBotResponse,
   getAdventureBotResponse,
 } from "../../helpers/adventure/adventureBot";
+import { ScenarioImageSources } from "../../models/adventureLand";
 
 function AdventureScreen() {
   const adventureContext = useContext(AdventureContext);
@@ -32,6 +39,9 @@ function AdventureScreen() {
           chosenAdventureLand
         );
         typeWriteText(0, initialResponse?.narrationText || "No text.");
+        adventureContext.updateCurrentScenario(initialResponse?.tag || "calm");
+
+        // @ts-ignore
         setPlayerChoices(initialResponse?.choices || []);
       } catch (error) {
         console.error("Error fetching initial bot response:", error);
@@ -64,6 +74,8 @@ function AdventureScreen() {
         );
         if (aiResponse) {
           typeWriteText(0, aiResponse.narrationText);
+
+          // @ts-ignore
           setPlayerChoices(aiResponse?.choices || []);
         } else {
           console.error("Failed to extract AI response.");
@@ -117,10 +129,19 @@ function AdventureScreen() {
     );
   }
 
+  const currentScenarioImageSource =
+    chosenAdventureLand?.getRandomScenarioImage(
+      adventureContext.currentScenario as keyof ScenarioImageSources
+    );
+
   return (
     <CustomBackground>
       <View style={styles.rootContainer}>
         <Title>Adventure on {chosenAdventureLand?.getTitle()}</Title>
+        <Image
+          style={styles.adventureImage}
+          source={currentScenarioImageSource}
+        />
         <ScrollView alwaysBounceVertical={false}>{content}</ScrollView>
       </View>
     </CustomBackground>
@@ -136,6 +157,15 @@ const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
     alignItems: "center",
+  },
+  adventureImage: {
+    width: "100%",
+    height: 250,
+    resizeMode: "cover",
+    borderRadius: 15,
+    marginHorizontal: 10,
+    paddingHorizontal: 20,
+    marginBottom: 15,
   },
   narrationCard: {
     marginHorizontal: 20,

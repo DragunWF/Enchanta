@@ -18,10 +18,12 @@ interface AdventureContextAction {
 export interface AdventureContextType {
   adventureLogs: any[]; // Replacable with a model
   selectedAdventureLand: AdventureLand | null;
+  currentScenario: string;
   addAdventureLog: (data: any) => void;
   clearAdventureLogs: () => void;
   selectAdventureLand: (adventureLand: AdventureLand) => void;
   resetAdventureLand: () => void;
+  updateCurrentScenario: (scenario: string) => void;
 }
 
 export const AdventureContext = createContext<AdventureContextType>(
@@ -36,6 +38,7 @@ function AdventureContextProvider({ children }: AdventureContextProviderProps) {
   const [adventureLogsState, dispatch] = useReducer(dataReducer, []);
   const [selectedAdventureLand, setSelectedAdventureLand] =
     useState<AdventureLand | null>(null);
+  const [currentScenario, setCurrentScenario] = useState<string>("calm");
 
   function addAdventureLog(data: GeminiMessagePart) {
     dispatch({ type: ACTION_TYPE.ADD, payload: data });
@@ -53,13 +56,19 @@ function AdventureContextProvider({ children }: AdventureContextProviderProps) {
     setSelectedAdventureLand(null);
   }
 
+  function updateCurrentScenario(scenario: string) {
+    setCurrentScenario(scenario);
+  }
+
   const value = {
     adventureLogs: adventureLogsState,
     selectedAdventureLand,
+    currentScenario,
     addAdventureLog,
     clearAdventureLogs,
     selectAdventureLand,
     resetAdventureLand,
+    updateCurrentScenario,
   };
 
   return (

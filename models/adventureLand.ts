@@ -1,7 +1,7 @@
 import Model from "./model";
 import { ImageSourcePropType } from "react-native";
 
-interface ScenarioImageSources {
+export interface ScenarioImageSources {
   calm: ImageSourcePropType[];
   mystery: ImageSourcePropType[];
   danger: ImageSourcePropType[];
