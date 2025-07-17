@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { StyleSheet, Image } from "react-native";
+import { StyleSheet, Image, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import Card from "../../components/ui/Card";
@@ -25,9 +25,24 @@ function AdventureCard({ adventureId }: AdventureCardProps) {
     if (!adventure) {
       return;
     }
-    navigation.replace("Adventure", { adventureLand: adventure });
-    adventureContext.selectAdventureLand(adventure);
-    console.info(`Starting adventure: ${adventure.getTitle()}`);
+    Alert.alert(
+      "Are you sure?",
+      `Embark on an adventure to the ${adventure.getTitle()}?`,
+      [
+        {
+          text: "Begin",
+          onPress: () => {
+            navigation.replace("Adventure", { adventureLand: adventure });
+            adventureContext.selectAdventureLand(adventure);
+            console.info(`Starting adventure: ${adventure.getTitle()}`);
+          },
+        },
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+      ]
+    );
   }
 
   if (!adventure) {

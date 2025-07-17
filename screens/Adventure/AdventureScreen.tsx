@@ -163,7 +163,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
 
   const currentScenarioImageSource =
     chosenAdventureLand?.getRandomScenarioImage(
-      adventureContext.currentScenario as keyof ScenarioImageSources
+      (isGameOver ? "aftermath" : adventureContext.currentScenario) as keyof ScenarioImageSources
     );
 
   return (
