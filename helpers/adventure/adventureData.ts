@@ -28,6 +28,10 @@ export const adventureLands = [
         require("../../assets/images/adventure/sky-islands/sky-islands-aftermath-1.png"),
         require("../../assets/images/adventure/sky-islands/sky-islands-aftermath-2.png"),
       ],
+    },
+    {
+      win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
+      lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
     }
   ),
   new AdventureLand(
@@ -57,6 +61,10 @@ export const adventureLands = [
         require("../../assets/images/adventure/spirit-forest/spirit-forest-aftermath-1.png"),
         require("../../assets/images/adventure/spirit-forest/spirit-forest-aftermath-2.png"),
       ],
+    },
+    {
+      win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
+      lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
     }
   ),
   new AdventureLand(
@@ -71,6 +79,10 @@ export const adventureLands = [
       danger: [],
       action: [],
       aftermath: [],
+    },
+    {
+      win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
+      lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
     }
   ),
   new AdventureLand(
@@ -85,6 +97,10 @@ export const adventureLands = [
       danger: [],
       action: [],
       aftermath: [],
+    },
+    {
+      win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
+      lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
     }
   ),
   new AdventureLand(
@@ -99,6 +115,10 @@ export const adventureLands = [
       danger: [],
       action: [],
       aftermath: [],
+    },
+    {
+      win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
+      lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
     }
   ),
 ];

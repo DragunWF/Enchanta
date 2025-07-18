@@ -39,7 +39,7 @@ export function insertAdventureResult(result: AdventureResult) {
   );
 }
 
-export async function fetchAdventureResults() {
+export async function fetchAdventureResults(): Promise<AdventureResult[]> {
   const result = await database.getAllAsync<AdventureResultRow>(
     "SELECT * FROM adventureResults"
   );

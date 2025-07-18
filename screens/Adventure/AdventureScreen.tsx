@@ -45,6 +45,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   >(undefined);
 
   const gameOverSummary = useRef<string>("");
+  const isAdventureWon = useRef<boolean>(false); // To be used at the end of an adventure
   const timeoutRef = useRef<number | null>(null);
   const chosenAdventureLand = adventureContext.selectedAdventureLand;
 
@@ -123,7 +124,8 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
           setIsGameOver(aiResponse.isGameover);
 
           if (aiResponse.isGameover) {
-            gameOverSummary.current = aiResponse.gameOverSummary;
+            gameOverSummary.current = aiResponse.gameOverSummary.summary;
+            isAdventureWon.current = aiResponse.gameOverSummary.isWin;
             adventureContext.clearAdventureLogs(); // Resets the prompt history
           }
         } else {
@@ -160,7 +162,12 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   }
 
   function seeResultsHandler() {
-    navigation.replace("Results", { gameOverSummary: gameOverSummary.current });
+    navigation.replace("Results", {
+      gameOverSummary: {
+        summary: gameOverSummary.current,
+        isWin: isAdventureWon.current,
+      },
+    });
   }
 
   let content = (

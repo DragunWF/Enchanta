@@ -9,12 +9,18 @@ export interface ScenarioImageSources {
   aftermath: ImageSourcePropType[];
 }
 
+export interface GameOverImageSources {
+  win: ImageSourcePropType;
+  lose: ImageSourcePropType;
+}
+
 class AdventureLand extends Model {
   private title: string;
   private description: string; // This displays in front of the user
   private promptDescription: string; // This is used for story generation
   private imageSource: ImageSourcePropType;
   private scenarioImageSources: ScenarioImageSources;
+  private gameOverImageSources: GameOverImageSources;
 
   constructor(
     id: number,
@@ -22,7 +28,8 @@ class AdventureLand extends Model {
     description: string,
     promptDescription: string,
     imageSource: ImageSourcePropType,
-    scenarioImageSources: ScenarioImageSources
+    scenarioImageSources: ScenarioImageSources,
+    gameOverImageSources: GameOverImageSources
   ) {
     super(id);
     this.title = title;
@@ -30,6 +37,7 @@ class AdventureLand extends Model {
     this.promptDescription = promptDescription;
     this.imageSource = imageSource;
     this.scenarioImageSources = scenarioImageSources;
+    this.gameOverImageSources = gameOverImageSources;
   }
 
   getTitle(): string {
@@ -61,6 +69,18 @@ class AdventureLand extends Model {
       return null;
     }
     return images[Math.floor(Math.random() * images.length)];
+  }
+
+  getGameOverImageSources(): GameOverImageSources {
+    return this.gameOverImageSources;
+  }
+
+  getGameOverWinImageSource(): ImageSourcePropType {
+    return this.gameOverImageSources.win;
+  }
+
+  getGameOverLoseImageSource(): ImageSourcePropType {
+    return this.gameOverImageSources.lose;
   }
 }
 
