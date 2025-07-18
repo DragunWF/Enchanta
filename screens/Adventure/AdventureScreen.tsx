@@ -40,7 +40,6 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   >(null);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // Changed from useRef to useState
   const [currentScenarioImage, setCurrentScenarioImage] = useState<
     ImageSourcePropType | undefined
   >(undefined);
@@ -113,7 +112,9 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
         );
         if (aiResponse) {
           typeWriteText(0, aiResponse.narrationText);
-          const scenario = aiResponse.tag || "calm";
+          const scenario = aiResponse.isGameover
+            ? "aftermath"
+            : aiResponse.tag || "calm";
           adventureContext.updateCurrentScenario(scenario);
           changeScenarioImage(scenario);
 
