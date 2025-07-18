@@ -44,7 +44,7 @@ function getFullIntialAdventurePrompt(
   );
   modifiedPrompt = modifiedPrompt.replace(
     adventurePromptTemplate.adventureDescription,
-    adventureLand.getDescription()
+    adventureLand.getPromptDescription()
   );
   return modifiedPrompt;
 }
