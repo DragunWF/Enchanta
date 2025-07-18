@@ -32,7 +32,8 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffc1ff"
         }
-      ]
+      ],
+      "expo-sqlite"
     ],
     "extra": {
       "eas": {
