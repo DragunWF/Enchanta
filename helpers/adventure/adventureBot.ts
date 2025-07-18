@@ -27,6 +27,7 @@ export async function getAdventureInitialBotResponse(
 
   const aiResponse = await generateText(prompt);
   adventureContext.addAdventureLog({ role: "model", text: aiResponse });
+
   return extractAdventureBotResponse(aiResponse);
 }
 
