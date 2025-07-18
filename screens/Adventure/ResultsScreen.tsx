@@ -1,5 +1,5 @@
-import { useEffect, useContext } from "react";
-import { StyleSheet, View, Image, ScrollView } from "react-native";
+import { useContext } from "react";
+import { StyleSheet, View, Image } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 
 import CustomBackground from "../../components/ui/CustomBackground";
@@ -7,10 +7,10 @@ import Card from "../../components/ui/Card";
 import CardText from "../../components/ui/CardText";
 import CardButton from "../../components/ui/CardButton";
 import CardTitle from "../../components/ui/CardTitle";
-import { insertAdventureResult } from "../../helpers/tools/database";
 import AdventureResult from "../../models/adventureResult";
-import type { AdventureStackParamList } from "../../components/navigation/AdventureStackNavigator";
 import { AdventureContext } from "../../store/AdventureContext";
+import { insertAdventureResult } from "../../helpers/tools/database";
+import type { AdventureStackParamList } from "../../components/navigation/AdventureStackNavigator";
 
 type ResultsScreenProps = StackScreenProps<AdventureStackParamList, "Results">;
 

@@ -6,6 +6,7 @@ import {
   Image,
   ActivityIndicator,
   ImageSourcePropType,
+  Dimensions,
 } from "react-native";
 import Toast from "react-native-toast-message";
 import type { StackNavigationProp } from "@react-navigation/stack";
@@ -33,7 +34,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
 
   const [narrationText, setNarrationText] = useState<string>("");
   const [isNarrationComplete, setIsNarrationComplete] =
-    useState<boolean>(false); // Makes sure that buttons only appear after the narration text is displayed fully
+    useState<boolean>(false);
   const [playerChoices, setPlayerChoices] = useState<string[]>([]);
   const [selectedPlayerChoice, setSelectedPlayerChoice] = useState<
     string | null
@@ -45,9 +46,12 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   >(undefined);
 
   const gameOverSummary = useRef<string>("");
-  const isAdventureWon = useRef<boolean>(false); // To be used at the end of an adventure
+  const isAdventureWon = useRef<boolean>(false);
   const timeoutRef = useRef<number | null>(null);
   const chosenAdventureLand = adventureContext.selectedAdventureLand;
+
+  // Get screen dimensions
+  const screenWidth = Dimensions.get("window").width;
 
   const typeWriteText = useCallback((textIndex: number, fullText: string) => {
     if (textIndex >= fullText.length) {
@@ -126,7 +130,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
           if (aiResponse.isGameover) {
             gameOverSummary.current = aiResponse.gameOverSummary.summary;
             isAdventureWon.current = aiResponse.gameOverSummary.isWin;
-            adventureContext.clearAdventureLogs(); // Resets the prompt history
+            adventureContext.clearAdventureLogs();
           }
         } else {
           console.error("Failed to extract AI response.");
@@ -157,7 +161,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   }
 
   function choiceSelectionHandler(choice: string) {
-    setIsNarrationComplete(false); // Make buttons disappear until narration text is done typing
+    setIsNarrationComplete(false);
     setSelectedPlayerChoice(choice);
   }
 
@@ -171,7 +175,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   }
 
   let content = (
-    <>
+    <View>
       <Card style={styles.narrationCard}>
         <CardText>{narrationText}</CardText>
       </Card>
@@ -195,7 +199,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
           )}
         </View>
       )}
-    </>
+    </View>
   );
   if (isLoading) {
     content = (
@@ -209,9 +213,15 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
     <CustomBackground>
       <View style={styles.rootContainer}>
         <Title>Adventure on {chosenAdventureLand?.getTitle()}</Title>
-        {/* Changed from currentScenarioImage.current to currentScenarioImage */}
-        <Image style={styles.adventureImage} source={currentScenarioImage} />
-        <ScrollView alwaysBounceVertical={false}>{content}</ScrollView>
+        <ScrollView alwaysBounceVertical={false}>
+          <View style={styles.imageContainer}>
+            <Image
+              style={[styles.adventureImage, { width: screenWidth - 40 }]} // Fixed width based on screen
+              source={currentScenarioImage}
+            />
+          </View>
+          {content}
+        </ScrollView>
       </View>
     </CustomBackground>
   );
@@ -227,14 +237,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
+  imageContainer: {
+    alignItems: "center",
+    marginBottom: 15,
+  },
   adventureImage: {
-    width: "100%",
     height: 250,
     resizeMode: "cover",
     borderRadius: 15,
-    marginHorizontal: 10,
-    paddingHorizontal: 20,
-    marginBottom: 15,
   },
   narrationCard: {
     marginHorizontal: 20,
