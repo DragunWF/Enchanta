@@ -47,10 +47,11 @@ class AdventureLand extends Model {
 
   getRandomScenarioImage(
     scenario: keyof ScenarioImageSources
-  ): ImageSourcePropType {
+  ): ImageSourcePropType | null {
     const images: ImageSourcePropType[] = this.scenarioImageSources[scenario];
     if (!images || images.length === 0) {
-      throw new Error(`No images available for scenario: ${scenario}`);
+      console.error(`No images available for scenario: ${scenario}`);
+      return null;
     }
     return images[Math.floor(Math.random() * images.length)];
   }

@@ -5,7 +5,9 @@ import {
   ScrollView,
   Image,
   ActivityIndicator,
+  ImageSourcePropType,
 } from "react-native";
+import Toast from "react-native-toast-message";
 import type { StackNavigationProp } from "@react-navigation/stack";
 
 import CustomBackground from "../../components/ui/CustomBackground";
@@ -38,6 +40,10 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   >(null);
   const [isGameOver, setIsGameOver] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  // Changed from useRef to useState
+  const [currentScenarioImage, setCurrentScenarioImage] = useState<
+    ImageSourcePropType | undefined
+  >(undefined);
 
   const gameOverSummary = useRef<string>("");
   const timeoutRef = useRef<number | null>(null);
@@ -63,13 +69,21 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
           adventureContext,
           chosenAdventureLand
         );
+        const scenario = initialResponse?.tag || "calm";
         typeWriteText(0, initialResponse?.narrationText || "No text.");
-        adventureContext.updateCurrentScenario(initialResponse?.tag || "calm");
+        adventureContext.updateCurrentScenario(scenario);
+        changeScenarioImage(scenario);
 
         // @ts-ignore
         setPlayerChoices(initialResponse?.choices || []);
       } catch (error) {
         console.error("Error fetching initial bot response:", error);
+        Toast.show({
+          type: "error",
+          text1: "Error in Initialization",
+          text2:
+            "An unexpected error occurred while trying to start your adventure!",
+        });
       } finally {
         setIsLoading(false);
       }
@@ -99,7 +113,9 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
         );
         if (aiResponse) {
           typeWriteText(0, aiResponse.narrationText);
-          adventureContext.updateCurrentScenario(aiResponse.tag || "calm");
+          const scenario = aiResponse.tag || "calm";
+          adventureContext.updateCurrentScenario(scenario);
+          changeScenarioImage(scenario);
 
           // @ts-ignore
           setPlayerChoices(aiResponse?.choices || []);
@@ -111,6 +127,12 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
           }
         } else {
           console.error("Failed to extract AI response.");
+          Toast.show({
+            type: "error",
+            text1: "Error",
+            text2:
+              "An unexpected error occurred while trying to load the next adventure narration!",
+          });
         }
       } catch (error) {
         console.error("Error fetching adventure response:", error);
@@ -121,6 +143,15 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
 
     fetchAdventureResponse();
   }, [selectedPlayerChoice]);
+
+  function changeScenarioImage(scenario: string) {
+    setCurrentScenarioImage(
+      // @ts-ignore
+      chosenAdventureLand?.getRandomScenarioImage(
+        (isGameOver ? "aftermath" : scenario) as keyof ScenarioImageSources
+      )
+    );
+  }
 
   function choiceSelectionHandler(choice: string) {
     setIsNarrationComplete(false); // Make buttons disappear until narration text is done typing
@@ -166,21 +197,12 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
     );
   }
 
-  const currentScenarioImageSource =
-    chosenAdventureLand?.getRandomScenarioImage(
-      (isGameOver
-        ? "aftermath"
-        : adventureContext.currentScenario) as keyof ScenarioImageSources
-    );
-
   return (
     <CustomBackground>
       <View style={styles.rootContainer}>
         <Title>Adventure on {chosenAdventureLand?.getTitle()}</Title>
-        <Image
-          style={styles.adventureImage}
-          source={currentScenarioImageSource}
-        />
+        {/* Changed from currentScenarioImage.current to currentScenarioImage */}
+        <Image style={styles.adventureImage} source={currentScenarioImage} />
         <ScrollView alwaysBounceVertical={false}>{content}</ScrollView>
       </View>
     </CustomBackground>
