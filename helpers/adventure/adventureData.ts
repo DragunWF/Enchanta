@@ -63,8 +63,8 @@ export const adventureLands = [
       ],
     },
     {
-      win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
-      lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
+      win: require("../../assets/images/adventure/spirit-forest/spirit-forest-gameover-win.png"),
+      lose: require("../../assets/images/adventure/spirit-forest/spirit-forest-gameover-lose.png"),
     }
   ),
   new AdventureLand(
