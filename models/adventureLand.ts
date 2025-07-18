@@ -11,7 +11,8 @@ export interface ScenarioImageSources {
 
 class AdventureLand extends Model {
   private title: string;
-  private description: string;
+  private description: string; // This displays in front of the user
+  private promptDescription: string; // This is used for story generation
   private imageSource: ImageSourcePropType;
   private scenarioImageSources: ScenarioImageSources;
 
@@ -19,12 +20,14 @@ class AdventureLand extends Model {
     id: number,
     title: string,
     description: string,
+    promptDescription: string,
     imageSource: ImageSourcePropType,
     scenarioImageSources: ScenarioImageSources
   ) {
     super(id);
     this.title = title;
     this.description = description;
+    this.promptDescription = promptDescription;
     this.imageSource = imageSource;
     this.scenarioImageSources = scenarioImageSources;
   }
@@ -35,6 +38,10 @@ class AdventureLand extends Model {
 
   getDescription(): string {
     return this.description;
+  }
+
+  getPromptDescription(): string {
+    return this.promptDescription;
   }
 
   getImageSource(): ImageSourcePropType {
