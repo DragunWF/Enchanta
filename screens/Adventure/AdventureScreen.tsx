@@ -166,7 +166,7 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   }
 
   function seeResultsHandler() {
-    navigation.replace("Results", {
+    navigation.replace("GameOver", {
       gameOverSummary: {
         summary: gameOverSummary.current,
         isWin: isAdventureWon.current,

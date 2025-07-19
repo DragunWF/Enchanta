@@ -12,9 +12,12 @@ import { AdventureContext } from "../../store/AdventureContext";
 import { insertAdventureResult } from "../../helpers/tools/database";
 import type { AdventureStackParamList } from "../../components/navigation/AdventureStackNavigator";
 
-type ResultsScreenProps = StackScreenProps<AdventureStackParamList, "Results">;
+type GameOverScreenProps = StackScreenProps<
+  AdventureStackParamList,
+  "GameOver"
+>;
 
-function ResultsScreen({ navigation, route }: ResultsScreenProps) {
+function GameOverScreen({ navigation, route }: GameOverScreenProps) {
   const adventureContext = useContext(AdventureContext);
 
   // @ts-ignore
@@ -81,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ResultsScreen;
+export default GameOverScreen;

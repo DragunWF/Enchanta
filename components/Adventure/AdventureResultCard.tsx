@@ -1,4 +1,5 @@
 import { StyleSheet, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import Card from "../../components/ui/Card";
 import CardTitle from "../../components/ui/CardTitle";
@@ -7,7 +8,6 @@ import CardButton from "../../components/ui/CardButton";
 import AdventureResult from "../../models/adventureResult";
 import { adventureLands } from "../../helpers/adventure/adventureData";
 import { formatDate, formatTime } from "../../helpers/tools/utils";
-import { useNavigation } from "@react-navigation/native";
 
 interface AdventureResultCardProps {
   adventureResult: AdventureResult;
