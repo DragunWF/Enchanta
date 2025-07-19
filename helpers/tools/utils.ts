@@ -72,3 +72,19 @@ export function parseAiJsonResponse(aiResponse: string) {
   const jsonString = jsonMatch[1];
   return JSON.parse(jsonString);
 }
+
+export function formatDate(date: Date): string {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+
+export function formatTime(date: Date): string {
+  return date.toLocaleTimeString("en-US", {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  });
+}

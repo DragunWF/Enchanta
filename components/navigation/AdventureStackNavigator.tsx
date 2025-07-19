@@ -5,6 +5,7 @@ import type { StackNavigationProp } from "@react-navigation/stack";
 import AdventureScreen from "../../screens/Adventure/AdventureScreen";
 import ChooseAdventureScreen from "../../screens/Adventure/ChooseAdventureScreen";
 import ResultsScreen from "../../screens/Adventure/ResultsScreen";
+import AdventureSummaryScreen from "../../screens/Adventure/AdventureSummaryScreen";
 
 export type AdventureStackParamList = {
   ChooseAdventure: undefined;
@@ -13,6 +14,7 @@ export type AdventureStackParamList = {
     navigation: StackNavigationProp<any>;
     route: Route<string, { gameOverSummary?: string }>;
   };
+  AdventureSummary: undefined;
 };
 
 const Stack = createStackNavigator<AdventureStackParamList>();
@@ -27,6 +29,10 @@ function AdventureStackNavigator() {
       <Stack.Screen name="ChooseAdventure" component={ChooseAdventureScreen} />
       <Stack.Screen name="Adventure" component={AdventureScreen} />
       <Stack.Screen name="Results" component={ResultsScreen} />
+      <Stack.Screen
+        name="AdventureSummary"
+        component={AdventureSummaryScreen}
+      />
     </Stack.Navigator>
   );
 }

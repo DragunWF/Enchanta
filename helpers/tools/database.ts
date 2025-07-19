@@ -5,7 +5,7 @@ const database = SQLite.openDatabaseSync("enchanta.db");
 
 interface AdventureResultRow {
   id: number;
-  landscape: string;
+  landscapeId: number;
   summary: string;
   adventureWon: number; // To be converted into an boolean because SQLite does not have booleans
   datetime: string;
@@ -31,10 +31,10 @@ export function insertAdventureResult(result: AdventureResult) {
         VALUES (?, ?, ?, ?)
     `,
     [
-      result.getLandscape(),
+      result.getLandscapeId(),
       result.getSummary(),
       Number(result.isAdventureWon()),
-      result.getDatetime(),
+      result.getDatetime().toISOString(),
     ]
   );
 }
@@ -50,10 +50,10 @@ export async function fetchAdventureResults(): Promise<AdventureResult[]> {
     adventureResults.push(
       new AdventureResult(
         dp.id,
-        dp.landscape,
+        dp.landscapeId,
         dp.summary,
         Boolean(dp.adventureWon),
-        dp.datetime
+        new Date(dp.datetime)
       )
     );
   }

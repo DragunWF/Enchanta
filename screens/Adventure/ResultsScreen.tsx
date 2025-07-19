@@ -37,7 +37,9 @@ function ResultsScreen({ navigation, route }: ResultsScreenProps) {
     : chosenAdventureLand?.getGameOverLoseImageSource();
 
   return (
-    <CustomBackground>
+    <CustomBackground
+      backgroundImageSource={chosenAdventureLand?.getBackgroundImageSource()}
+    >
       <View style={styles.rootContainer}>
         <Card style={styles.resultCard}>
           <CardTitle>Adventure Ending Summary</CardTitle>

@@ -1,27 +1,27 @@
 import Model from "./model";
 
 class AdventureResult extends Model {
-  private landscape: string;
+  private landscapeId: number;
   private summary: string;
   private adventureWon: boolean;
-  private datetime: string;
+  private datetime: Date;
 
   constructor(
     id: number,
-    landscape: string,
+    landscapeId: number,
     summary: string,
     adventureWon: boolean,
-    datetime: string
+    datetime: Date
   ) {
     super(id);
-    this.landscape = landscape;
+    this.landscapeId = landscapeId;
     this.summary = summary;
     this.adventureWon = adventureWon;
     this.datetime = datetime;
   }
 
-  getLandscape(): string {
-    return this.landscape;
+  getLandscapeId(): number {
+    return this.landscapeId;
   }
 
   getSummary(): string {
@@ -32,7 +32,7 @@ class AdventureResult extends Model {
     return this.adventureWon;
   }
 
-  getDatetime(): string {
+  getDatetime(): Date {
     return this.datetime;
   }
 }
