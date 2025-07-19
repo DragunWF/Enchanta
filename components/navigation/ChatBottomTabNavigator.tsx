@@ -8,7 +8,7 @@ import { getBottomTabScreenOptions } from "../../constants/globalStyles";
 import { mainColors } from "../../constants/colors";
 import ChatContextProvider from "../../store/ChatContext";
 import BotContextProvider from "../../store/BotContext";
-import SettingsScreen from "../../screens/Adventure/SettingsScreen";
+import SettingsScreen from "../../screens/Chat/SettingsScreen";
 import ChatScreen from "../../screens/Chat/ChatScreen";
 import MemoryJournalScreen from "../../screens/Chat/MemoryJournalScreen";
 import IconButton from "../ui/IconButton";

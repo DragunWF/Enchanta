@@ -1,11 +1,13 @@
 import { useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import type { DrawerNavigationProp } from "@react-navigation/drawer";
 
 import AdventureStackNavigator from "./AdventureStackNavigator";
 import InventoryScreen from "../../screens/Adventure/InventoryScreen";
-import ShopScreen from "../../screens/Chat/ShopScreen";
+import HistoryScreen from "../../screens/Adventure/HistoryScreen";
 import AdventureContextProvider from "../../store/AdventureContext";
 import { getBottomTabScreenOptions } from "../../constants/globalStyles";
 
@@ -25,7 +27,13 @@ function AdventureBottomTabNavigator() {
           component={InventoryScreen}
           options={{
             tabBarIcon: ({ color, size }) => {
-              return <Ionicons name="bag" color={color} size={size} />;
+              return (
+                <MaterialCommunityIcons
+                  name="treasure-chest"
+                  color={color}
+                  size={size}
+                />
+              );
             },
           }}
         />
@@ -40,11 +48,11 @@ function AdventureBottomTabNavigator() {
           }}
         />
         <BottomTabs.Screen
-          name="Shop"
-          component={ShopScreen}
+          name="History"
+          component={HistoryScreen}
           options={{
             tabBarIcon: ({ color, size }) => {
-              return <Ionicons name="storefront" color={color} size={size} />;
+              return <MaterialIcons name="history" color={color} size={size} />;
             },
           }}
         />
