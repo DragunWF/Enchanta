@@ -93,7 +93,7 @@ export const adventureLands = [
     "Obsidian Caverns",
     "Deep beneath the earth lies a labyrinth of molten rock and ember-lit shadows. The ground burns, and the air thrums with hostile energy.",
     "A dangerous maze of volcanic tunnels and magma-lit chambers. Jagged walls of black glass reflect the flicker of molten rivers that snake through the caverns like veins of fire. The air is stifling, thick with sulfur, and the ground is cracked and unstable, occasionally erupting with geysers of steam or lava. Shadows move strangely here, and distant tremors hint at something massive stirring beneath the crust. Some tunnels lead to chambers filled with glowing crystals or ancient relics pulsing with heat and dark energy. It is both a place of danger and forgotten power — where the earth breathes in anger.",
-    require("../../assets/images/adventure/obsidian-caverns.png"),
+    require("../../assets/images/adventure/obsidian-caverns/obsidian-caverns.png"),
     {
       calm: [],
       mystery: [],
@@ -112,7 +112,7 @@ export const adventureLands = [
     "Crimson Marshlands",
     "A haunting swamp veiled in blood-red mist and poisonous spores. Every root hides a trap, and the still water watches in silence.",
     "A surreal and ominous swamp bathed in perpetual red mist. Twisted trees rise like skeletal fingers from murky, stagnant water. Blood-colored moss clings to every surface, and the air is thick with spores that shimmer with an unnatural glow. Sounds are muffled — every splash, every breath feels distant, like the land itself is absorbing noise. The water reflects things that aren’t there. Strange croaks and rustles come from unseen creatures lurking just beneath the surface. Ancient ruins sink slowly into the bog, guarded by toxic flora and ghostly silhouettes that flicker between the mist-covered reeds.",
-    require("../../assets/images/adventure/crimson-marshlands.png"),
+    require("../../assets/images/adventure/crimson-marshlands/crimson-marshlands.png"),
     {
       calm: [],
       mystery: [],

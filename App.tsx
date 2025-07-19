@@ -5,7 +5,7 @@ import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
 import NavigationWrapper from "./components/navigation/NavigationWrapper";
-import { init } from "./helpers/tools/database";
+import { init, resetDatabase } from "./helpers/tools/database";
 
 export default function App() {
   const [isDatabaseInitialized, setIsDatabaseInitialized] = useState(false);
@@ -18,6 +18,7 @@ export default function App() {
     async function initializeDatabase() {
       try {
         await init();
+        // await resetDatabase(); // Uncomment for database reset
         setIsDatabaseInitialized(true);
       } catch (err) {
         setIsDatabaseInitialized(false);

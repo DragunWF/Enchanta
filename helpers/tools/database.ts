@@ -16,7 +16,7 @@ export function init() {
   return database.runAsync(`
 CREATE TABLE IF NOT EXISTS adventureResults (
     id INTEGER PRIMARY KEY NOT NULL,
-    landscape TEXT NOT NULL,
+    landscapeId TEXT NOT NULL,
     summary TEXT NOT NULL,
     adventureWon INTEGER NOT NULL,
     datetime TEXT NOT NULL
@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS adventureResults (
 export function insertAdventureResult(result: AdventureResult) {
   return database.runAsync(
     `
-        INSERT INTO adventureResults (landscape, summary, adventureWon, datetime)
+        INSERT INTO adventureResults (landscapeId, summary, adventureWon, datetime)
         VALUES (?, ?, ?, ?)
     `,
     [
@@ -59,4 +59,10 @@ export async function fetchAdventureResults(): Promise<AdventureResult[]> {
   }
 
   return adventureResults;
+}
+
+export async function resetDatabase() {
+  await database.runAsync(`DROP TABLE IF EXISTS adventureResults`);
+  await init();
+  console.info("Database has been reset!");
 }

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { StyleSheet, View, Image } from "react-native";
+import Toast from "react-native-toast-message";
 import type { StackScreenProps } from "@react-navigation/stack";
 
 import CustomBackground from "../../components/ui/CustomBackground";
@@ -32,7 +33,31 @@ function GameOverScreen({ navigation, route }: GameOverScreenProps) {
   }
 
   async function recordAdventureResult() {
-    // await insertAdventureResult(new AdventureResult());
+    if (!chosenAdventureLand) {
+      Toast.show({
+        type: "error",
+        text1: "Error Recording Result!",
+        text2:
+          "An unexpected error occurred while trying to record your adventure results!",
+      });
+      console.error("Adventure Land is null!");
+      return;
+    }
+    await insertAdventureResult(
+      new AdventureResult(
+        Math.random(),
+        chosenAdventureLand.getId(),
+        summary,
+        isAdventureWon,
+        new Date()
+      )
+    );
+    Toast.show({
+      type: "info",
+      text1: "Summary Recorded!",
+      text2:
+        "This adventure result has been recorded and can be viewed via the history tab.",
+    });
   }
 
   const gameOverImageSource = isAdventureWon

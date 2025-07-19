@@ -8,14 +8,14 @@ import CardButton from "../../components/ui/CardButton";
 import AdventureResult from "../../models/adventureResult";
 import { adventureLands } from "../../helpers/adventure/adventureData";
 import { formatDate, formatTime } from "../../helpers/tools/utils";
+import { StackNavigationProp } from "@react-navigation/stack";
 
 interface AdventureResultCardProps {
   adventureResult: AdventureResult;
 }
 
 function AdventureResultCard({ adventureResult }: AdventureResultCardProps) {
-  const navigation = useNavigation();
-
+  const navigation = useNavigation() as StackNavigationProp<any>;
   const venturedAdventureLand = adventureLands.find(
     (land) => land.getId() === adventureResult.getLandscapeId()
   );
@@ -24,8 +24,10 @@ function AdventureResultCard({ adventureResult }: AdventureResultCardProps) {
   const status = adventureResult.isAdventureWon() ? "Success" : "Failed";
 
   function viewFullSummaryHandler() {
-    // @ts-ignore
-    navigation.navigate("AdventureSummary", { adventureResult });
+    navigation.navigate("AdventureStackNavigator", {
+      screen: "AdventureSummary",
+      params: adventureResult,
+    });
   }
 
   return (
