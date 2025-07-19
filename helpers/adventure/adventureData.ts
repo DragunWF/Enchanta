@@ -32,7 +32,8 @@ export const adventureLands = [
     {
       win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
       lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
-    }
+    },
+    require("../../assets/images/adventure/sky-islands/background.png")
   ),
   new AdventureLand(
     2,
@@ -65,14 +66,15 @@ export const adventureLands = [
     {
       win: require("../../assets/images/adventure/spirit-forest/spirit-forest-gameover-win.png"),
       lose: require("../../assets/images/adventure/spirit-forest/spirit-forest-gameover-lose.png"),
-    }
+    },
+    require("../../assets/images/adventure/spirit-forest/background.png")
   ),
   new AdventureLand(
     3,
     "Frostveil Ruins",
     "Frozen remnants of an ancient civilization buried in snow and silence. The ruins hold forgotten power—and something that still stirs beneath the ice.",
     "A vast tundra of shattered stone structures half-buried beneath glittering snowdrifts. Frostbitten pillars and collapsed temples hint at a long-lost empire swallowed by time and ice. Everything is silent — too silent — save for the soft crunch of snow and distant howls carried by frigid wind. Icicles hang from broken arches like blades. Beneath the surface, glowing runes flicker to life when disturbed, and frozen figures entombed in crystal-clear ice hint at a forgotten curse. Northern lights ripple in the sky, casting ghostly reflections on the ruins and awakening something that should remain asleep.",
-    require("../../assets/images/adventure/frostveil-ruins.png"),
+    require("../../assets/images/adventure/frostveil-ruins/frostveil-ruins.png"),
     {
       calm: [],
       mystery: [],
@@ -83,7 +85,8 @@ export const adventureLands = [
     {
       win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
       lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
-    }
+    },
+    require("../../assets/images/adventure/frostveil-ruins/background.png")
   ),
   new AdventureLand(
     4,
@@ -101,7 +104,8 @@ export const adventureLands = [
     {
       win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
       lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
-    }
+    },
+    require("../../assets/images/adventure/spirit-forest/background.png")
   ),
   new AdventureLand(
     5,
@@ -119,6 +123,7 @@ export const adventureLands = [
     {
       win: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-win.png"),
       lose: require("../../assets/images/adventure/sky-islands/sky-islands-gameover-lose.png"),
-    }
+    },
+    require("../../assets/images/adventure/spirit-forest/background.png")
   ),
 ];

@@ -21,6 +21,7 @@ class AdventureLand extends Model {
   private imageSource: ImageSourcePropType;
   private scenarioImageSources: ScenarioImageSources;
   private gameOverImageSources: GameOverImageSources;
+  private backgroundImageSource: ImageSourcePropType;
 
   constructor(
     id: number,
@@ -29,7 +30,8 @@ class AdventureLand extends Model {
     promptDescription: string,
     imageSource: ImageSourcePropType,
     scenarioImageSources: ScenarioImageSources,
-    gameOverImageSources: GameOverImageSources
+    gameOverImageSources: GameOverImageSources,
+    backgroundImageSource: ImageSourcePropType
   ) {
     super(id);
     this.title = title;
@@ -38,6 +40,7 @@ class AdventureLand extends Model {
     this.imageSource = imageSource;
     this.scenarioImageSources = scenarioImageSources;
     this.gameOverImageSources = gameOverImageSources;
+    this.backgroundImageSource = backgroundImageSource;
   }
 
   getTitle(): string {
@@ -81,6 +84,10 @@ class AdventureLand extends Model {
 
   getGameOverLoseImageSource(): ImageSourcePropType {
     return this.gameOverImageSources.lose;
+  }
+
+  getBackgroundImageSource(): ImageSourcePropType {
+    return this.backgroundImageSource;
   }
 }
 

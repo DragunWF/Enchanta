@@ -210,7 +210,9 @@ function AdventureScreen({ navigation }: AdventureScreenProps) {
   }
 
   return (
-    <CustomBackground>
+    <CustomBackground
+      backgroundImageSource={chosenAdventureLand?.getBackgroundImageSource()}
+    >
       <View style={styles.rootContainer}>
         <Title>Adventure on {chosenAdventureLand?.getTitle()}</Title>
         <ScrollView alwaysBounceVertical={false}>
