@@ -39,6 +39,12 @@ export function insertAdventureResult(result: AdventureResult) {
   );
 }
 
+export function deleteAdventureResult(id: number) {
+  return database.runAsync("DELETE FROM adventureResults WHERE id = $id", {
+    $id: id,
+  });
+}
+
 export async function fetchAdventureResults(): Promise<AdventureResult[]> {
   const result = await database.getAllAsync<AdventureResultRow>(
     "SELECT * FROM adventureResults"

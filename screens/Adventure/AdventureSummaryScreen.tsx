@@ -1,4 +1,4 @@
-import { StyleSheet, View, Image, ScrollView } from "react-native";
+import { StyleSheet, View, Image, ScrollView, Alert } from "react-native";
 import type { StackScreenProps } from "@react-navigation/stack";
 
 import CustomBackground from "../../components/ui/CustomBackground";
@@ -9,6 +9,7 @@ import CardButton from "../../components/ui/CardButton";
 import AdventureResult from "../../models/adventureResult";
 import { adventureLands } from "../../helpers/adventure/adventureData";
 import { formatDate, formatTime } from "../../helpers/tools/utils";
+import { deleteAdventureResult } from "../../helpers/tools/database";
 import type { AdventureStackParamList } from "../../components/navigation/AdventureStackNavigator";
 
 type AdventureSummaryScreenProps = StackScreenProps<
@@ -30,7 +31,28 @@ function AdventureSummaryScreen({
     ? adventureLand?.getGameOverWinImageSource()
     : adventureLand?.getGameOverLoseImageSource();
 
-  function deleteSummaryHandler() {}
+  function deleteSummaryHandler() {
+    Alert.alert(
+      "Confirm Deleteion",
+      `Are you sure you want to delete the summary of your adventure on ${adventureLand?.getTitle()}`,
+      [
+        {
+          text: "Begin",
+          onPress: async () => {
+            console.info(
+              `Deleted Adventure Result with ID: ${adventureResult.getId()}`
+            );
+            await deleteAdventureResult(adventureResult.getId());
+            navigation.goBack();
+          },
+        },
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+      ]
+    );
+  }
 
   function goBackHandler() {
     navigation.goBack();

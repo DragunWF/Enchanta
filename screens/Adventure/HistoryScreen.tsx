@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState, useCallback } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { StyleSheet, View, FlatList } from "react-native";
 
 import CustomBackground from "../../components/ui/CustomBackground";
@@ -12,14 +13,16 @@ function HistoryScreen() {
     []
   );
 
-  useEffect(() => {
-    async function fetchData() {
-      const data = await fetchAdventureResults();
-      setAdventureHistory(data);
-    }
+  useFocusEffect(
+    useCallback(() => {
+      async function fetchData() {
+        const data = await fetchAdventureResults();
+        setAdventureHistory(data);
+      }
 
-    fetchData();
-  }, []);
+      fetchData();
+    }, [])
+  );
 
   function renderAdventureResultCard({ item }: { item: AdventureResult }) {
     return <AdventureResultCard adventureResult={item} />;
