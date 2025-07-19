@@ -1,6 +1,16 @@
 import { StyleSheet, View, Text } from "react-native";
+import type { StackScreenProps } from "@react-navigation/stack";
 
-function AdventureSummaryScreen() {
+import type { AdventureStackParamList } from "../../components/navigation/AdventureStackNavigator";
+
+type AdventureSummaryScreenProps = StackScreenProps<
+  AdventureStackParamList,
+  "AdventureSummary"
+>;
+
+function AdventureSummaryScreen({ route }: AdventureSummaryScreenProps) {
+  const adventureResult = route.params?.adventureResult;
+
   return (
     <View>
       <Text>AdventureSummaryScreen</Text>

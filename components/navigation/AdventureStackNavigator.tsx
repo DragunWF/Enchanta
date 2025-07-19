@@ -6,6 +6,7 @@ import AdventureScreen from "../../screens/Adventure/AdventureScreen";
 import ChooseAdventureScreen from "../../screens/Adventure/ChooseAdventureScreen";
 import GameOverScreen from "../../screens/Adventure/GameOverScreen";
 import AdventureSummaryScreen from "../../screens/Adventure/AdventureSummaryScreen";
+import AdventureResult from "../../models/adventureResult";
 
 export type AdventureStackParamList = {
   ChooseAdventure: undefined;
@@ -14,7 +15,9 @@ export type AdventureStackParamList = {
     navigation: StackNavigationProp<any>;
     route: Route<string, { gameOverSummary?: string }>;
   };
-  AdventureSummary: undefined;
+  AdventureSummary: {
+    route: Route<string, { adventureResult?: AdventureResult }>;
+  };
 };
 
 const Stack = createStackNavigator<AdventureStackParamList>();
