@@ -23,7 +23,13 @@ function AdventureResultCard({ adventureResult }: AdventureResultCardProps) {
   const date = formatDate(adventureResult.getDatetime());
   const time = formatTime(adventureResult.getDatetime());
   const status = adventureResult.isAdventureWon() ? "Success" : "Failed";
+
+  const summaryCharLimit = 100;
   const summary = adventureResult.getSummary();
+  const displayedSummary = summary.slice(
+    0,
+    Math.min(summaryCharLimit, summary.length)
+  );
 
   function viewFullSummaryHandler() {
     navigation.navigate("AdventureStackNavigator", {
@@ -39,7 +45,7 @@ function AdventureResultCard({ adventureResult }: AdventureResultCardProps) {
         Date and Time: {date} at {time}
       </CardText>
       <CardText>Status: {status}</CardText>
-      <CardText>Summary: {summary}</CardText>
+      <CardText>Summary: {displayedSummary}...</CardText>
       <View style={styles.buttonContainer}>
         <CardButton onPress={viewFullSummaryHandler}>
           View Full Summary
