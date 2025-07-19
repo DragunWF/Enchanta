@@ -32,12 +32,13 @@ function HistoryScreen() {
     <CustomBackground>
       <View style={styles.rootContainer}>
         <Title>History of Adventures</Title>
-        <View style={styles.resultList}>
+        <View style={styles.resultListContainer}>
           <FlatList
             renderItem={renderAdventureResultCard}
             data={adventureHistory}
             keyExtractor={(item) => item.getId().toString()}
             alwaysBounceVertical={false}
+            contentContainerStyle={styles.resultList}
           />
         </View>
       </View>
@@ -50,11 +51,14 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
-  resultList: {
+  resultListContainer: {
     flex: 1,
     alignItems: "center",
     marginHorizontal: 20,
     marginVertical: 10,
+  },
+  resultList: {
+    gap: 20,
   },
 });
 
