@@ -9,7 +9,7 @@ type AdventureSummaryScreenProps = StackScreenProps<
 >;
 
 function AdventureSummaryScreen({ route }: AdventureSummaryScreenProps) {
-  const adventureResult = route.params?.adventureResult;
+  const adventureResult = route.params.adventureResult;
 
   return (
     <View>

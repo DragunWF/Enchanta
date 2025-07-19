@@ -1,7 +1,4 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import { Route } from "@react-navigation/native";
-import type { StackNavigationProp } from "@react-navigation/stack";
-
 import AdventureScreen from "../../screens/Adventure/AdventureScreen";
 import ChooseAdventureScreen from "../../screens/Adventure/ChooseAdventureScreen";
 import GameOverScreen from "../../screens/Adventure/GameOverScreen";
@@ -12,11 +9,10 @@ export type AdventureStackParamList = {
   ChooseAdventure: undefined;
   Adventure: undefined;
   GameOver: {
-    navigation: StackNavigationProp<any>;
-    route: Route<string, { gameOverSummary?: string }>;
+    gameOverSummary?: string;
   };
   AdventureSummary: {
-    route: Route<string, { adventureResult?: AdventureResult }>;
+    adventureResult: AdventureResult; // Required parameter
   };
 };
 
