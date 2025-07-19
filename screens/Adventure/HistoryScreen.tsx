@@ -6,13 +6,8 @@ import Title from "../../components/ui/Title";
 import AdventureResultCard from "../../components/Adventure/AdventureResultCard";
 import AdventureResult from "../../models/adventureResult";
 import { fetchAdventureResults } from "../../helpers/tools/database";
-import { StackNavigationProp } from "@react-navigation/stack";
 
-interface HistoryScreenProps {
-  navigation: StackNavigationProp<any>;
-}
-
-function HistoryScreen({ navigation }: HistoryScreenProps) {
+function HistoryScreen() {
   const [adventureHistory, setAdventureHistory] = useState<AdventureResult[]>(
     []
   );
@@ -20,7 +15,6 @@ function HistoryScreen({ navigation }: HistoryScreenProps) {
   useEffect(() => {
     async function fetchData() {
       const data = await fetchAdventureResults();
-      console.log(data);
       setAdventureHistory(data);
     }
 
@@ -28,9 +22,7 @@ function HistoryScreen({ navigation }: HistoryScreenProps) {
   }, []);
 
   function renderAdventureResultCard({ item }: { item: AdventureResult }) {
-    return (
-      <AdventureResultCard adventureResult={item} />
-    );
+    return <AdventureResultCard adventureResult={item} />;
   }
 
   return (

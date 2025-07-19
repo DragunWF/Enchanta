@@ -1,5 +1,6 @@
 import { BOND_LEVEL, MOOD } from "../../constants/botFactors";
 import AdventureLand from "../../models/adventureLand";
+import AdventureResult from "../../models/adventureResult";
 import { BotResponse } from "../chatbot/chatbotResponseParser";
 import { GeminiMessagePart } from "./gemini";
 import { toTitleCase } from "./utils";
@@ -127,6 +128,22 @@ export function logAdventureLand(adventureLand: AdventureLand | undefined) {
 + ----- Adventure Land ----- +
 ID: ${adventureLand.getId()}
 Title: ${adventureLand.getTitle()}
++ -------------------------- +
+`);
+}
+
+export function logAdventureResult(
+  adventureResult: AdventureResult | undefined
+) {
+  if (!adventureResult) {
+    console.log("Adventure Result is undefined!");
+    return;
+  }
+  console.log(`
++ ----- Adventure Result ----- +
+ID: ${adventureResult.getId()}
+Landscape ID: ${adventureResult.getLandscapeId()}
+Summary: ${adventureResult.getSummary()}
 + -------------------------- +
 `);
 }

@@ -50,7 +50,7 @@ export async function fetchAdventureResults(): Promise<AdventureResult[]> {
     adventureResults.push(
       new AdventureResult(
         dp.id,
-        dp.landscapeId,
+        Number(dp.landscapeId),
         dp.summary,
         Boolean(dp.adventureWon),
         new Date(dp.datetime)

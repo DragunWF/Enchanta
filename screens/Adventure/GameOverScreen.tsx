@@ -52,6 +52,7 @@ function GameOverScreen({ navigation, route }: GameOverScreenProps) {
         new Date()
       )
     );
+
     Toast.show({
       type: "info",
       text1: "Summary Recorded!",
