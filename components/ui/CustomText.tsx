@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { mainColors } from "../../constants/colors";
 
 interface CustomTextProps {

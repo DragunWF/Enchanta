@@ -7,6 +7,7 @@ import CardTitle from "../../components/ui/CardTitle";
 import CardText from "../../components/ui/CardText";
 import CardButton from "../../components/ui/CardButton";
 import AdventureResult from "../../models/adventureResult";
+import BoldText from "../../components/ui/BoldText";
 import { adventureLands } from "../../helpers/adventure/adventureData";
 import { formatDate, formatTime } from "../../helpers/tools/utils";
 import { deleteAdventureResult } from "../../helpers/tools/database";
@@ -70,9 +71,11 @@ function AdventureSummaryScreen({
             </CardTitle>
             <Image style={styles.summaryImage} source={endingImageSource} />
             <CardText>
-              Date and Time: {date} at {time}
+              <BoldText>Date and Time:</BoldText> {date} at {time}
             </CardText>
-            <CardText>Summary: {adventureResult.getSummary()}</CardText>
+            <CardText>
+              <BoldText>Summary:</BoldText> {adventureResult.getSummary()}
+            </CardText>
             <View style={styles.cardButtonList}>
               <CardButton style={styles.cardButton} onPress={goBackHandler}>
                 Go Back

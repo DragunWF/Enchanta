@@ -6,6 +6,7 @@ import Card from "../../components/ui/Card";
 import CardTitle from "../../components/ui/CardTitle";
 import CardText from "../../components/ui/CardText";
 import CardButton from "../../components/ui/CardButton";
+import BoldText from "../ui/BoldText";
 import AdventureResult from "../../models/adventureResult";
 import { adventureLands } from "../../helpers/adventure/adventureData";
 import { formatDate, formatTime } from "../../helpers/tools/utils";
@@ -42,10 +43,15 @@ function AdventureResultCard({ adventureResult }: AdventureResultCardProps) {
     <Card>
       <CardTitle>{venturedAdventureLand?.getTitle()} Adventure</CardTitle>
       <CardText>
-        Date and Time: {date} at {time}
+        <BoldText>Date and Time:</BoldText> {date} at {time}
       </CardText>
-      <CardText>Status: {status}</CardText>
-      <CardText>Summary: {displayedSummary}...</CardText>
+      <CardText>
+        <BoldText>Status:</BoldText> {status}
+      </CardText>
+      <CardText>
+        <BoldText>Summary: </BoldText>
+        {displayedSummary}...
+      </CardText>
       <View style={styles.buttonContainer}>
         <CardButton onPress={viewFullSummaryHandler}>
           View Full Summary

@@ -92,8 +92,8 @@ export const adventureLands = [
         require("../../assets/images/adventure/frostveil-ruins/action-2.png"),
       ],
       aftermath: [
-        require("../../assets/images/adventure/frostveil-ruins/aftermath-1.png"),
-        require("../../assets/images/adventure/frostveil-ruins/aftermath-2.png"),
+        require("../../assets/images/adventure/spirit-forest/aftermath-1.png"),
+        require("../../assets/images/adventure/spirit-forest/aftermath-2.png"),
       ],
     },
     {
