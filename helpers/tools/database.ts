@@ -47,7 +47,7 @@ export function deleteAdventureResult(id: number) {
 
 export async function fetchAdventureResults(): Promise<AdventureResult[]> {
   const result = await database.getAllAsync<AdventureResultRow>(
-    "SELECT * FROM adventureResults"
+    "SELECT * FROM adventureResults ORDER BY id DESC"
   );
 
   const adventureResults = [];
