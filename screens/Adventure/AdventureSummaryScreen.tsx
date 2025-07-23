@@ -38,7 +38,7 @@ function AdventureSummaryScreen({
       `Are you sure you want to delete the summary of your adventure on ${adventureLand?.getTitle()}`,
       [
         {
-          text: "Begin",
+          text: "Yes",
           onPress: async () => {
             console.info(
               `Deleted Adventure Result with ID: ${adventureResult.getId()}`
