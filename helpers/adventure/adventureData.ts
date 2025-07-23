@@ -92,8 +92,10 @@ export const adventureLands = [
         require("../../assets/images/adventure/frostveil-ruins/action-2.png"),
       ],
       aftermath: [
-        require("../../assets/images/adventure/spirit-forest/aftermath-1.png"),
-        require("../../assets/images/adventure/spirit-forest/aftermath-2.png"),
+        require("../../assets/images/adventure/frostveil-ruins/aftermath-1.png"),
+        require("../../assets/images/adventure/frostveil-ruins/aftermath-2.png"),
+        require("../../assets/images/adventure/frostveil-ruins/aftermath-3.png"),
+        require("../../assets/images/adventure/frostveil-ruins/aftermath-4.png"),
       ],
     },
     {
@@ -143,16 +145,31 @@ export const adventureLands = [
     "A surreal and ominous swamp bathed in perpetual red mist. Twisted trees rise like skeletal fingers from murky, stagnant water. Blood-colored moss clings to every surface, and the air is thick with spores that shimmer with an unnatural glow. Sounds are muffled — every splash, every breath feels distant, like the land itself is absorbing noise. The water reflects things that aren’t there. Strange croaks and rustles come from unseen creatures lurking just beneath the surface. Ancient ruins sink slowly into the bog, guarded by toxic flora and ghostly silhouettes that flicker between the mist-covered reeds.",
     require("../../assets/images/adventure/crimson-marshlands/crimson-marshlands.png"),
     {
-      calm: [],
-      mystery: [],
-      danger: [],
-      action: [],
-      aftermath: [],
+      calm: [
+        require("../../assets/images/adventure/crimson-marshlands/calm-1.png"),
+        require("../../assets/images/adventure/crimson-marshlands/calm-2.png"),
+      ],
+      mystery: [
+        require("../../assets/images/adventure/crimson-marshlands/mystery-1.png"),
+        require("../../assets/images/adventure/crimson-marshlands/mystery-2.png"),
+      ],
+      danger: [
+        require("../../assets/images/adventure/crimson-marshlands/danger-1.png"),
+        require("../../assets/images/adventure/crimson-marshlands/danger-2.png"),
+      ],
+      action: [
+        require("../../assets/images/adventure/crimson-marshlands/action-1.png"),
+        require("../../assets/images/adventure/crimson-marshlands/action-2.png"),
+      ],
+      aftermath: [
+        require("../../assets/images/adventure/crimson-marshlands/aftermath-1.png"),
+        require("../../assets/images/adventure/crimson-marshlands/aftermath-2.png"),
+      ],
     },
     {
-      win: require("../../assets/images/adventure/sky-islands/gameover-win.png"),
-      lose: require("../../assets/images/adventure/sky-islands/gameover-lose.png"),
+      win: require("../../assets/images/adventure/crimson-marshlands/gameover-win.png"),
+      lose: require("../../assets/images/adventure/crimson-marshlands/gameover-lose.png"),
     },
-    require("../../assets/images/adventure/spirit-forest/background.png")
+    require("../../assets/images/adventure/crimson-marshlands/background.png")
   ),
 ];

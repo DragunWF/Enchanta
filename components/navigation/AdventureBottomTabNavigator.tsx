@@ -16,13 +16,15 @@ const BottomTabs = createBottomTabNavigator();
 function AdventureBottomTabNavigator() {
   const navigation = useNavigation() as DrawerNavigationProp<any>;
 
+  // TODO: Uncomment inventory screen when it is finished in development
+  // For now, think of alternatives to the inventory screen for adventure mode
   return (
     <AdventureContextProvider>
       <BottomTabs.Navigator
         initialRouteName="AdventureStackNavigator"
         screenOptions={getBottomTabScreenOptions(navigation)}
       >
-        <BottomTabs.Screen
+        {/*<BottomTabs.Screen
           name="Inventory"
           component={InventoryScreen}
           options={{
@@ -36,7 +38,7 @@ function AdventureBottomTabNavigator() {
               );
             },
           }}
-        />
+        />*/}
         <BottomTabs.Screen
           name="AdventureStackNavigator"
           component={AdventureStackNavigator}
