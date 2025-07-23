@@ -76,15 +76,29 @@ export const adventureLands = [
     "A vast tundra of shattered stone structures half-buried beneath glittering snowdrifts. Frostbitten pillars and collapsed temples hint at a long-lost empire swallowed by time and ice. Everything is silent — too silent — save for the soft crunch of snow and distant howls carried by frigid wind. Icicles hang from broken arches like blades. Beneath the surface, glowing runes flicker to life when disturbed, and frozen figures entombed in crystal-clear ice hint at a forgotten curse. Northern lights ripple in the sky, casting ghostly reflections on the ruins and awakening something that should remain asleep.",
     require("../../assets/images/adventure/frostveil-ruins/frostveil-ruins.png"),
     {
-      calm: [],
-      mystery: [],
-      danger: [],
-      action: [],
-      aftermath: [],
+      calm: [
+        require("../../assets/images/adventure/frostveil-ruins/calm-1.png"),
+        require("../../assets/images/adventure/frostveil-ruins/calm-2.png"),
+      ],
+      mystery: [
+        require("../../assets/images/adventure/frostveil-ruins/mystery-1.png"),
+        require("../../assets/images/adventure/frostveil-ruins/mystery-2.png"),
+      ],
+      danger: [
+        require("../../assets/images/adventure/frostveil-ruins/danger.png"),
+      ],
+      action: [
+        require("../../assets/images/adventure/frostveil-ruins/action-1.png"),
+        require("../../assets/images/adventure/frostveil-ruins/action-2.png"),
+      ],
+      aftermath: [
+        require("../../assets/images/adventure/frostveil-ruins/aftermath-1.png"),
+        require("../../assets/images/adventure/frostveil-ruins/aftermath-2.png"),
+      ],
     },
     {
-      win: require("../../assets/images/adventure/sky-islands/gameover-win.png"),
-      lose: require("../../assets/images/adventure/sky-islands/gameover-lose.png"),
+      win: require("../../assets/images/adventure/frostveil-ruins/gameover-win.png"),
+      lose: require("../../assets/images/adventure/frostveil-ruins/gameover-lose.png"),
     },
     require("../../assets/images/adventure/frostveil-ruins/background.png")
   ),
@@ -95,17 +109,32 @@ export const adventureLands = [
     "A dangerous maze of volcanic tunnels and magma-lit chambers. Jagged walls of black glass reflect the flicker of molten rivers that snake through the caverns like veins of fire. The air is stifling, thick with sulfur, and the ground is cracked and unstable, occasionally erupting with geysers of steam or lava. Shadows move strangely here, and distant tremors hint at something massive stirring beneath the crust. Some tunnels lead to chambers filled with glowing crystals or ancient relics pulsing with heat and dark energy. It is both a place of danger and forgotten power — where the earth breathes in anger.",
     require("../../assets/images/adventure/obsidian-caverns/obsidian-caverns.png"),
     {
-      calm: [],
-      mystery: [],
-      danger: [],
-      action: [],
-      aftermath: [],
+      calm: [
+        require("../../assets/images/adventure/obsidian-caverns/calm-1.png"),
+        require("../../assets/images/adventure/obsidian-caverns/calm-2.png"),
+      ],
+      mystery: [
+        require("../../assets/images/adventure/obsidian-caverns/mystery-1.png"),
+        require("../../assets/images/adventure/obsidian-caverns/mystery-2.png"),
+      ],
+      danger: [
+        require("../../assets/images/adventure/obsidian-caverns/danger-1.png"),
+        require("../../assets/images/adventure/obsidian-caverns/danger-2.png"),
+      ],
+      action: [
+        require("../../assets/images/adventure/obsidian-caverns/action-1.png"),
+        require("../../assets/images/adventure/obsidian-caverns/action-2.png"),
+      ],
+      aftermath: [
+        require("../../assets/images/adventure/obsidian-caverns/aftermath-1.png"),
+        require("../../assets/images/adventure/obsidian-caverns/aftermath-2.png"),
+      ],
     },
     {
-      win: require("../../assets/images/adventure/sky-islands/gameover-win.png"),
-      lose: require("../../assets/images/adventure/sky-islands/gameover-lose.png"),
+      win: require("../../assets/images/adventure/obsidian-caverns/gameover-win.png"),
+      lose: require("../../assets/images/adventure/obsidian-caverns/gameover-lose.png"),
     },
-    require("../../assets/images/adventure/spirit-forest/background.png")
+    require("../../assets/images/adventure/obsidian-caverns/background.png")
   ),
   new AdventureLand(
     5,
