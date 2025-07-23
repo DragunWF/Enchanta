@@ -14,6 +14,7 @@ const Drawer = createDrawerNavigator();
 function DrawerNavigator() {
   const navigation = useNavigation() as DrawerNavigationProp<any>;
 
+  // TODO: Uncomment stats screen when it is implemented
   return (
     <Drawer.Navigator
       screenOptions={{
@@ -44,11 +45,11 @@ function DrawerNavigator() {
           title: "Adventure",
         }}
       />
-      <Drawer.Screen
+      {/*<Drawer.Screen
         name="Stats"
         component={StatsScreen}
         options={getDrawerSingleScreenOptions(navigation, "Stats")}
-      />
+      />*/}
       <Drawer.Screen
         name="Developer"
         component={DeveloperScreen}
