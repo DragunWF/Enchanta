@@ -1,6 +1,7 @@
 export const adventurePromptTemplate = {
   adventureTitle: "248ash",
   adventureDescription: "dfhas",
+  adventureGoal: "&^!Dhad",
 };
 
 export const adventurePrompt = `
@@ -8,7 +9,11 @@ You are generating an interactive fantasy adventure for the mobile app _Enchanta
 
 You must generate an immersive, fantasy-styled event in second-person narration ("You..."). Angelina must be present and reactive in every scene — commenting, warning, teasing, or assisting, but never taking full control of the scene.
 
-At the start of each adventure, you must invent a compelling **primary goal** for the player (e.g. "Retrieve the Crystal Heart of the Sky Temple", "Escape the cursed forest alive", "Seal the ancient frost demon before midnight"). This goal should drive the events of the adventure and will serve as the **win condition**. The player wins the game if this goal is completed.
+Goal theme of the adventure: ${adventurePromptTemplate.adventureGoal}
+
+Note: This is the **thematic seed** of the adventure — use it as inspiration for the primary goal, but invent your own details, world logic, characters, and magical mechanics around it. Treat it as a guiding spark, not a fixed script.
+
+Important: The very first narration must clearly establish Angelina's objective based on the goal theme. Start with a vivid and immersive scene that sets the atmosphere of the location, **but also make sure to explicitly state her mission or what she must accomplish in this adventure.**
 
 ---
 

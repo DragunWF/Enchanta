@@ -9,6 +9,7 @@ import AdventureLand from "../../models/adventureLand";
 import { AdventureContextType } from "../../store/AdventureContext";
 import { generateText, generateTextWithHistory } from "../tools/gemini";
 import { extractAdventureBotResponse } from "./adventureResponseParser";
+import { universalAdventureGoals } from "./adventureData";
 import {
   logGeminiResponseHistory,
   logGeminiHistoryCompact,
@@ -24,6 +25,7 @@ export async function getAdventureInitialBotResponse(
     throw new Error("No adventure land selected");
   }
   adventureContext.addAdventureLog({ role: "model", text: prompt });
+  console.info(prompt);
 
   const aiResponse = await generateText(prompt);
   adventureContext.addAdventureLog({ role: "model", text: aiResponse });
@@ -46,6 +48,14 @@ function getFullIntialAdventurePrompt(
   modifiedPrompt = modifiedPrompt.replace(
     adventurePromptTemplate.adventureDescription,
     adventureLand.getPromptDescription()
+  );
+
+  // Docs: Gets a random adventure goal for a more replyable experience
+  modifiedPrompt = modifiedPrompt.replace(
+    adventurePromptTemplate.adventureGoal,
+    universalAdventureGoals[
+      Math.floor(Math.random() * universalAdventureGoals.length)
+    ]
   );
   return modifiedPrompt;
 }
