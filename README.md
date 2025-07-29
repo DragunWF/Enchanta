@@ -103,7 +103,14 @@
    npm install
    ```
 
-3. Run the app:
+3. Configure environment variables
+   Create a `.env` file in the root directory of the project and add the following variables:
+
+   ```
+   EXPO_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
+   ```
+
+4. Run the app:
 
    - For Android:
 
