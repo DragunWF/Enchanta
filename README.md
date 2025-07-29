@@ -86,7 +86,7 @@
 
 - Node.js
 - Expo CLI (`npm install -g expo-cli`)
-- Android Studio or Xcode for emulators (or a physical device with the Expo app)
+- Android Studio or Xcode for emulators/simulators (or a physical device with the Expo app)
 
 ### Installation
 
@@ -103,14 +103,15 @@
    npm install
    ```
 
-3. Configure environment variables
-   Create a `.env` file in the root directory of the project and add the following variables:
+3. Configure environment variables:
+   
+   Create an `.env` file in the root directory of the project and add the following variables:
 
    ```
    EXPO_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
    ```
 
-4. Run the app:
+5. Run the app:
 
    - For Android:
 
